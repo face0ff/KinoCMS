@@ -1,0 +1,391 @@
+{% extends "site/KinoCMS.html" %}
+{% load i18n %}
+{% load static %}
+
+
+
+{% block content %}
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+
+
+
+    <div class="container">
+    {% csrf_token %}
+
+        <div class="row">
+            <div class="col-12 border border-info">
+                <img src="{{ hall.banner_up_image.url }}" style="width: 100%">
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-2 border border-info">
+                <img src="{{ film.main_image.url }}" style="width: 100%">
+                <img style="max-width: 100%" src="{% static 'dist/img/reklama1.png' %}">
+                <img style="max-width: 100%" src="{% static 'dist/img/privat.png' %}">
+
+            </div>
+            <div class="col-10 border border-info text-center">
+                <div class="row">
+                    <div class="col-auto pt-3"><h3>{{ film.title }}</h3><br></div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-3 text-left">
+
+                        {{ session.date }},
+                        {{ session.dateTime }}<br>
+                        ЗАЛ №{{ session.hall.number }}<br>
+                        {% trans 'ЦЕНА В ГРН:' %} 100
+                    </div>
+                    <div class="col-md-2">
+                        {% trans 'ЗАБРОНИРОВАНО:' %}
+                        <p id="int">0</p>
+                    </div>
+                    <div class="col-md-2 text-center">
+                        {% trans 'ВАШ ЗАКАЗ:' %}<p id="sum">0</p>
+                    </div>
+                    <div class="col-md-2 text-center" >
+                        {% trans 'БИЛЕТОВ:' %}<p id="count">0</p>
+
+
+                    </div>
+                    <div class="col-md-2 text-center">
+                        {% trans 'СУММА:' %}<p id="price">0</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" id="svgContainer">
+
+                         <svg class="clickable" viewBox="0 0 1090 591" xmlns="http://www.w3.org/2000/svg" style="background-image: url({% static 'dist/img/scheme.png' %}); background-repeat: no-repeat; background-size:contain">
+                            <g id="svgObject" transform="translate(0.000000,541.000000) scale(0.1,-0.1)" stroke="none" fill-opacity="0.5">
+                                <path d="M3580 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="1" row="1" place="1" fill="white"></path><path d="M3980 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="2" row="1" place="2" fill="white"></path><path d="M4380 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="3" row="1" place="3" fill="white"></path><path d="M4780 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="4" row="1" place="4" fill="white"></path><path d="M5180 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="5" row="1" place="5" fill="white"></path><path d="M5580 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="6" row="1" place="6" fill="white"></path><path d="M5980 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="7" row="1" place="7" fill="white"></path><path d="M6380 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="8" row="1" place="8" fill="white"></path><path d="M6780 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="9" row="1" place="9" fill="white"></path><path d="M7180 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="10" row="1" place="10" fill="white"></path><path d="M7580 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="11" row="1" place="11" fill="white"></path><path d="M7980 4220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="12" row="1" place="12" fill="white"></path>
+                                <path d="M3180 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="13" row="2" place="1" fill="white"></path><path d="M3580 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="14" row="2" place="2" fill="white"></path><path d="M3980 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="15" row="2" place="3" fill="white"></path><path d="M4380 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="16" row="2" place="4" fill="white"></path><path d="M4780 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="17" row="2" place="5" fill="white"></path><path d="M5180 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="18" row="2" place="6" fill="white"></path><path d="M5580 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="19" row="2" place="7" fill="white"></path><path d="M5980 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="20" row="2" place="8" fill="white"></path><path d="M6380 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="21" row="2" place="9" fill="white"></path><path d="M6780 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="22" row="2" place="10" fill="white"></path><path d="M7180 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="23" row="2" place="11" fill="white"></path><path d="M7580 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="24" row="2" place="12" fill="white"></path><path d="M7980 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="25" row="2" place="13" fill="white"></path><path d="M8380 3820 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="26" row="2" place="14" fill="white"></path>
+                                <path d="M2980 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="27" row="3" place="1" fill="white"></path><path d="M3380 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="28" row="3" place="2" fill="white"></path><path d="M3780 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="29" row="3" place="3" fill="white"></path><path d="M4180 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="30" row="3" place="4" fill="white"></path><path d="M4580 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="31" row="3" place="5" fill="white"></path><path d="M4980 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="32" row="3" place="6" fill="white"></path><path d="M5380 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="33" row="3" place="7" fill="white"></path><path d="M5780 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="34" row="3" place="8" fill="white"></path><path d="M6180 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="35" row="3" place="9" fill="white"></path><path d="M6580 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="36" row="3" place="10" fill="white"></path><path d="M6980 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="37" row="3" place="11" fill="white"></path><path d="M7380 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="38" row="3" place="12" fill="white"></path><path d="M7780 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="39" row="3" place="13" fill="white"></path><path d="M8180 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="40" row="3" place="14" fill="white"></path><path d="M8580 3420 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="41" row="2" place="15" fill="white"></path>
+                                <path d="M3404 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="42" row="4" place="1" fill="white"></path><path d="M3804 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="43" row="4" place="2" fill="white"></path><path d="M4204 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="44" row="4" place="3" fill="white"></path><path d="M4604 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="45" row="4" place="4" fill="white"></path><path d="M5004 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="46" row="4" place="5" fill="white"></path><path d="M5404 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="47" row="4" place="6" fill="white"></path><path d="M5804 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="48" row="4" place="7" fill="white"></path><path d="M6204 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="49" row="4" place="8" fill="white"></path><path d="M6604 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="50" row="4" place="9" fill="white"></path><path d="M7004 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="51" row="4" place="10" fill="white"></path><path d="M7404 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="52" row="4" place="11" fill="white"></path>
+
+                                <path d="M7810 2620 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z" class="unclick" id="53" row="4" place="12" fill="white"/>
+                                <path d="M8210 2620 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z" class="unclick" id="54" row="4" place="13" fill="white"/>
+                                <path d="M3404 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="55" row="5" place="1" fill="white"/>
+                                <path d="M3804 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="56" row="5" place="2" fill="white"/>
+                                <path d="M4204 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="57" row="5" place="3" fill="white"/>
+                                <path d="M4604 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="58" row="5" place="4" fill="white"/>
+                                <path d="M5004 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="59" row="5" place="5" fill="white"/>
+                                <path d="M5404 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="60" row="5" place="6" fill="white"/>
+                                <path d="M5804 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="61" row="5" place="7" fill="white"/>
+                                <path d="M6204 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="62" row="5" place="8" fill="white"/>
+                                <path d="M6604 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="63" row="5" place="9" fill="white"/>
+                                <path d="M7004 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="64" row="5" place="10" fill="white"/>
+                                <path d="M7404 2397 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="65" row="5" place="11" fill="white"/>
+                                <path d="M7810 2220 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="66" row="5" place="12" fill="white"/>
+                                <path d="M8210 2220 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="67" row="5" place="13" fill="white"/>
+                                <path d="M3404 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="68" row="6" place="1" fill="white"/>
+                                <path d="M3804 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="69" row="6" place="2" fill="white"/>
+                                <path d="M4204 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="70" row="6" place="3" fill="white"/>
+                                <path d="M4604 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="71" row="6" place="4" fill="white"/>
+                                <path d="M5004 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="72" row="6" place="5" fill="white"/>
+                                <path d="M5404 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="73" row="6" place="6" fill="white"/>
+                                <path d="M5804 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="74" row="6" place="7" fill="white"/>
+                                <path d="M6204 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="75" row="6" place="8" fill="white"/>
+                                <path d="M6604 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="76" row="6" place="9" fill="white"/>
+                                <path d="M7004 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="77" row="6" place="10" fill="white"/>
+                                <path d="M7404 1997 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="78" row="6" place="11" fill="white"/>
+                                <path d="M7810 1820 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="79" row="6" place="12" fill="white"/>
+                                <path d="M8210 1820 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="80" row="6" place="13" fill="white"/>
+                                <path d="M3404 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="81" row="7" place="1" fill="white"/>
+                                <path d="M3804 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="82" row="7" place="2" fill="white"/>
+                                <path d="M4204 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="83" row="7" place="3" fill="white"/>
+                                <path d="M4604 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="84" row="7" place="4" fill="white"/>
+                                <path d="M5004 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="85" row="7" place="5" fill="white"/>
+                                <path d="M5404 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="86" row="7" place="6" fill="white"/>
+                                <path d="M5804 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="87" row="7" place="7" fill="white"/>
+                                <path d="M6204 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="88" row="7" place="8" fill="white"/>
+                                <path d="M6604 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="89" row="7" place="9" fill="white"/>
+                                <path d="M7004 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="90" row="7" place="10" fill="white"/>
+                                <path d="M7404 1597 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="91" row="7" place="11" fill="white"/>
+                                <path d="M7810 1420 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="92" row="7" place="12" fill="white"/>
+                                <path d="M8210 1420 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="93" row="7" place="13" fill="white"/>
+                                <path d="M3404 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="94" row="8" place="1" fill="white"/>
+                                <path d="M3804 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="95" row="8" place="2" fill="white"/>
+                                <path d="M4204 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="96" row="8" place="3" fill="white"/>
+                                <path d="M4604 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="97" row="8" place="4" fill="white"/>
+                                <path d="M5004 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="98" row="8" place="5" fill="white"/>
+                                <path d="M5404 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="99" row="8" place="6" fill="white"/>
+                                <path d="M5804 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="100" row="8" place="7" fill="white"/>
+                                <path d="M6204 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="101" row="8" place="8" fill="white"/>
+                                <path d="M6604 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="102" row="8" place="9" fill="white"/>
+                                <path d="M7004 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="103" row="8" place="10" fill="white"/>
+                                <path d="M7404 1197 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="104" row="8" place="11" fill="white"/>
+                                <path d="M7810 1020 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="105" row="8" place="12" fill="white"/>
+                                <path d="M8210 1020 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="106" row="8" place="13" fill="white"/>
+                                <path d="M3404 799 c-3 -6 -3 -91 1 -190 l7 -179 182 2 181 3 3 188 2 187"class="unclick" id="107" row="9" place="1" fill="white"/>
+                                <path d="M3804 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="108" row="9" place="2" fill="white"/>
+                                <path d="M4204 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="109" row="9" place="3" fill="white"/>
+                                <path d="M4604 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="110" row="9" place="4" fill="white"/>
+                                <path d="M5004 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="111" row="9" place="5" fill="white"/>
+                                <path d="M5404 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="112" row="9" place="6" fill="white"/>
+                                <path d="M5804 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="113" row="9" place="7" fill="white"/>
+                                <path d="M6204 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="114" row="9" place="8" fill="white"/>
+                                <path d="M6604 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="115" row="9" place="9" fill="white"/>
+                                <path d="M7004 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="116" row="9" place="10" fill="white"/>
+                                <path d="M7404 797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187"class="unclick" id="117" row="9" place="11" fill="white"/>
+                                <path d="M7810 620 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="118" row="9" place="12" fill="white"/>
+                                <path d="M8210 620 l0 -190 183 2 182 3 3 188 2 187 -185 0 -185 0 0 -190z"class="unclick" id="119" row="9" place="13" fill="white"/>
+                                <path d="M2020 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="120" row="10" place="1" fill="white"/>
+                                <path d="M2420 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="121" row="10" place="2" fill="white"/>
+                                <path d="M2820 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="122" row="10" place="3" fill="white"/>
+                                <path d="M3220 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="123" row="10" place="4" fill="white"/>
+                                <path d="M3620 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="124" row="10" place="5" fill="white"/>
+                                <path d="M4020 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="125" row="10" place="6" fill="white"/>
+                                <path d="M4420 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="126" row="10" place="7" fill="white"/>
+                                <path d="M4820 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="127" row="10" place="8" fill="white"/>
+                                <path d="M5220 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="128" row="10" place="9" fill="white"/>
+                                <path d="M5620 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="129" row="10" place="10" fill="white"/>
+                                <path d="M6020 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="130" row="10" place="11" fill="white"/>
+                                <path d="M6420 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="131" row="10" place="12" fill="white"/>
+                                <path d="M6820 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="132" row="10" place="13" fill="white"/>
+                                <path d="M7220 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="133" row="10" place="14" fill="white"/>
+                                <path d="M7620 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="134" row="10" place="15" fill="white"/>
+                                <path d="M8020 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="135" row="10" place="16" fill="white"/>
+                                <path d="M8420 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="136" row="10" place="17" fill="white"/>
+                                <path d="M8820 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="137" row="10" place="18" fill="white"/>
+                                <path d="M9220 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="138" row="10" place="19" fill="white"/>
+                                <path d="M9620 220 l0 -190 185 0 185 0 0 190 0 190 -185 0 -185 0 0 -190z"class="unclick" id="139" row="10" place="20" fill="white"/>
+                            </g>
+                        </svg>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 text-left">
+                {% trans 'Стоимость услуги бронирования -3 грн. за каждое место. ЗАБРОНИРОВАННЫЕ БИЛЕТЫ НУЖНО ВЫКУПИТЬ В КАССЕ КИНОТЕАТРА НЕ ПОЗДНЕЕ ЧЕМ ЗА ПОЛЧАСА ДО НАЧАЛА СЕАНСА.' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-md-5 text-right pt-1">
+                <button type="button" class="btn btn-light btn-sm btn-block border-dark" onclick="booking(this)">{% trans 'Бронировать' %}</button>
+            </div>
+            <div class="col-md-5 text-left pt-1">
+                <button type="button" class="btn btn-success btn-sm btn-block border-dark">{% trans 'Купить' %}</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-auto">
+
+            </div>
+        </div>
+
+
+    </div>
+<script>
+{#$(document).ready ( function(){#}
+{#    listPlace = [1,2,3,4,5,6,7,8,9,10,11,12,13]#}
+{##}
+{#    var posi = 3404#}
+{#    var id = 42#}
+{#    console.log()#}
+{#    $('#svgObject').empty();#}
+{#    listPlace.forEach(function(item, i, listPlace ){#}
+{##}
+{#        var Mposi = 'M'+posi#}
+{#        console.log(Mposi)#}
+{##}
+{#            $('#svgObject').append(`<path d="${Mposi} 2797 c-2 -7 -3 -91 -2 -187 l3 -175 185 0 185 0 3 188 2 187" class="unclick" id="${id}" row="4" place="${i+1}" fill="white"/>`);#}
+{#            posi = posi +400#}
+{#            id = id + 1#}
+{##}
+{#            });#}
+{#        $('#svgContainer').html($('#svgContainer').html());#}
+{##}
+{#    })#}
+
+
+
+
+
+$(document).ready(function() {
+  $('#svgObject').click(function() {
+      console.log(event.target.id);
+
+      if (event.target.className.baseVal == "unclick"){
+        var $count = parseInt(document.getElementById('count').innerText);
+        var $value = parseInt(document.getElementById('price').innerText);
+        $value = $value + 100
+        $count = $count + 1
+        document.getElementById('price').innerText = $value
+        document.getElementById('count').innerText = $count
+        document.getElementById(event.target.id).setAttribute("fill", "yellow")
+        document.getElementById(event.target.id).setAttribute("class", "click")
+
+    }
+    else if (event.target.className.baseVal == "click"){
+        var $value = parseInt(document.getElementById('price').innerText);
+        var $count = parseInt(document.getElementById('count').innerText);
+        $value = $value - 100
+        $count = $count - 1
+        document.getElementById('price').innerText = $value
+        document.getElementById('count').innerText = $count
+        document.getElementById(event.target.id).setAttribute("fill", "white")
+        document.getElementById(event.target.id).setAttribute("class", "unclick")
+    }
+    else if (event.target.className.baseVal == "booking"){
+
+          swal("Место уже забронировано");
+    }
+    else if (event.target.className.baseVal == "booking_user"){
+
+            var $id_booking = event.target.id
+            swal({
+                title: "Ты уверен что хочешь удалить бронь*?",
+                type: "info",
+                showCancelButton: true,
+                confirmButtonText: "Удаляем",
+                cancelButtonText: "Подумаем",
+                confirmButtonColor: "#ff0055",
+                cancelButtonColor: "#999999",
+                reverseButtons: true,
+                focusConfirm: false,
+                focusCancel: true
+
+              }).then((result) => {
+                  if (result.value) {
+
+
+                      $.ajax({
+                        url:"{% url 'del_booking' %}",
+                        type:'get',
+                        data:{
+                            id_booking: $id_booking,
+                            },success: function(){
+                                document.getElementById($id_booking).setAttribute("fill", "white")
+                                document.getElementById($id_booking).setAttribute("class", "unclick")
+                              console.log($id_booking)
+
+                            }
+                          })
+
+
+                    swal(
+                      'Удалили бронь!',
+                      'Печально, но что поделать',
+                      'success'
+
+                    )
+
+                  // result.dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                  } else if (result.dismiss === 'cancel') {
+                    swal(
+                      'Галя Отмена',
+                      'Бронь в безопастности',
+                      'error'
+                    )
+                  }
+                });
+
+    }
+    console.log(event.srcElement.attributes.place)});
+
+  })
+
+
+
+function booking() {
+    swal("Спасибо", "Бронь успешно завершена. ", "success");
+    var list_booking = Object.entries(document.getElementsByClassName('click'))
+    var list_data = []
+    list_booking.forEach(function(item, i, list_booking ){
+        console.log({{ session.pk }})
+        dataL = {
+            id: item[1].attributes.id.value,
+            row: item[1].attributes.row.value,
+            place: item[1].attributes.place.value,
+            price: 100,
+            session_id: {{ session.pk }}
+            }
+        list_data.push(dataL)
+    })
+    $.ajax({
+        url:"{% url 'list_booking' %}",
+        type:'post',
+        data:{
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            list_data: JSON.stringify(list_data),
+            },
+            success: function(response) {
+                document.getElementById('price').innerText = 0
+                document.getElementById('count').innerText = 0
+            }
+     })
+}
+    $(document).ready(function(){
+    setInterval(function() {
+        $.ajax({
+            type:'GET',
+            url:"{% url 'list_booking' %}",
+            data:{
+            session: {{ session.pk }}
+            },
+            success: function(response){
+                var data = JSON.parse(response["tikets_user_data"]);
+                var data_all = JSON.parse(response["tikets_data"]);
+                console.log(data_all)
+
+                var sum_user = 0
+                data.forEach(function(item, i, data){
+                    sum_user = i + 1
+                    console.log(i)
+                    console.log(item.pk)
+
+                    document.getElementById(item.pk).setAttribute("fill", "orange")
+                    document.getElementById(item.pk).setAttribute("class", "booking_user")
+                })
+                document.getElementById('int').innerText = sum_user
+                document.getElementById('sum').innerText = sum_user*100
+                data_all.forEach(function(item, i, data_all){
+
+                    console.log(i)
+                    console.log(item.pk)
+                    document.getElementById(item.pk).setAttribute("fill", "black")
+                    document.getElementById(item.pk).setAttribute("class", "booking")
+                })
+            },
+        });
+    },10000);
+})
+
+
+
+
+
+</script>
+
+{% endblock %}
+{% block Seo %}
+
+{% endblock %}
+
+{% block advert %}
+
+{% endblock %}
+    <style>
+html {
+  font-size: 1rem;
+}
+.clickable {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: relative;
+  z-index: 1;
+}
+</style>
+

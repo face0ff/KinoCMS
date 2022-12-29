@@ -1,0 +1,156 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+    <link rel="https://cdn.jsdelivr.net/npm/chartjs-plugin-piechart-outlabels@1.1.2">
+
+{% block content %}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-5">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ obj_users.count }}</h3>
+
+                    <p>{% trans 'Зарегистрированных пользователей' %}</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+
+            </div>
+            <!-- PIE CHART -->
+            <div class="card card-danger mt-5">
+                <div class="card-header">
+                    <h3 class="card-title">{% trans 'Пол' %}</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="pieChart"
+                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">{% trans 'Сеансы' %}</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="visitors-chart" style="display: block; width: 764px; height: 500px;"
+                            class="chartjs-render-monitor" width="800" height="400"></canvas>
+                    {#                            <canvas style="display: block; box-sizing: border-box; height: 250px; width: 250px;" width="800" height="400" id="visitors-chart"></canvas>#}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    {{ num_visits }}
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- ChartJS -->
+    <script src={% static "plugins/chart.js/Chart.js" %}></script>
+    <script src={% static "plugins/chart.js/chartjs-plugin-labels.min.js" %}></script>
+    <script src={% static "plugins/chart.js/utils.js"%}></script>
+    <script src="{% static 'dist/js/statistic.js' %}"></script>
+    <script>
+        const labels = {{sessions_days}};
+        let data_line;
+        data_line = {
+            labels: labels,
+            datasets: [
+                {
+                    label: '{% trans 'Сеансы' %}',
+                    data: {{ sessions_count }},
+                    borderColor: 'rgb(212,57,229)',
+                    backgroundColor: 'rgb(50,238,232)',
+                }]
+        }
+        const configLine = {
+            type: 'line',
+            data: data_line,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Line Chart'
+                    }
+
+                }
+            },
+        };
+        var $visitorsChart = $('#visitors-chart')
+
+        var visitorsChart = new Chart($visitorsChart, configLine)
+
+
+    </script>
+    <script>
+        var label = []
+        var donutData = {
+            labels: [
+                '{% trans 'Женский' %}',
+                '{% trans 'Мужской' %}'
+
+            ],
+
+            datasets: [
+                {
+                    data: [{{ gender.0.count}},{{ gender.1.count }}],
+                    backgroundColor: ['#e092ec', '#36A2EB'],
+                }
+            ],
+        }
+        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        var pieData = donutData;
+        var pieOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+          labels: [
+            {
+              render: 'percentage',
+                fontColor: 'white',
+                fontSize: 16
+            }
+          ]
+        }
+        }
+        //Create pie or douhnut chart
+        // You can switch between pie and douhnut using the method below.
+        new Chart(pieChartCanvas, {
+            type: 'pie',
+            data: pieData,
+            options: pieOptions
+
+        })
+
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,240 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-26 20:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: .\templates\base_pages.html:22 .\templates\base_pages.html:41
+#: .\templates\base_pages_update.html:37 .\templates\base_pages_update.html:55
+#: .\templates\news\news_update.html:30 .\templates\pages\pages_create.html:30
+#: .\templates\pages\pages_update.html:30
+#: .\templates\promotion\promotions_update.html:30
+msgid "Выбрать картинку"
+msgstr "Вибрати картинку"
+
+#: .\templates\base_pages.html:54 .\templates\base_pages_update.html:68
+#: .\templates\pages\contacts_update.html:91 .\templates\pages\main.html:91
+#: .\templates\pages\main_update.html:23
+msgid "Ссылка"
+msgstr "Посилання"
+
+#: .\templates\base_pages.html:55 .\templates\base_pages_update.html:69
+#: .\templates\news\news_create.html:14 .\templates\news\news_update.html:15
+#: .\templates\pages\contacts_update.html:92 .\templates\pages\main.html:92
+#: .\templates\pages\main_update.html:24 .\templates\pages\pages_create.html:15
+#: .\templates\pages\pages_update.html:15
+#: .\templates\promotion\promotions_create.html:14
+#: .\templates\promotion\promotions_update.html:15
+msgid "Описание"
+msgstr "Опис"
+
+#: .\templates\base_pages.html:56 .\templates\base_pages_update.html:70
+#: .\templates\pages\contacts_update.html:93 .\templates\pages\main.html:93
+#: .\templates\pages\main_update.html:25
+msgid "Слова"
+msgstr "Слова"
+
+#: .\templates\base_pages.html:57 .\templates\base_pages_update.html:71
+#: .\templates\news\news.html:22 .\templates\news\news_create.html:10
+#: .\templates\news\news_update.html:11
+#: .\templates\pages\contacts_update.html:78
+#: .\templates\pages\contacts_update.html:94 .\templates\pages\main.html:78
+#: .\templates\pages\main.html:94 .\templates\pages\main_update.html:26
+#: .\templates\pages\pages.html:22 .\templates\pages\pages_create.html:11
+#: .\templates\pages\pages_update.html:11
+#: .\templates\promotion\promotions.html:21
+#: .\templates\promotion\promotions_create.html:10
+#: .\templates\promotion\promotions_update.html:11
+msgid "Название"
+msgstr "Назва"
+
+#: .\templates\news\news.html:13
+msgid "Список новостей"
+msgstr "Список новин"
+
+#: .\templates\news\news.html:15 .\templates\promotion\promotions.html:14
+msgid "Создание новости"
+msgstr "Створення новини"
+
+#: .\templates\news\news.html:23 .\templates\pages\pages.html:23
+#: .\templates\promotion\promotions.html:22
+msgid "Дата создания"
+msgstr "Дата створення"
+
+#: .\templates\news\news.html:24 .\templates\pages\pages.html:24
+#: .\templates\promotion\promotions.html:23
+msgid "Статус"
+msgstr "Статус"
+
+#: .\templates\news\news_create.html:7 .\templates\news\news_update.html:8
+#: .\templates\promotion\promotions_create.html:7
+#: .\templates\promotion\promotions_update.html:8
+msgid "Отобразить новость"
+msgstr "Відобразити новину"
+
+#: .\templates\news\news_create.html:11 .\templates\news\news_update.html:12
+#: .\templates\promotion\promotions_create.html:11
+#: .\templates\promotion\promotions_update.html:12
+msgid "Дата публикации"
+msgstr "Дата публікації"
+
+#: .\templates\news\news_create.html:23 .\templates\news\news_update.html:35
+#: .\templates\promotion\promotions_create.html:23
+#: .\templates\promotion\promotions_update.html:35
+msgid "Ссылка на видео"
+msgstr "Посилання на відео"
+
+#: .\templates\news\news_create.html:30 .\templates\news\news_update.html:42
+#: .\templates\pages\contacts_update.html:105 .\templates\pages\main.html:105
+#: .\templates\pages\main_update.html:36 .\templates\pages\pages_create.html:42
+#: .\templates\pages\pages_update.html:42
+#: .\templates\pages\user_editing.html:41
+#: .\templates\promotion\promotions_create.html:30
+#: .\templates\promotion\promotions_update.html:42
+msgid "Сохранить"
+msgstr "Зберегти"
+
+#: .\templates\pages\advert_site.html:25 .\templates\pages\kids_site.html:25
+#: .\templates\pages\vip_site.html:25
+msgid "ФОТОГАЛЕРЕЯ"
+msgstr "ФОТОГАЛЕРЕЯ"
+
+#: .\templates\pages\contacts_site.html:19 .\templates\pages\pages.html:40
+msgid "Контакты"
+msgstr "Контакти"
+
+#: .\templates\pages\contacts_update.html:40
+#: .\templates\pages\contacts_update.html:73 .\templates\pages\main.html:40
+#: .\templates\pages\main.html:73
+msgid "Выбрать"
+msgstr "Вибрати"
+
+#: .\templates\pages\contacts_update.html:43
+#: .\templates\pages\contacts_update.html:76 .\templates\pages\main.html:43
+#: .\templates\pages\main.html:76
+msgid "Удалить"
+msgstr "Видалити"
+
+#: .\templates\pages\contacts_update.html:45 .\templates\pages\main.html:45
+msgid "Название кинотеатра"
+msgstr "Назва кінотеатру"
+
+#: .\templates\pages\contacts_update.html:46
+#: .\templates\pages\contacts_update.html:79 .\templates\pages\main.html:46
+#: .\templates\pages\main.html:79
+msgid "Координаты"
+msgstr "Координати"
+
+#: .\templates\pages\contacts_update.html:47 .\templates\pages\main.html:47
+#: .\templates\pages\user_editing.html:17
+msgid "Адрес"
+msgstr "Адреса"
+
+#: .\templates\pages\contacts_update.html:80 .\templates\pages\main.html:80
+msgid "Адресс"
+msgstr "Адреса"
+
+#: .\templates\pages\contacts_update.html:85 .\templates\pages\main.html:85
+msgid "Добавить кинотеатр"
+msgstr "Додати кінотеатр"
+
+#: .\templates\pages\kids_site.html:19
+msgid "Детская комната"
+msgstr "Дитяча кімната"
+
+#: .\templates\pages\main_update.html:15 .\templates\pages\user_editing.html:28
+msgid "Телефон"
+msgstr "Телефон"
+
+#: .\templates\pages\main_update.html:17
+msgid "текст"
+msgstr "текст"
+
+#: .\templates\pages\news_site.html:19
+msgid "Новости"
+msgstr "Новини"
+
+#: .\templates\pages\pages.html:13
+msgid "Список страниц"
+msgstr "Список сторінок"
+
+#: .\templates\pages\pages.html:15
+msgid "Создание страниц"
+msgstr "Створення сторінок"
+
+#: .\templates\pages\pages.html:31
+msgid "Главная страница"
+msgstr "Головна сторінка"
+
+#: .\templates\pages\pages_create.html:8 .\templates\pages\pages_update.html:8
+msgid "Отобразить страничку"
+msgstr "Відобразити сторінку"
+
+#: .\templates\pages\user_editing.html:13
+msgid "Имя"
+msgstr "Ім'я"
+
+#: .\templates\pages\user_editing.html:14
+msgid "Фамилия"
+msgstr "Прізвище"
+
+#: .\templates\pages\user_editing.html:15
+msgid "Псевдоним"
+msgstr "Псевдонім"
+
+#: .\templates\pages\user_editing.html:16
+msgid "Имейл"
+msgstr "Імейл"
+
+#: .\templates\pages\user_editing.html:19
+msgid "Пароль"
+msgstr "Пароль"
+
+#: .\templates\pages\user_editing.html:20
+msgid "Номер карты"
+msgstr "Номер картки"
+
+#: .\templates\pages\user_editing.html:25
+msgid "Язык"
+msgstr "Мова"
+
+#: .\templates\pages\user_editing.html:26
+msgid "Пол"
+msgstr "Стать"
+
+#: .\templates\pages\user_editing.html:29
+msgid "Дата рождения"
+msgstr "Дата народження"
+
+#: .\templates\pages\user_editing.html:30
+msgid "Город"
+msgstr "Місто"
+
+#: .\templates\pages\user_editing.html:32
+msgid "Повторите пароль"
+msgstr "Повторіть пароль"
+
+#: .\templates\pages\vip_site.html:19
+msgid "Vip-зал"
+msgstr "Vip-зал"
+
+#: .\templates\promotion\promotions.html:12
+msgid "Список Акции"
+msgstr "Список Акції"

@@ -1,0 +1,61 @@
+{% extends "site/KinoCMS.html" %}
+{% load i18n %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class="row">
+            <div class="col-12 border border-info">
+                <img style="max-width: 100%" src="{% static 'dist/img/films/banner-1814989_1280.jpg' %}">
+            </div>
+        </div>
+<div class="row p-3">
+
+    <div class="col-md-10 ">
+        <h3 style="text-align: center">{% trans 'Контакты' %}</h3>
+        <div class="row" id="now">
+
+
+                {% for contact in contacts %}
+                    <div class="col-md-6">
+                        <h3>{{ contact.cinema_name }}</h3>
+
+                        <img style="max-height: 100%" src="{{ contact.logo.url}}">
+                    </div>
+                    <div class="col-md-6 pt-5">
+                        {{ contact.address }}
+                        {{ contact.coordinate }}
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d10971.064890749138!2d30.77763390776716!3d46.57208816031791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z0L7QtNC10YHRgdCwINC30LLQtdC30LTQvdGL0Lk!5e0!3m2!1sru!2sde!4v1671486865030!5m2!1sru!2sde" width="70%" height="70%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                {% endfor %}
+
+
+        </div>
+    </div>
+     <div class="col-md-2 pt-5">
+
+        <img width="100%" src="{% static 'dist/img/reklama1.png' %}">
+     </div>
+
+
+</div>
+
+
+
+
+
+
+{% endblock %}
+{% block advert %}
+{% endblock %}
+
+{% block Seo %}
+{% endblock %}
+
+
+

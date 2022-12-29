@@ -1,0 +1,380 @@
+{% load i18n %}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Pricing example for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/pricing/">
+
+    <!-- Bootstrap core CSS -->
+      <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"
+            type='text/css'>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.2/minty/bootstrap.css">
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="pricing.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-2 align-self-center text-center">
+                      <div style='text-align:center; width:100%'>
+                            <a href="{% url 'kino_cms' %}"><img src="{% static 'dist/img/logo.png' %}" alt="KinoCMS Logo"
+                                                                class="brand-image img-circle elevation-3 border-info" style=" width: 100px; padding: 5px"></a>
+                      </div>
+
+            </div>
+            <div class="col-md-10 p-1">
+                <div class="row p-1">
+                    <div class="col-md-4 align-self-center">
+                        <form action="{% url 'kino_cms' %}">
+                            <div class="input-group">
+
+                                <input type="search" class="form-control rounded border-info" placeholder={% trans 'Поиск' %} aria-label="Search"
+                                    aria-describedby="search-addon" name="search"/>
+                                <button type="submit" class="btn btn-outline-info">{% trans 'Поиск' %}</button>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-auto align-self-center text-center">
+                  <!-- Facebook -->
+                        <i class="fa fa-facebook-f"></i>
+
+                        <!-- Twitter -->
+                        <i class="fa fa-twitter"></i>
+
+                        <!-- Google -->
+                        <i class="fa fa-google"></i>
+
+                        <!-- Instagram -->
+                        <i class="fa fa-instagram"></i>
+
+                        <!-- Linkedin -->
+                        <i class="fa fa-linkedin-in"></i>
+
+                        <!-- Whatsapp -->
+                        <i class="fa fa-whatsapp"></i>
+
+                    </div>
+                    <div class="col-md-auto align-self-center text-center">
+
+                        <div>
+                            <b class="text-info">{{ phone.phone }}</b><br>
+                            <b class="text-info" >{{ phone.aditional_phone }}</b>
+                        </div>
+
+
+                    </div>
+                        <div class="col-md-auto align-self-center text-center">
+                            <form action="{% url 'set_language' %}" method="post">
+                                {% csrf_token %}
+                                <input  name="next" type="hidden" value="{{ redirect_to }}">
+                                <select class="form-control-sm" name="language">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% get_language_info_list for LANGUAGES as languages %}
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                                             {{ language.name_local }}({{ language.code }})
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <input class="btn-sm btn-light" type="submit" value="Go">
+                            </form>
+                        </div>
+
+
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="col text-center">
+                            <a class="btn btn-info"  href="{% url 'poster' 1  %}">{% trans 'Афиша' %}</a>
+                            <a class="btn btn-info" href="{% url 'sessions' %}">{% trans 'Расписание' %}</a>
+                            <a class="btn btn-info" href="{% url 'poster' 2  %}">{% trans 'Скоро' %}</a>
+                            <a class="btn btn-info" href="{% url 'cinema_site' %}">{% trans 'Кинотеатры' %}</a>
+                            <a class="btn btn-info" href="{% url 'promotions_site' %}">{% trans 'Акции' %}</a>
+
+                              <a class="btn btn-info dropdown-toggle" href="{% url 'about_site' %}" role="button"
+                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% trans 'О кинотеатре' %}
+                              </a>
+
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'about_site' %}">{% trans 'О кинотеатре' %}</a>
+                                <a class="dropdown-item" href="{% url 'news_site'  %}">{% trans 'Новости' %}</a>
+                                <a class="dropdown-item" href="{% url 'advert_site' %}">{% trans 'Реклама' %}</a>
+                                <a class="dropdown-item" href="{% url 'bar_site' %}">{% trans 'Кафе' %}</a>
+                                <a class="dropdown-item" href="{% url 'apk_site' %}">{% trans 'Мобильное приложение' %}</a>
+                                <a class="dropdown-item" href="{% url 'contacts_site' %}">{% trans 'Контакты' %}</a>
+                                <a class="dropdown-item" href="{% url 'vip_site' %}">{% trans 'Vip-зал' %}</a>
+                                <a class="dropdown-item" href="{% url 'kids_site' %}">{% trans 'Детская комната' %}</a>
+                              </div>
+
+                                {% if request.user.is_authenticated %}
+                                    {% if request.user.is_staff %}
+                                        <a href="{% url 'users_update' request.user.pk %}"
+                                        class="btn btn-outline-info border-info">{{ request.user }}</a>
+                                    {% else %}
+                                        {% if request.user.pk %}
+                                        <a href="{% url 'user_editing' request.user.pk %}"
+                                        class="btn btn-outline-info border-info">{{ request.user }}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    <a href="{% url 'logout_page' %}" class="btn btn-outline-info border-info">{% trans 'Выйти' %}</a>
+                                {% else %}
+                                    <a class="btn btn-outline-info border-info" href="{% url 'login_page' %}">{% trans 'Войти' %}</a>
+                                {% endif %}
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    {% block content %}
+        {% if banners_sec.state %}
+            <div class="w-100">
+                <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        {% for banner in banners_up %}
+                            {% if banner == banners_up|first %}
+                                <div class="carousel-item active" data-bs-interval="{{ banners_sec.rotation_speed }}">
+                            <img src="{{ banners_up.first.image.url }}" class="d-block w-100" height="190">
+
+                        </div>
+                            {% else %}
+                            <div class="carousel-item" data-bs-interval="{{ banners_sec.rotation_speed }}">
+                                <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"> >>> </span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"> <<< </span>
+                    </button>
+                </div>
+            </div>
+    {% endif %}
+
+
+{#==========================================================================================#}
+
+        <div style="text-align: center; padding: 3%"><h3>{% trans 'Смотрите сегодня' %}</h3></div>
+        <div class="row">
+        {% for film in films_now %}
+            <div class="col-md-3 pb-3 text-center">
+
+{#                 <a href="{% url 'film_update' film.pk %}" data-toggle="lightbox"#}
+{#                       data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">#}
+                        {% if film.main_image %}
+                        <img src="{{ film.main_image.url }}" class="img-fluid">
+                        {% else %}
+                            <img src="{% static 'dist/img/empty-photo.png' %}" class="img-fluid" >
+                        {% endif %}
+                    </a>
+            <h5> {{ film.title }}</h5>
+
+            <a type="button" href="{% url 'sessions' film.pk %}" class="btn btn-success">{% trans 'Купить билет' %}</a>
+            </div>
+
+
+        {% endfor %}
+    </div>
+    <div style="text-align: center; padding: 3%"><h3>{%  trans 'Скоро на экране' %}</h3></div>
+    <div class="row" >
+        {% for film in films_soon %}
+
+            <div class="col-md-3 pb-3 text-center" >
+
+{#                 <a href="{% url 'film_update' film.pk %}" data-toggle="lightbox"#}
+{#                       data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">#}
+                        {% if film.main_image %}
+                        <img src="{{ film.main_image.url }}" class="img-fluid" >
+                        {% else %}
+                            <img src="{% static 'dist/img/empty-photo.png' %}" class="img-fluid">
+                        {% endif %}
+                    </a>
+
+            <h5>{%  trans 'На экране с' %} {{ film.release_date|date:"d M" }}</h5>
+
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+{#    =========================================================================================#}
+    {% if banners_new_sec.state %}
+        <div style="text-align: center; padding: 3%"><h3>{%  trans 'Новости и Акции' %}</h3></div>
+            <div class="container p-0" id="news">
+                <div class="w-100">
+
+                     <div id="carouselNews" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for banner in banners_new %}
+                                {% if banner == banners_new|first %}
+
+                            <div class="carousel-item active" data-bs-interval="{{ banners_new_sec.rotation_speed }}">
+                                <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
+                                <div class="carousel-caption d-none d-md-block fs-2">
+                                </div>
+                            </div>
+                                    {% else %}
+                                <div class="carousel-item" data-bs-interval="{{ banners_new_sec.rotation_speed }}">
+                                    <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
+                                    <div class="carousel-caption d-none d-md-block fs-2">
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselNews"
+                                data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden"> >>> </span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselNews"
+                                data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden"> <<< </span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+    {% endif %}
+    {% endblock %}
+
+    {% block advert %}
+        <div class="row justify-content-center">
+            <img style="width: 80%" src="{% static 'dist/img/reklama.png' %}">
+        </div>
+    {% endblock %}
+    {% block Seo %}
+        <div style="text-align: center;"><h4>{{ phone.seo_text }}</h4>
+        {{ seo_text.seo_description}}
+        </div>
+    {% endblock %}
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row align-self-center text-center">
+          <div class="col-md-3">
+              <small class="d-block mb-3 text-muted">{%  trans 'Мобильные приложения' %}</small>
+            <img class="mb-2" src="{% static 'dist/img/play.png' %}" alt="" width="100" height="35">
+            <img class="mb-2" src="{% static 'dist/img/ios.png' %}" alt="" width="100" height="35">
+            <small class="d-block mb-3 text-muted">{%  trans 'Разработка сайтов:' %} AVADA-MEDIA</small>
+          </div>
+          <div class="col-md-3">
+            <h5>{%  trans 'Афиша' %}</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">{%  trans 'Расписание' %}</a></li>
+              <li><a class="text-muted" href="#">{%  trans 'Скоро в прокате' %}</a></li>
+              <li><a class="text-muted" href="#">{%  trans 'Кинотеатры' %}</a></li>
+              <li><a class="text-muted" href="#">{%  trans 'Акции' %}</a></li>
+
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5>{%  trans 'О кинотеатре' %}</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">{%  trans 'Новости' %}</a></li>
+              <li><a class="text-muted" href="#">{%  trans 'Реклама' %}</a></li>
+              <li><a class="text-muted" href="#">{%  trans 'Кафе-бар' %}</a></li>
+              <li><a class="text-muted" href="#">{%  trans 'Контакты' %}</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h5></h5>
+            <ul class="list-unstyled text-small">
+              <i class="fa fa-facebook-f"></i>
+
+                        <!-- Twitter -->
+                        <i class="fa fa-twitter"></i>
+
+                        <!-- Google -->
+                        <i class="fa fa-google"></i>
+
+                        <!-- Instagram -->
+                        <i class="fa fa-instagram"></i>
+
+                        <!-- Linkedin -->
+                        <i class="fa fa-linkedin-in"></i>
+
+                        <!-- Whatsapp -->
+                        <i class="fa fa-whatsapp"></i>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+         $(document).ready(function(){
+            $('.dropdown-toggle').dropdown()
+        });
+         Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+
+    </script>
+    <style>
+        body{
+        {% if banners_back.imageBackground != '/static/dist/img/white.png' %}
+            background-image: url("http://127.0.0.1:8000/media/{{ banners_back.imageBackground }}");
+        {% else %}
+            background-color: {{ banners_back.color }};
+        {% endif %}
+        }
+        div.container{
+            background-color: #e8e8e8;
+        }
+
+    </style>
+
+  </body>
+</html>
+

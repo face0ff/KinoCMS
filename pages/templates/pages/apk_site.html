@@ -1,0 +1,52 @@
+{% extends "site/KinoCMS.html" %}
+{% load i18n %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class="row">
+            <div class="col-12 border border-info">
+                <img style="max-width: 100%" src="{{ apk.main_image.url }}">
+            </div>
+        </div>
+<div class="row p-3">
+
+    <div class="col-md-10 ">
+        <h3 style="text-align: center">Мобильное приложение</h3>
+        <div class="row" id="now">
+            <div class="col-md-auto">
+                {{ apk.name }}
+                {{ apk.description }}
+                {% for image in images %}
+                    <img style="max-width: 100%" src="{{ image.image.url}}">
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+     <div class="col-md-2 pt-5">
+
+        <img width="100%" src="{% static 'dist/img/reklama1.png' %}">
+     </div>
+
+
+</div>
+
+
+
+
+
+
+{% endblock %}
+{% block advert %}
+{% endblock %}
+
+{% block Seo %}
+{% endblock %}
+
+
+

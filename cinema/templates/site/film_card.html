@@ -1,0 +1,241 @@
+{% extends "site/KinoCMS.html" %}
+{% load i18n %}
+{% load static %}
+
+
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="{{ film.trailer_url }}"></iframe>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-8 form-group pl-2">
+            <label for="select_box" class="form-label mt-4"><h3>{% trans 'Рассписание сеансов кинотеатра' %}</h3></label>
+        {% csrf_token %}
+
+              <select class="form-control-sm" aria-label="Default select example" id="select" onchange="changeEventHandler({{ film.pk }}, 0)" >
+                <option selected >{% trans 'Выберите кинотеатр' %}</option>
+                  {% for cinema in select_cinema %}
+
+                      <option id="cinema{{ cinema.pk }}"  value="{{ cinema.pk }}" >{{ cinema.name }}</option>
+
+                  {% endfor %}
+
+              </select>
+
+        </div>
+        <div class="col-3 form-label mt-4 pl-3">
+            <button class="btn btn-info" id="all"  onclick="changeEventHandler({{ film.pk }},0)" >ВСЕ</button>
+
+            <button class="btn btn-info"  role="button" id="{{ film.typeIMAX }}"  onclick="changeEventHandler({{ film.pk }},1)">IMAX</button>
+            <button class="btn btn-info" id="{{ film.type3d }}"  onclick="changeEventHandler({{ film.pk }},3)">3Д</button>
+            <button class="btn btn-info" id="{{ film.type2d }}"  onclick="changeEventHandler({{ film.pk }},2)" >2Д</button>
+        </div>
+    </div>
+    <div class="row pl-5" id="show_cinema_type">
+
+    </div>
+    <div class="row pl-5" id="show_only">
+
+    </div>
+    <div class="row pl-5" id="show_time">
+
+    </div>
+    <div class="row">
+        <div class="col-6 text-center">
+            <img style="width: 50%" src="{{ film.main_image.url }}">
+        </div>
+        <div class="col-6 pr-5 text-center justify-content-start">
+            <a type="button" href="{% url 'sessions' film.pk %}" class="btn btn-success">{% trans 'Купить билет' %}</a><br>
+           <h3>{{ film.title }}</h3>
+            {{ film.description }}
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-6 p-5 ">
+
+            <table style="text-align: left; margin: auto;">
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+                <tr>
+                <td>{% trans 'Год: ' %} </td>
+                <td>{{ data_film.year }}</td>
+              </tr>
+                <tr>
+                <td>{% trans 'Страна: ' %} </td>
+                <td>{{ data_film.country }}</td>
+              </tr>
+              <tr>
+                <td>{% trans 'Режисер: ' %} </td>
+                <td>{{ data_film.director }}</td>
+              </tr>
+              <tr>
+                <td>{% trans 'Продюсер: ' %} </td>
+                <td>      {{ data_film.producer }}</td>
+              </tr>
+                <tr>
+                <td>{% trans 'Актер: ' %} </td>
+                <td>{{ data_film.actor }}</td>
+              </tr>
+                <tr>
+                <td>{% trans 'Сценарист: ' %} </td>
+                <td>{{ data_film.writer }}</td>
+              </tr>
+                <tr>
+                <td>{% trans 'Оператор: ' %} </td>
+                <td>{{ data_film.cinema }}</td>
+              </tr>
+                </table>
+        </div>
+        <div class="col-6 text-center" style="width: 200px">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="img-fluid" style= "width: 50%" src="https://img.filmix.ac/frames/929/f46634-novi-4w-vzvod-1986_original.jpg" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid" style= "width: 50%" src="https://img.filmix.ac/frames/929/f46625-novi-4w-vzvod-1986_original.jpg" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid" style= "width: 50%" src="https://img.filmix.ac/frames/929/f46602-novi-4w-vzvod-1986_original.jpg" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+
+
+
+  function changeEventHandler(film, kino_type) {
+    var index = document.getElementById("select")
+    let collection = index.selectedOptions;
+    let id_collection = collection[0].value
+    let name_collection = collection[0].text
+    $('#show_only').children().remove();
+    $('#show_time').children().remove();
+    $('#show_cinema_type').children().remove();
+    if (kino_type=='0'){
+        let film_type = 'Все технологии';
+        $('#show_cinema_type').append(`<div class="col-auto p-2"><h3>${name_collection} ${film_type}</h3></div>`);
+    }
+    else if (kino_type=='1'){
+        let film_type = 'Технология IMAX';
+        $('#show_cinema_type').append(`<div class="col-auto p-2"><h3>${name_collection} ${film_type}</h3></div>`);
+    }
+    else if (kino_type=='2'){
+        let film_type = 'Технология 2D';
+        $('#show_cinema_type').append(`<div class="col-auto p-2"><h3>${name_collection} ${film_type}</h3></div>`);
+    }
+    else if (kino_type=='3'){
+        let film_type = 'Технология 3D';
+        $('#show_cinema_type').append(`<div class="col-auto p-2"><h3>${name_collection} ${film_type}</h3></div>`);
+    }
+
+
+    $.ajax({
+        url:"{% url 'show_session' %}",
+        type:'post',
+        data:{
+            cinema: id_collection,
+            film: film,
+            kino_type: kino_type,
+            csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
+        },
+
+        success: function(response) {
+            var instance = JSON.parse(response["data"]);
+            console.log(instance)
+
+            instance.forEach(function(item, i, instance ){
+                var date = item.fields.date
+                console.log(typeof date)
+                var date_better = moment(date).locale('ru').format('LL');
+
+
+                var hall = item.fields.hall
+                console.log(hall)
+                $('#show_only').append(`<div class="col-auto p-2"><button class="btn btn-info" onclick="select_session('${date}', '${hall}', '${kino_type}')" >${date_better}</button></div>`);
+                {#$('#show_only').children().children().prop('id', "1");#}
+            });
+        }
+        })
+  }
+
+  function select_session(date, hall, kino_type) {
+      console.log(typeof date)
+
+      $('#show_time').children().remove();
+
+    $.ajax({
+        url:"{% url 'select_session' %}",
+        type:'post',
+        data:{
+            kino_type: kino_type,
+            date: date,
+            hall: hall,
+            csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
+        },
+
+        success: function(response) {
+            var instance = JSON.parse(response["data_hall"]);
+            console.log(instance)
+            instance.forEach(function(item, i, instance ){
+
+                time = item.fields.dateTime.slice(0, 5)
+                hall = item.fields.hall
+                t2d=item.fields.t2d
+                t3d=item.fields.t3d
+                tIMAX=item.fields.tIMAX
+                var url = "{% url 'booking' pk=0  %}".replace('0', item.fields.name);
+                film_type_list = ''
+                if (t2d==true){
+                    film_type = '2D';
+                    film_type_list= film_type_list +film_type
+                }
+                else if (t3d==true){
+                    film_type = '3D';
+                     film_type_list= film_type_list +film_type
+                }
+                else if (tIMAX==true){
+                    film_type = 'IMAX';
+                     film_type_list= film_type_list +film_type
+                }
+                $('#show_time').append(`<div class="col-auto p-1"><a class="btn btn-success" href="${url}">${time}<br>Зал ${hall} ${film_type_list}<br>100грн</a></div>`);
+            });
+        }
+        })
+  }
+
+    </script>
+
+
+
+
+
+
+{% endblock %}
+{% block Seo %}
+
+{% endblock %}
+
+{% block advert %}
+    <div class="row justify-content-center">
+        <img style="width: 80%" src="{% static 'dist/img/reklama.png' %}">
+    </div>
+{% endblock %}
+
+

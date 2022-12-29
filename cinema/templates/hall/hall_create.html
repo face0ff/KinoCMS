@@ -1,0 +1,93 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+    <div class="flex-column container-fluid form-group">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row p-5">
+            <div class="col-auto">
+                {{ hall_form.non_field_errors }}
+
+
+                <p>{% trans 'Номер зала' %} {{ hall_form.number}}</p>
+                <p>{% trans 'Описание зала:' %} {{ hall_form.description }}</p>
+               <p>{% trans 'Дата создания:' %} {{ hall_form.create_date }}</p>
+
+{#-----------------------------------------------ВыводимЛого----------------------------------------------#}
+                {% trans 'Схема:' %}
+                <div class="image-cinema col-auto" id="image-cinema">
+                     <img class="img-cinema-logo" id="id_scheme" style=" height: 150px; width: 150px"
+                         class="d-block ml-auto mr-auto d-inline"
+                         src="{% static 'dist/img/empty-photo.png' %}">
+                    <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
+                        {{ hall_form.scheme }}
+                    </label>
+                          <label class="btn btn-danger btn-lg" onclick="hideCinema(event, this)" >{% trans 'Удалить картинку' %}</label>
+                </div>
+{#-------------------------------------------------ВыводимБаннер-------------------------------------------#}
+                {% trans 'Баннер:' %}
+                <div class="image-cinema col-auto" id="image-cinema">
+                     <img class="img-cinema-banner" id="id_banner_up_image" style=" height: 150px; width: 150px"
+                         class="d-block ml-auto mr-auto d-inline"
+                         src="{% static 'dist/img/empty-photo.png' %}">
+                    <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
+                        {{ hall_form.banner_up_image }}
+                    </label>
+                          <label class="btn btn-danger btn-lg" onclick="hideCinema(event, this)" >{% trans 'Удалить картинку' %}</label>
+                </div>
+{#-----------------------------------------------ВыводимФормсет------------------------------------------------------#}
+                                {% trans 'Галерея картинок:' %}
+                                <div class="row" id="img-list" style="padding-left: 2%">
+                    {{ image_formset.management_form }}
+
+
+
+
+
+
+                </div>
+{#-----------------------------------------------ФормсетЭмптиФорм----------------------------------------------------#}
+                <div id="empty-form-img" class="hidden col-auto">
+
+                        <img class="img-film" style=" height: 150px; width: 150px" id="id_{{ image_formset.empty_form.prefix }}-image"
+                             src="{% static 'dist/img/empty-photo.png' %}">
+                        <img class="cancel-button-checkbox" style=" width: 40px; position: absolute" onclick="hideEmptyForm(event, this)"
+                             src="{% static 'dist/img/cancel-button.png' %}">
+
+                        <label class="photo-add btn-test btn-primary row"  >{% trans 'Выбрать картинку' %}
+                            {{ image_formset.empty_form.image}}
+                        </label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button id="add-more-img" class="btn btn-primary btn-lg" type="button">{% trans 'Добавить картинку:' %}</button>
+                    </div>
+                </div>
+{#-----------------------------------------------ВыводимОстальное----------------------------------------------------#}
+
+                SeoForm:
+                <p>{% trans 'Ссылка:' %} {{ seo_form.seo_url }}</p>
+                <p>{% trans 'Описание:' %} {{ seo_form.seo_description }}</p>
+                <p>{% trans 'Слова:' %} {{ seo_form.seo_keywords }}</p>
+                <p>{% trans 'Название:' %} {{ seo_form.seo_title }}</p>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <input type="hidden" name="type" value="hall_create_form">
+                <button type="submit" name="films" class="cinema btn btn-primary btn-lg col-12" value="nodelete">{% trans 'Сохранить:' %}</button>
+
+            </div>
+        </div>
+        <div class="hidden">{{ hall_form.pk}}</div>
+    </form>
+</div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/cinema.js' %}"></script>
+
+{% endblock %}

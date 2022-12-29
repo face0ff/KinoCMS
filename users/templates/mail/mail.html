@@ -1,0 +1,164 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+<div class="card card-primary p-5" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+        <div class="card-header">
+            <h4 class="card-title">{% trans 'Рассылка' %}</h4>
+        </div>
+        <div class="card-body border border-info rounded-lg">
+            <form id="myform" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+
+                <div class="row pb-2">
+                    <div class="col-md-3">{% trans 'Выбрать email кому слать' %}</div>
+                    <div class="col-md-3"><label>
+                        <input type="radio" name="type" value="all_user" onclick="allUsers(this)">
+                        {% trans 'Все пользователи' %}
+                    </label>
+
+                    </div>
+                    <div class="col-md-3"><label>
+                        <input type="radio" id="one_user" name="type" value="one_user" onclick="oneUsers(this)">
+                        {% trans 'Выборочно' %}
+                    </label>
+
+                    </div>
+                    <div class="col-md-3" id="baton" style="display: none">
+                        <button type="button" class="btn btn-light btn-sm " data-toggle="modal" data-target="#exampleModal">
+                            {% trans 'Выберите пользователя' %}
+                        </button></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p style="margin-bottom: 10%; margin-top: 3%;">{% trans 'Загрузить HTML-письмо' %} </p>
+                                <p style="margin-bottom: 10%">{% trans 'Загружен файл' %}</p>
+                                <p style="margin-bottom: 10%">{% trans 'Шаблон текущей рассылки' %}</p>
+                                <p>{% trans 'Количество писем ' %} {{ count }} </p>
+                            </div>
+                            <div class="col-md-6" >
+                                <p><label class="btn btn-primary btn-xs" >{% trans 'Загрузить ' %}{{ mail_form.HtmlTemplate }}</label></p>
+
+                                    <input type="text" name="HtmlFile" style="display: none" id="HtmlFile">
+                                 <p><label id="file_name">{% trans 'Файл ' %}</label> </p>
+                                 <p><label id="template_name">{% trans 'Шаблон ' %}</label> </p>
+                                    {% trans 'Рассылка выполнена  на ' %}
+                                 <a id="percent"></a>%
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 border rounded-lg">
+                        {% for mail in obj_mail %}
+                            <p><label for="myCheckbox"></label><input id="myCheckbox" type="radio" name="mail_pk"
+                                                                      onclick="checkValue('{{ mail.HtmlTemplate | cut:'file/mail/' }}')"
+                                                                      value="{{ mail.pk }}"/>{{ mail.HtmlTemplate| cut:'file/mail/'}} от
+                                {{ mail.date_added|date:"d-m-Y" }}<a style="color: #bd2130" href="{% url 'mail_delete' mail.id %}"> {% trans 'Удалить' %}</a></p>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+
+                <button type="submit" name="mail" id="send_mail" class="page btn btn-primary btn-lg col-12" value="nodelete">{% trans 'Сохранить' %}</button>
+
+                <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+
+                          <div class="modal-body">
+                                <div class="row pl-5">
+                                    <div class="col-md-12">
+                                        <h2 class="title">{% trans 'Список пользователей ' %}</h2>
+                                    </div>
+                                </div>
+                                <div class="card card-secondary">
+                                    <div class="card-body">
+                                        <table  id="example" class="table-sm table-bordered table-hover" style="width: 100%">
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>ID</th>
+                                                <th>{% trans 'Дата регистрации ' %}</th>
+                                                <th>{% trans 'День рождения ' %}</th>
+                                                <th>Email</th>
+                                                <th>{% trans 'Телефон' %}</th>
+                                                <th>{% trans 'ФИО ' %}</th>
+                                                <th>{% trans 'Псевдоним' %}</th>
+                                                <th>{% trans 'Город' %}</th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            {% for user in users %}
+                                                <tr>
+                                                    <td><input type="checkbox" name="user" value="{{ user.email }}" onclick=""></td>
+                                                    <td>{{ user.id }}</td>
+                                                    <td>{{ user.registration_date|date:"d-m-Y" }}</td>
+                                                    <td>{{ user.birthday_date|date:"d-m-Y" }}</td>
+                                                    <td>{{ user.email }}</td>
+                                                    <td>{{ user.phone }}</td>
+                                                    <td>{{ user.name }}{{ user.surname }}</td>
+                                                    <td>{{ user.username }}</td>
+                                                    <td>{{ user.city }}</td>
+
+
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                        <button type="submit"  class="btn btn-primary">{% trans 'Отправить выбранным ' %}</button>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+{% endblock %}
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/f2c75b7247b/api/fnGetHiddenNodes.js"></script>
+    <script src="{% static 'js/users.js' %}"></script>
+
+    <script>
+    $(document).ready(function(){
+    setInterval(function() {
+        $.ajax({
+            type:'GET',
+            url:"{% url 'show_percent' %}",
+            success: function(response){
+                if (response < 100){
+                    $('#send_mail').attr('disabled',true);
+                    $('#one_user').attr('disabled',true);
+                    $('#send_mail').text("{% trans 'Рассылка не завершена ' %}");
+                    $('#percent').text(response);
+                }
+                 else {
+                    $('#percent').text('100');
+                    $('#send_mail').attr('disabled',false);
+                    $('#one_user').attr('disabled',false);
+                    $('#send_mail').text("{% trans 'Начать рассылку ' %}");
+                }
+            },
+        });
+    },);
+
+})
+    </script>
+{% endblock %}

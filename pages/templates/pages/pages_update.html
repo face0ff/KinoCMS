@@ -1,0 +1,43 @@
+{% extends "base_pages_update.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block disc %}
+    <div class="row">
+
+        <div class="col-2 offset-10"><label>{% trans 'Отобразить страничку' %}: {{ page_form.state }}</label></div>
+    </div>
+    <div class="row">
+        <div class="col-6">{% trans 'Название' %}:  <p>{{ page_form.name }}</p></div>
+{#        <div class="col-6">Дата публикации: <p>{{ page_form.date_publication }}</p></div>#}
+    </div>
+
+    <p> {% trans 'Описание' %}: {{ page_form.description }}</p>
+
+{% endblock %}
+
+{% block media1 %}
+    {% if page_form.instance.main_image %}
+                        <img class="img-page" id="id_main_image"
+                         src="{{ page_form.instance.main_image.url }}"
+                         class="d-block ml-auto mr-auto d-inline"
+                         style=" height: 150px; width: 150px">
+                    {% else %}
+                        <img class="img-page" id="id_main_image" style=" height: 150px; width: 150px"
+                         class="d-block ml-auto mr-auto d-inline"
+                         src="{% static 'dist/img/empty-photo.png' %}">
+                    {% endif %}
+                    <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
+                        {{ page_form.main_image }}
+{% endblock %}
+
+{% block media2 %}
+
+{% endblock %}
+
+{% block button %}
+
+    <input type="hidden" name="type" value="pages_update_form">
+                <button type="submit" name="page" class="page btn btn-primary btn-lg col-12"
+                        value="nodelete">{% trans 'Сохранить' %}</button>
+{% endblock %}

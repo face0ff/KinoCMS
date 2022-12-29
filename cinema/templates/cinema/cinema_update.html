@@ -1,0 +1,149 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+    <div class="flex-column container-fluid form-group">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row p-5">
+            <div class="col-auto">
+                {% trans 'Название кинотеатра:' %} {{ cinema_form.name }}
+                {% trans 'Описание кинотеатра:' %} {{ cinema_form.description }}
+                {% trans 'Условия' %} {{ cinema_form.condition }}
+{#-----------------------------------------------ВыводимЛого----------------------------------------------#}
+                {% trans 'Лого:' %}
+                <div class="image-film col-auto" id="image-film">
+                    {% if cinema_form.instance.logo %}
+                        <img class="img-logo" id="id_logo"
+                         src="{{ cinema_form.instance.logo.url }}"
+                         class="d-block ml-auto mr-auto d-inline"
+                         style=" height: 150px; width: 150px">
+                    {% else %}
+                        <img class="img-logo" id="id_logo" style=" height: 150px; width: 150px"
+                         class="d-block ml-auto mr-auto d-inline"
+                         src="{% static 'dist/img/empty-photo.png' %}">
+                    {% endif %}
+                    <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
+                        {{ cinema_form.logo }}
+                    </label>
+                          <label class="btn btn-danger btn-lg" onclick="hideCinemaLogo(event, this)" >{% trans 'Удалить картинку' %}</label>
+                </div>
+{#-------------------------------------------------ВыводимБаннер-------------------------------------------#}
+               {% trans 'Баннер:' %}
+                <div class="image-film col-auto" id="image-film">
+                    {% if cinema_form.instance.banner_up_image %}
+                        <img class="img-banner_up" id="id_banner_up_image"
+                         src="{{ cinema_form.instance.banner_up_image.url }}"
+                         class="d-block ml-auto mr-auto d-inline"
+                         style=" height: 150px; width: 150px">
+                    {% else %}
+                        <img class="img-banner_up" id="id_banner_up_image" style=" height: 150px; width: 150px"
+                         class="d-block ml-auto mr-auto d-inline"
+                         src="{% static 'dist/img/empty-photo.png' %}">
+                    {% endif %}
+                    <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
+                        {{ cinema_form.banner_up_image }}
+                    </label>
+{#                            <a class="btn btn-danger" href="{% url 'cinema_delete_logo' cinema_form.instance.id %}">Удалить картинку</a>#}
+                          <label class="btn btn-danger btn-lg" onclick="hideCinemaBanner(event, this)" >{% trans 'Удалить картинку' %}</label>
+                </div>
+{#-----------------------------------------------ВыводимФормсет------------------------------------------------------#}
+                  {% trans 'Галерея картинок:' %}
+                <div class="row" id="img-list" style="padding-left: 1%">
+                    {{ image_formset.management_form }}
+
+                    {% for form in image_formset %}
+                        {{ form.id }}
+
+                        <div class="img-item col-auto" style="padding-right: 30px" id="id_{{ form.prefix }}-item">
+                            <img class = "img-film"  style="padding-left: 1%; height: 150px; width: 150px" id = "id_{{ form.prefix }}-image"
+                                 src="{{ form.instance.image.url }}">
+                            <img class="cancel-button-small-checkbox" style=" width: 40px; position: absolute" onclick="hidePhoto(event, this)"
+                                 src="{% static 'dist/img/cancel-button.png' %}">
+
+                                <label class="photo-add btn-test btn-primary row"  >{% trans 'Выбрать картинку' %}
+                                    {{ form.image }}
+                                </label>
+
+                            <div style="display: none">{{ form.DELETE }}</div>
+
+                        </div>
+                    {% endfor %}
+
+                </div>
+{#-----------------------------------------------ФормсетЭмптиФорм----------------------------------------------------#}
+                <div id="empty-form-img" class="hidden col-auto">
+
+                        <img class="img-film" style=" height: 150px; width: 150px" id="id_{{ image_formset.empty_form.prefix }}-image"
+                             src="{% static 'dist/img/empty-photo.png' %}">
+                        <img class="cancel-button-checkbox" style=" width: 40px; position: absolute" onclick="hideEmptyForm(event, this)"
+                             src="{% static 'dist/img/cancel-button.png' %}">
+
+                        <label class="photo-add btn-test btn-primary row"  >{% trans 'Выбрать картинку' %}
+                            {{ image_formset.empty_form.image}}
+                        </label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button id="add-more-img" class="btn btn-primary btn-lg" type="button">{% trans 'Добавить картинку' %}</button>
+                    </div>
+                </div>
+{# --------------------------------------------------Создание-зала-----------------------------------------------------#}
+                <div class="row text-center">
+                    <div class="col" style="margin-right: auto; margin-left: auto;">{% trans 'Список залов' %}</div></div>
+
+            <div class="row text-center">
+                <div class="col-6" style="margin-right: auto; margin-left: auto;">
+                    <div class="row">
+                        <div class="col-5 border">{% trans 'Номер зала' %}</div>
+                        <div class="col-5 border">{% trans 'Дата создания' %}</div>
+                    </div>
+                {% for form in hall_form %}
+                    <div class="row">
+                    <div class="col-5 border">{{ form.number }}</div>
+                        <div class="col-5 border">{{ form.create_date|date:"d-m-Y" }}</div>
+                        <div class="col-1" style="width: 50px"><a href="{% url 'hall_update' form.pk %}">
+                            <img src="{% static 'dist/img/edit.png' %}"></a></div>
+                        <div class="col-1" style="width: 50px"><a href="{% url 'hall_delete' form.pk %}">
+                            <img src="{% static 'dist/img/del.png' %}"></a></div>
+
+                    </div>
+                {% endfor %}
+                    <div class="row">
+                        <div class="col text-center">
+                            <a class="btn btn-danger" href="{% url 'hall_create' cinema_form.instance.pk %}">{% trans 'Создание зала' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{#-----------------------------------------------ВыводимОстальное----------------------------------------------------#}
+
+                SeoForm:
+                <p>{% trans 'Ссылка:' %} {{ seo_form.seo_url }}</p>
+                <p>{% trans 'Описание:' %} {{ seo_form.seo_description }}</p>
+                <p>{% trans 'Слова:' %} {{ seo_form.seo_keywords }}</p>
+                <p>{% trans 'Название:' %} {{ seo_form.seo_title }}</p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col">
+                <input type="hidden" class="delete_logo" name="delete_logo" value="nodelete">
+                <input type="hidden" class="delete_banner" name="delete_banner" value="nodelete">
+                <input type="hidden" name="type" value="cinema_update_form">
+                <button type="submit" name="cinema" class="cinema btn btn-primary btn-lg col-12" value="nodelete">{% trans 'Сохранить' %}</button>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/cinema.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+    <div class="flex-column container-fluid form-group">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row pl-5">
+
+
+            </div>
+            <div class="row pl-5">
+                <div class="col-6">
+                    {% trans 'Имя' %}: {{ user_form.name }}
+                    {% trans 'Фамилия' %}: {{ user_form.surname }}
+                    {% trans 'Псевдоним' %}: {{ user_form.username }}
+                    {% trans 'Имейл' %}: {{ user_form.email }}
+                    {% trans 'Адрес' %}: {{ user_form.address }}
+                    {{ user_form.password1.errors }}
+                    {% trans 'Пароль' %}: {{ user_form.password1 }}
+                    <p>{% trans 'Номер карты' %}: {{ user_form.card_number }}</p>
+
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">{% trans 'Язык' %}: {{ user_form.language }}</div>
+                        <div class="col-6">{% trans 'Пол' %}: {{ user_form.gender }}</div>
+                    </div>
+                    {% trans 'Телефон' %}: <p>{{ user_form.phone }}</p>
+                    {% trans 'Дата рождения' %}: {{ user_form.birthday_date }}
+                    {% trans 'Город' %}: {{ user_form.city }}
+
+                    {% trans 'Повторите пароль' %}: {{ user_form.password2 }}
+                    {% if user_form.errors %}
+{#                        <p>Пароли не совпадают</p>#}
+                        {{ user_form.errors }}
+                    {% endif %}
+                </div>
+
+            </div>
+            <input type="hidden" name="type" value="users_update">
+            <button type="submit" name="page" class="page btn btn-primary btn-lg col-12"
+                                value="nodelete">{% trans 'Сохранить' %}</button>
+        </form>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/users.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+    <script>
+    // вешаем маску на телефон
+        $('#phone-field').inputmask("+8(999)999-9999");
+
+        // добавляем правило для валидации телефона
+        jQuery.validator.addMethod("checkMaskPhone", function(value, element) {
+            return /\+\d{1}\(\d{3}\)\d{3}-\d{4}/g.test(value);
+        });
+
+        // получаем нашу форму по class
+        var form = $('.form-request');
+
+        // включаем валидацию в форме
+        form.validate();
+
+        // вешаем валидацию на поле с телефоном по классу
+        $.validator.addClassRules({
+            'phone-field': {
+                checkMaskPhone: true,
+            }
+        });
+
+        // Проверка на валидность формы при отправке, если нужно
+        form.submit(function(e){
+            e.preventDefault();
+            if (form.valid()) {
+                alert('Форма отправлена');
+            }
+            return;
+        });
+    </script>
+{% endblock %}

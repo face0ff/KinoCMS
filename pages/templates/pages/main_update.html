@@ -1,0 +1,110 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+    <div class="flex-column container-fluid form-group">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row p-5">
+            <div class="col-auto">
+                <div class="row">
+
+                    <div class="col-2 offset-10"><label>{{ main_form.state }}</label></div>
+                </div>
+                {% trans 'Телефон' %}: {{ main_form.phone }}
+                 {{ main_form.aditional_phone }}
+                SEO {% trans 'текст' %}: {{ main_form.seo_text }}
+{#-----------------------------------------------ВыводимЛого----------------------------------------------#}
+
+{#-----------------------------------------------ВыводимОстальное----------------------------------------------------#}
+
+                SeoForm:
+                <p>{% trans 'Ссылка' %}: {{ seo_form.seo_url }}</p>
+                <p>{% trans 'Описание' %}: {{ seo_form.seo_description }}</p>
+                <p>{% trans 'Слова' %}: {{ seo_form.seo_keywords }}</p>
+                <p>{% trans 'Название' %}: {{ seo_form.seo_title }}</p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col">
+                 <input type="hidden" name="type" value="main_update_form">
+                <button type="submit" name="page" class="page btn btn-primary btn-lg col-12"
+                        value="nodelete">{% trans 'Сохранить' %}</button>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/pages.js' %}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+    <script>
+    // вешаем маску на телефон
+        $('#phone-field').inputmask("+8(999)999-9999");
+
+        // добавляем правило для валидации телефона
+        jQuery.validator.addMethod("checkMaskPhone", function(value, element) {
+            return /\+\d{1}\(\d{3}\)\d{3}-\d{4}/g.test(value);
+        });
+
+        // получаем нашу форму по class
+        var form = $('.form-request');
+
+        // включаем валидацию в форме
+        form.validate();
+
+        // вешаем валидацию на поле с телефоном по классу
+        $.validator.addClassRules({
+            'phone-field': {
+                checkMaskPhone: true,
+            }
+        });
+
+        // Проверка на валидность формы при отправке, если нужно
+        form.submit(function(e){
+            e.preventDefault();
+            if (form.valid()) {
+                alert('Форма отправлена');
+            }
+            return;
+        });
+
+        // вешаем маску на телефон
+        $('#phone-aditional_field').inputmask("+8(999)999-9999");
+
+        // добавляем правило для валидации телефона
+        jQuery.validator.addMethod("checkMaskPhone", function(value, element) {
+            return /\+\d{1}\(\d{3}\)\d{3}-\d{4}/g.test(value);
+        });
+
+        // получаем нашу форму по class
+        var form = $('.form-request');
+
+        // включаем валидацию в форме
+        form.validate();
+
+        // вешаем валидацию на поле с телефоном по классу
+        $.validator.addClassRules({
+            'phone-field': {
+                checkMaskPhone: true,
+            }
+        });
+
+        // Проверка на валидность формы при отправке, если нужно
+        form.submit(function(e){
+            e.preventDefault();
+            if (form.valid()) {
+                alert('Форма отправлена');
+            }
+            return;
+        });
+    </script>
+{% endblock %}

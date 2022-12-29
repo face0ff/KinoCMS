@@ -1,0 +1,79 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+<div class="flex-column container-fluid form-group">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row p-5">
+            <div class="col-11">
+                {% block disc %}
+                {% endblock %}
+                Главная картинка:
+                <div class="image-page col-auto" id="image-page">
+                     <img class="img-page" id="id_main_image" style=" height: 150px; width: 150px"
+                         class="d-block ml-auto mr-auto d-inline"
+                         src="{% static 'dist/img/empty-photo.png' %}">
+                    <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
+
+                        {% block media1 %}
+                        {% endblock %}
+
+                    </label>
+                          <label class="btn btn-danger btn-lg" onclick="hideBack(event, this)" >Удалить картинку</label>
+                </div>
+                Галерея картинок:
+                <div class="row" id="img-list" style="padding-left: 2%">
+                    {{ image_formset.management_form }}
+                </div>
+                <div id="empty-form-img" class="hidden col-auto">
+
+                        <img class="img-page" style=" height: 150px; width: 150px" id="id_{{ image_formset.empty_form.prefix }}-image"
+                             src="{% static 'dist/img/empty-photo.png' %}">
+                        <img class="cancel-button-checkbox" style=" width: 40px; position: absolute" onclick="hideEmptyForm(event, this)"
+                             src="{% static 'dist/img/cancel-button.png' %}">
+
+                        <label class="photo-add btn-test btn-primary row"  >{% trans 'Выбрать картинку' %}
+                            {{ image_formset.empty_form.image}}
+                        </label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button id="add-more-img" class="btn btn-primary btn-lg" type="button">Добавить картинку</button>
+                    </div>
+                </div>
+                        {% block media2 %}
+                        {% endblock %}
+
+                       SeoForm:
+                <p>{% trans 'Ссылка' %}: {{ seo_form.seo_url }}</p>
+                <p>{% trans 'Описание' %}: {{ seo_form.seo_description }}</p>
+                <p>{% trans 'Слова' %}: {{ seo_form.seo_keywords }}</p>
+                <p>{% trans 'Название' %}: {{ seo_form.seo_title }}</p>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                        {% block button %}
+                        {% endblock %}
+
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/pages.js' %}"></script>
+{% endblock %}

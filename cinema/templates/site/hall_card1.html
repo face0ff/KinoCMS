@@ -1,0 +1,68 @@
+{% extends "site/KinoCMS.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+  <div class="row">
+        <div class="col-md">
+          <img src="{{ hall.banner_up_image.url }}" style="width: 100%">
+        </div>
+  </div>
+    
+        <div class="col-md-2 list-group" style="height: 180px">
+            <img src="{% static 'dist/img/reklama1.png' %}">
+            <div class="col-md p-2">
+                <a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание всех сеансов ' %}</a>
+                {% trans 'Смотрите сегодня' %}
+
+
+            </div>
+           {% for session in sessions %}
+               <div class="col-md-auto border border-danger" style="color: black"><span type="button" href="#">{{ session.film.title }} в {{ session.dateTime }}</span></div>
+           {% endfor %}
+        </div>
+
+    <div class="row">
+        <div class="col-md-10 text-center">
+            <h2>{% trans 'Номер зала' %} {{ hall.number }}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-8 text-center">{{ hall.description }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-8 text-center"><img style="width: 80%" src="{{ hall.scheme.url }}"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center" >
+            <h3>{% trans 'Галлерея' %}</h3><br>
+            {% for image in images %}
+                <img style="width: 80%" src="{{ image.image.url}}">
+            {% endfor %}
+        </div>
+
+    </div>
+
+<style>
+.list-group {
+     margin:auto;
+     float:left;
+     padding-top:20px;
+}
+
+
+</style>
+{% endblock %}
+{% block Seo %}
+
+{% endblock %}
+
+{% block advert %}
+
+{% endblock %}
+

@@ -1,0 +1,514 @@
+{% extends "site/KinoCMS.html" %}
+{% load i18n %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" crossorigin="anonymous"></script>
+   <!-- Include Required Prerequisites -->
+   <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+
+
+
+<div class="row justify-content-md-center">
+
+     <div class="col-md-auto">
+
+          <select class="form-control" aria-label="Default select example" id="select_cinema" onchange="changeEventHandler(this)" >
+                <option selected >{% trans 'Кинотеатр' %}</option>
+              {% for cinema in cinemas %}
+                  <option id="cinema{{ cinema.pk }}"  value="cinema_{{ cinema.pk }}" >{{ cinema.name }}</option>
+              {% endfor %}
+          </select>
+
+    </div>
+    <div class="col-md-auto">
+        <select  style="display: none" class="form-control"  aria-label="Default select example" id="select_date" onchange="changeEventHandler(this)" >
+            <option selected >{% trans 'Дата' %}</option>
+              {% for date in date_all %}
+                  <option id="date{{ date.pk }}"  value="{{ date.date|date:'Y-m-d'}}" >{{ date.date }}</option>
+              {% endfor %}
+          </select>
+     <form>
+        <div class="form-group ">
+           <input  type="text" class="datepicker form-control" value="Дата"/>
+        </div>
+         <button class="form-control" id="reset-date" style="z-index: 1; background-color: rgba(189,33,33,0.68); height: 5px;  position: relative; bottom: 1em; border-radius: 10px"></button>
+      </form>
+    </div>
+    <div class="col-md-auto">
+        <select class="form-control" aria-label="Default select example" id="select_film" onchange="changeEventHandler(this)" >
+            <option selected >{% trans 'Фильм: Все' %} </option>
+              {% for film in films %}
+                  <option id="film_id"  value="film_{{ film.pk }}" >{{ film.title }}</option>
+              {% endfor %}
+          </select>
+    </div>
+    <div class="col-md-auto">
+        <select class="form-control"  aria-label="Default select example" id="select_hall" onchange="changeEventHandler(this)" >
+            <option selected id="hall_select" >{% trans 'Выберите зал' %}</option>
+
+
+
+          </select>
+    </div>
+
+
+</div>
+
+
+
+
+<div class="row" id="now">
+        <div class="col-md-10 text-center p-2"  style="margin: auto"  >
+            <table  id="ex1" class="table-sm table-hover" style="width: 100%">
+                <div id="table_date"></div>
+            </table>
+        </div>
+    <div class="col-md-2 text-center">
+        <img  style="width: 10em;" src="{% static 'dist/img/reklama1.png' %}">
+     </div>
+</div>
+
+
+
+<script>
+    $list = {{ list_book }}
+    var list_book2 = []
+    $list.forEach(function(item, i, $list ){
+        list_book2.push(item)
+        console.log(item)
+    })
+
+$("#reset-date").click(function(){
+    $(".datepicker").val("Дата");
+    document.getElementById('select_date').value = 'Дата'
+    changeEventHandler(this)
+})
+$('.datepicker').datepicker({
+    onSelect: function(date_picker) {
+        var date_better = moment(date_picker).locale('ru').format('L');
+        $(".datepicker").val(date_better);
+        console.log(date_better)
+        document.getElementById('select_date').value = date_picker
+        changeEventHandler(this)
+        },
+
+    minDate: '0D',
+    maxDate: '+6D',
+    dateFormat: 'yy-mm-dd',
+    monthNames: ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"],
+    autoSize: true,
+    dayNamesMin: ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"]
+});
+
+  function changeEventHandler(arg) {
+
+
+    var cinema = document.getElementById("select_cinema")
+    let cinema_collection = cinema.selectedOptions;
+    let id_cinema = cinema_collection[0].value
+    var date = document.getElementById("select_date")
+    let date_collection = date.selectedOptions;
+    let id_date = date_collection[0].value
+
+    var film = document.getElementById("select_film")
+    let film_collection = film.selectedOptions;
+    let id_film = film_collection[0].value
+    var hall = document.getElementById("select_hall")
+    let hall_collection = hall.selectedOptions;
+    let id_hall = hall_collection[0].value
+    console.log(arg.value)
+
+    if (arg.value.split('_')[0] != 'hall'){
+        document.getElementById('hall_select').innerHTML = `Выберите зал`
+        id_hall = '0'
+
+
+    } else{
+        document.getElementById('hall_select').innerHTML = `${hall_collection[0].text}`
+        document.getElementById('hall_select').value = `${hall_collection[0].value}`
+
+    }
+
+
+    show_hall(id_cinema)
+
+
+
+
+      $('#ex1').children().remove();
+
+
+
+    $.ajax({
+        url:"{% url 'filter_session' %}",
+        type:'get',
+        data:{
+            id_cinema: id_cinema,
+            id_film: id_film,
+            id_date: id_date,
+            id_hall: id_hall
+        },
+
+        success: function(response) {
+            var now = JSON.stringify(response["data"]);
+            var instance_now = JSON.parse(now);
+            const spisok = []
+            console.log(instance_now)
+            instance_now.forEach(function(item, i, instance_now ){
+                var value_date = `${ item.date }`
+                var date_better = moment(value_date).locale('ru').format('LL');
+                var session_pk = `${ item.session_id }`
+                var int = parseInt(session_pk)
+                if (list_book2.includes(int)){
+                    var book = "$"
+                }else{
+                    var book = ""
+                }
+                var url = "{% url 'booking' pk=0  %}".replace('0', session_pk);
+                if (spisok.includes(value_date)){
+
+                    $(`#${value_date}`).append(`<tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr>`);
+
+                } else {
+                    {#console.log('333')#}
+                    spisok.push(value_date)
+
+                    $('#ex1').append(`<thead><tr><th>${ date_better }</th><th>{% trans 'Время' %}</th><th>{% trans 'Фильм' %}</th><th>{% trans 'Зал' %}</th><th>{% trans 'Цена' %}</th><th>{% trans 'Бронировать' %}</th></tr></thead>`)
+                    $('#ex1').append(`<tbody id="${ item.date }"><tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr></tbody>`);
+
+                }
+                });
+        }
+        })
+  }
+
+    $(document).ready ( function(){
+        var cinema = document.getElementById("select_cinema")
+        let cinema_collection = cinema.selectedOptions;
+        let id_cinema = cinema_collection[0].value
+
+        string = document.referrer;
+        rez =string.split('/')
+        console.log(string)
+
+        url_rez =window.location.pathname.split('/')
+        console.log(rez)
+        console.log(url_rez)
+
+
+        if (rez[4] == 'film_card' || rez[4]=='poster' && url_rez[3] != ''){
+            if (url_rez[2]){
+                document.querySelector("#select_film").value = `film_${url_rez[3]}`;
+            }else{
+                document.querySelector("#select_film").value = `film_${rez[5]}`;
+            }
+
+
+            $.ajax({
+            url:"{% url 'filter_film' %}",
+            type:'get',
+            data:{
+            id_film: url_rez[3],
+            id_alt_film: rez[5]
+
+                },
+                success: function(response) {
+            {#console.log(response)#}
+            var next = JSON.stringify(response["film_data"]);
+            {#var next = JSON.stringify(response["data_next"]);#}
+            var instance_next = JSON.parse(next);
+            {#var instance_next = JSON.parse(next);#}
+            const spisok = []
+            show_hall(id_cinema)
+            instance_next.forEach(function(item, i, instance_next ){
+                var value_date = `${ item.date }`
+                var date_better = moment(value_date).locale('ru').format('LL');
+                var session_pk = `${ item.session_id }`
+                var int = parseInt(session_pk)
+                if (list_book2.includes(int)){
+                    var book = "$"
+                }else{
+                    var book = ""
+                }
+                var url = "{% url 'booking' pk=0  %}".replace('0', session_pk);
+
+
+
+                if (spisok.includes(value_date)){
+                    {#console.log("123")#}
+                    $(`#${value_date}`).append(`<tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr>`);
+
+
+                } else {
+                    {#console.log('333')#}
+                    spisok.push(value_date)
+
+                    $('#ex1').append(`<thead><tr><th>${ date_better }</th><th>{% trans 'Время' %}</th><th>{% trans 'Фильм' %}</th><th>{% trans 'Зал' %}</th><th>{% trans 'Цена' %}</th><th>{% trans 'Бронировать' %}</th></tr></thead>`)
+                    $('#ex1').append(`<tbody id="${ item.date }"><tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr></tbody>`);
+
+
+
+                }
+
+
+
+            });
+
+
+
+        }
+        })
+
+
+
+
+        }
+else if (string == 'http://127.0.0.1:8000/' && url_rez[3] != ''){
+            document.querySelector("#select_film").value = `film_${url_rez[3]}`;
+            $.ajax({
+            url:"{% url 'filter_film' %}",
+            type:'get',
+            data:{
+            id_film: url_rez[3]
+
+                },
+                success: function(response) {
+            {#console.log(response)#}
+            var next = JSON.stringify(response["film_data"]);
+            {#var next = JSON.stringify(response["data_next"]);#}
+            var instance_next = JSON.parse(next);
+            {#var instance_next = JSON.parse(next);#}
+            const spisok = []
+            show_hall(id_cinema)
+            instance_next.forEach(function(item, i, instance_next ){
+                var value_date = `${ item.date }`
+                var date_better = moment(value_date).locale('ru').format('LL');
+                var session_pk = `${ item.session_id }`
+                var int = parseInt(session_pk)
+                if (list_book2.includes(int)){
+                    var book = "$"
+                }else{
+                    var book = ""
+                }
+                var url = "{% url 'booking' pk=0  %}".replace('0', session_pk);
+
+
+
+                if (spisok.includes(value_date)){
+                    {#console.log("123")#}
+                    $(`#${value_date}`).append(`<tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr>`);
+
+
+                } else {
+                    {#console.log('333')#}
+                    spisok.push(value_date)
+
+                    $('#ex1').append(`<thead><tr><th>${ date_better }</th><th>{% trans 'Время' %}</th><th>{% trans 'Фильм' %}</th><th>{% trans 'Зал' %}</th><th>{% trans 'Цена' %}</th><th>{% trans 'Бронировать' %}</th></tr></thead>`)
+                    $('#ex1').append(`<tbody id="${ item.date }"><tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr></tbody>`);
+
+
+
+                }
+
+
+
+            });
+
+
+
+        }
+        })
+
+
+
+
+        } else if(rez[4] == 'cinema_card'){
+            {#console.log(rez[3])#}
+            var cinema_id = `cinema_${rez[5]}`
+            document.querySelector("#select_cinema").value = `cinema_${rez[5]}`;
+            show_hall(cinema_id)
+            $.ajax({
+            url:"{% url 'filter_cinema' %}",
+            type:'get',
+            data:{
+            id_cinema: rez[5]
+
+                },
+                success: function(response) {
+
+            var next = JSON.stringify(response["cinema_data"]);
+            {#var next = JSON.stringify(response["data_next"]);#}
+            var instance_next = JSON.parse(next);
+            {#var instance_next = JSON.parse(next);#}
+
+            const spisok = []
+
+            instance_next.forEach(function(item, i, instance_next ){
+                var id_tr = $('#tbody').children().attr('id')
+                var value_date = `${ item.date }`
+                var date_better = moment(value_date).locale('ru').format('LL');
+                var session_pk = `${ item.session_id }`
+                var url = "{% url 'booking' pk=0  %}".replace('0', session_pk);
+                var int = parseInt(session_pk)
+                if (list_book2.includes(int)){
+                    var book = "$"
+                }else{
+                    var book = ""
+                }
+
+
+                if (spisok.includes(value_date)){
+                    {#console.log("123")#}
+                    $(`#${value_date}`).append(`<tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr>`);
+
+
+                } else {
+                    {#console.log('333')#}
+                    spisok.push(value_date)
+
+                    $('#ex1').append(`<thead><tr><th>${ date_better }</th><th>{% trans 'Время' %}</th><th>{% trans 'Фильм' %}</th><th>{% trans 'Зал' %}</th><th>{% trans 'Цена' %}</th><th>{% trans 'Бронировать' %}</th></tr></thead>`)
+                    $('#ex1').append(`<tbody id="${ item.date }"><tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr></tbody>`);
+
+
+
+                }
+
+
+
+            });
+
+
+
+        }
+        })
+
+
+
+
+        }
+
+        else{
+            seven_date()
+        }
+
+    })
+
+    function seven_date() {
+        $.ajax({
+        url:"{% url 'filter_session_all' %}",
+        type:'get',
+
+
+
+        success: function(response) {
+            {#console.log(response)#}
+            var next = JSON.stringify(response["data_all"]);
+            var instance_next = JSON.parse(next);
+            const spisok = []
+            instance_next.forEach(function(item, i, instance_next ){
+                var value_date = `${ item.date }`
+                var date_better = moment(value_date).locale('ru').format('LL');
+                var session_pk = `${ item.session_id }`
+                var url = "{% url 'booking' pk=0  %}".replace('0', session_pk);
+                console.log(typeof session_pk)
+                var int = parseInt(session_pk)
+                if (list_book2.includes(int)){
+                    var book = "$"
+                }else{
+                    var book = ""
+                }
+
+
+
+
+                if (spisok.includes(value_date)){
+                    {#console.log("123")#}
+                    $(`#${value_date}`).append(`<tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr>`);
+
+
+                } else {
+                    {#console.log('333')#}
+                    spisok.push(value_date)
+
+                    $('#ex1').append(`<thead><tr><th>${ date_better }</th><th>{% trans 'Время' %}</th><th>{% trans 'Фильм' %}</th><th>{% trans 'Зал' %}</th><th>{% trans 'Цена' %}</th><th>{% trans 'Бронировать' %}</th></tr></thead>`)
+                    $('#ex1').append(`<tbody id="${ item.date }"><tr><td></td><td>${item.time}</td><td>${item.film_one}</td><td>${item.hall_one}</td><td>100</td><td><a class="btn btn-info" href="${url}">${book}</a></td></tr></tbody>`);
+
+
+
+                }
+
+
+
+            });
+
+
+
+        }
+        })
+
+
+}
+ function show_hall(id_cinema) {
+
+
+        console.log(id_cinema)
+        $(`#select_hall`).show()
+
+
+        $.ajax({
+            url:"{% url 'filter_hall' %}",
+            type:'get',
+            data:{
+                id_cinema: id_cinema,
+                href_refer: document.referrer
+            },
+            success: function(response) {
+
+
+            var instance_hall = JSON.parse(response["halls_data"]);
+            $(".hall_id").remove()
+            if ($(`.hall_id`).length == 0 ){
+                instance_hall.forEach(function(item, i, instance_hall ){
+                var value = `${ item.fields.description }`
+                console.log(value)
+
+
+                $("#select_hall").append(`<option class="hall_id" value="hall_${ item.pk }">${ item.fields.description }-${ item.fields.number }</option>`);
+
+            });
+            }
+}})
+
+}
+
+
+
+
+
+
+
+</script>
+
+<style>
+
+</style>
+
+
+
+{% endblock %}
+{% block advert %}
+{% endblock %}
+
+{% block Seo %}
+{% endblock %}
+
+
+

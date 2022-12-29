@@ -1,0 +1,72 @@
+{% load static %}<!doctype html>
+{% load i18n %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Floating labels example for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/floating-labels/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.2/minty/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/floating-labels.css">
+  </head>
+
+  <body>
+    <div class="row pt-5">
+        <div class="col-sm-3 mx-auto border rounded-lg">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                  <div class="text-center">
+                      <div style='text-align:center; width:100%'>
+                            <a href="{% url 'kino_cms' %}"><img src="{% static 'dist/img/logo.png' %}"  alt="KinoCMS Logo"
+                                 class="brand-image img-circle elevation-3" style=" width: 100px; padding: 5px"></a>
+                        </div>
+                          <a style="color: black">KinoCMS</a>
+
+                  </div>
+                    <div class="form-label-group">
+                        <label for="inputUsername">{% trans 'Введите имя ' %}</label>
+
+                    <input type="text" name="username" class="form-control" placeholder="Username" autofocus required id="id_username">
+
+                  </div>
+
+
+                  <div class="form-label-group pb-4">
+                      <label for="inputPassword">{% trans 'Введите пароль ' %}</label>
+                    <input type="password" name="password1" class="form-control" placeholder="Password" required id="id_password1">
+
+                  </div>
+
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+
+{#                  <div class="checkbox mb-3">#}
+{#                    <label>#}
+{#                      <input type="checkbox" value="remember-me"> Запомнить#}
+{#                    </label>#}
+{#                  </div>#}
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans 'Войти ' %}</button>
+
+
+            </form>
+                    <div class="col mx-auto" style='text-align:center; width:100%'>
+                        <a href="{% url 'create_user' %}">{% trans 'Зарегистрироваться  ' %}</a>
+                    </div>
+        </div>
+    </div>
+                        <p class="mt-5 mb-3 text-muted text-center">2022</p>
+  </body>
+</html>

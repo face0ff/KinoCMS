@@ -1,0 +1,53 @@
+.content-wrapper {
+	background: #dedede;
+}
+.wrapper {
+	background: #dedede;
+}
+
+.hidden{
+    display: none;
+	width: 100px;
+}
+.news-banner-item {
+	margin: 1%;
+	padding-left: initial;
+}
+.main-banner-item {
+	margin: 1%;
+	padding-left: initial;
+}
+
+.btn-test {
+	display: block;
+	font-weight: 400;
+	color: #212529;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+table {
+	border-collapse: initial;
+	border-spacing: 15px;
+}
+
+.film-item {
+	padding-right: 30px;
+}
+
+.regHall {
+	top: 57%;
+	position: absolute;
+}
+

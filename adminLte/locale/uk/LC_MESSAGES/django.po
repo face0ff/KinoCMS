@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-26 19:43+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: .\templates\adminLte\stat.html:15
+msgid "Зарегистрированных пользователей"
+msgstr "Зареєстрованих користувачів"
+
+#: .\templates\adminLte\stat.html:25
+msgid "Пол"
+msgstr "Стать"
+
+#: .\templates\adminLte\stat.html:46 .\templates\adminLte\stat.html:84
+msgid "Сеансы"
+msgstr "Сеанси"
+
+#: .\templates\adminLte\stat.html:117
+msgid "Женский"
+msgstr "Жіночий"
+
+#: .\templates\adminLte\stat.html:118
+msgid "Мужской"
+msgstr "Чоловічий"
+
+#: .\templates\base\base.html:57
+msgid "Выход"
+msgstr "Вихід"
+
+#: .\templates\base\base.html:87
+msgid "Статистика"
+msgstr "Статистика"
+
+#: .\templates\base\base.html:94
+msgid "Банера/Слайдеры"
+msgstr "Банери/Слайдери"
+
+#: .\templates\base\base.html:100
+msgid "Фильмы"
+msgstr "Фільми"
+
+#: .\templates\base\base.html:106
+msgid "Кинотеатры"
+msgstr "Кінотеатри"
+
+#: .\templates\base\base.html:112
+msgid "Новости"
+msgstr "Новини"
+
+#: .\templates\base\base.html:118
+msgid "Акции"
+msgstr "Акції"
+
+#: .\templates\base\base.html:124
+msgid "Страницы"
+msgstr "Сторінки"
+
+#: .\templates\base\base.html:130
+msgid "Пользователи"
+msgstr "Користувачі"
+
+#: .\templates\base\base.html:136
+msgid "Рассылка"
+msgstr "Розсилка"

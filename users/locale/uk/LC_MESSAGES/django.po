@@ -1,0 +1,194 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-28 12:36+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: .\templates\mail\mail.html:11
+msgid "Рассылка"
+msgstr "Розсилка"
+
+#: .\templates\mail\mail.html:19
+msgid "Выбрать email кому слать"
+msgstr "Вибрати email кому надіслати"
+
+#: .\templates\mail\mail.html:22
+msgid "Все пользователи"
+msgstr "Усі користувачі"
+
+#: .\templates\mail\mail.html:28
+msgid "Выборочно"
+msgstr "Вибірково"
+
+#: .\templates\mail\mail.html:34
+msgid "Выберите пользователя"
+msgstr "Виберіть користувача"
+
+#: .\templates\mail\mail.html:41
+msgid "Загрузить HTML-письмо"
+msgstr "Завантажити HTML-лист"
+
+#: .\templates\mail\mail.html:42
+msgid "Загружен файл"
+msgstr "Завантажений файл"
+
+#: .\templates\mail\mail.html:43
+msgid "Шаблон текущей рассылки"
+msgstr "Шаблон поточної розсилки"
+
+#: .\templates\mail\mail.html:44
+msgid "Количество писем "
+msgstr "Кількість листів"
+
+#: .\templates\mail\mail.html:47
+msgid "Загрузить "
+msgstr "Завантажити"
+
+#: .\templates\mail\mail.html:50
+msgid "Файл "
+msgstr "Файл"
+
+#: .\templates\mail\mail.html:51
+msgid "Шаблон "
+msgstr "Шаблон"
+
+#: .\templates\mail\mail.html:52
+msgid "Рассылка выполнена  на "
+msgstr "Розсилка виконана на"
+
+#: .\templates\mail\mail.html:63
+msgid "Удалить"
+msgstr "Видалити"
+
+#: .\templates\mail\mail.html:70 .\templates\users\users_update.html:44
+msgid "Сохранить"
+msgstr "Зберегти"
+
+#: .\templates\mail\mail.html:79
+msgid "Список пользователей "
+msgstr "Список користувачів"
+
+#: .\templates\mail\mail.html:89 .\templates\users\users.html:23
+msgid "Дата регистрации "
+msgstr "Дата реєстрації"
+
+#: .\templates\mail\mail.html:90
+msgid "День рождения "
+msgstr "День народження "
+
+#: .\templates\mail\mail.html:92 .\templates\users\users.html:26
+#: .\templates\users\users_update.html:30
+msgid "Телефон"
+msgstr "Телефон"
+
+#: .\templates\mail\mail.html:93 .\templates\users\users.html:27
+msgid "ФИО "
+msgstr "ПІБ"
+
+#: .\templates\mail\mail.html:94 .\templates\users\users.html:28
+#: .\templates\users\users_update.html:17
+msgid "Псевдоним"
+msgstr "Псевдонім"
+
+#: .\templates\mail\mail.html:95 .\templates\users\users.html:29
+#: .\templates\users\users_update.html:32
+msgid "Город"
+msgstr "Місто"
+
+#: .\templates\mail\mail.html:121
+msgid "Отправить выбранным "
+msgstr "Надіслати вибраним"
+
+#: .\templates\mail\mail.html:149
+msgid "Рассылка не завершена "
+msgstr "Розсилка не завершена"
+
+#: .\templates\mail\mail.html:156
+msgid "Начать рассылку "
+msgstr "Почати розсилку"
+
+#: .\templates\users\login_page.html:34 .\templates\users\register.html:36
+msgid "Введите имя "
+msgstr "Введіть ім'я"
+
+#: .\templates\users\login_page.html:42 .\templates\users\register.html:48
+#: .\templates\users\register.html:53
+msgid "Введите пароль "
+msgstr "Введіть пароль"
+
+#: .\templates\users\login_page.html:61 .\templates\users\register.html:72
+msgid "Войти "
+msgstr "Увійти"
+
+#: .\templates\users\login_page.html:66
+msgid "Зарегистрироваться  "
+msgstr "Зарегистрироваться"
+
+#: .\templates\users\register.html:42
+msgid "Введите имейл  "
+msgstr "Введіть імейл"
+
+#: .\templates\users\register.html:76
+msgid "Зарегистрировать"
+msgstr "Зарегистрировать"
+
+#: .\templates\users\users.html:13
+msgid "Список пользователи"
+msgstr "Список користувачів"
+
+#: .\templates\users\users.html:24 .\templates\users\users_update.html:31
+msgid "Дата рождения"
+msgstr "Дата народження"
+
+#: .\templates\users\users_update.html:15
+msgid "Имя"
+msgstr "Ім'я"
+
+#: .\templates\users\users_update.html:16
+msgid "Фамилия"
+msgstr "Прізвище"
+
+#: .\templates\users\users_update.html:18
+msgid "Имейл"
+msgstr "Імейл"
+
+#: .\templates\users\users_update.html:19
+msgid "Адрес"
+msgstr "Адреса"
+
+#: .\templates\users\users_update.html:21
+msgid "Пароль"
+msgstr "Пароль"
+
+#: .\templates\users\users_update.html:22
+msgid "Номер карты"
+msgstr "Номер картки"
+
+#: .\templates\users\users_update.html:27
+msgid "Язык"
+msgstr "Мова"
+
+#: .\templates\users\users_update.html:28
+msgid "Пол"
+msgstr "Стать"
+
+#: .\templates\users\users_update.html:34
+msgid "Повторите пароль"
+msgstr "Повторити пароль"

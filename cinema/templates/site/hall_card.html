@@ -1,0 +1,62 @@
+{% extends "site/KinoCMS.html" %}
+{% load i18n %}
+{% load static %}
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 border border-info">
+                <img src="{{ hall.banner_up_image.url }}" style="width: 100%">
+            </div>
+        </div>
+        <div class="row pt-3 text-center">
+            <div class="col-md-2 border border-info">
+                <img style="max-width: 100%" src="{% static 'dist/img/reklama1.png' %}">
+                    <a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание всех сеансов ' %}</a>
+
+
+                <div>{% trans 'Смотрите сегодня' %}</div>
+                {% for session in sessions %}
+                    <div class="col-auto border border-danger" style="color: black">
+                           <span class="clickable" >{{ session.film.title }} в {{ session.dateTime }}</span>
+                    </div>
+                {% endfor %}
+                <div style=" padding-top: 10% "><a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание сеансов' %}</a></div>
+
+            </div>
+            <div class="col-md-10 border border-info text-center">
+                <h2>{{ hall.number }}</h2>
+
+               {{ hall.description }}
+                <h3>{% trans 'Условия' %}</h3><br>
+
+                    <img style="width: 80%" src="{{ hall.scheme.url }}">
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}
+{% block Seo %}
+
+{% endblock %}
+
+{% block advert %}
+
+{% endblock %}
+    <style>
+
+.clickable {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: relative;
+  z-index: 1;
+}
+</style>
