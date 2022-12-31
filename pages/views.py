@@ -474,9 +474,24 @@ def apk_site(request):
     return render(request, 'pages/apk_site.html', {'apk': apk, 'images': images})
 
 def contacts_site(request):
-    contacts = Contacts.objects.all()
+    contacts = Contacts.objects.filter(state=True)
+    contacts_list = []
+    for i in contacts:
+        x = i.coordinate.split(',')[0]
+        y = i.coordinate.split(',')[1]
+        z = float(x)-10
+        data = {
+            'name': i.cinema_name,
+            'logo': i.logo,
+            'address': i.address,
+            'x': x,
+            'y': y,
+            'z': str(z)
+        }
+        contacts_list.append(data)
 
-    return render(request, 'pages/contacts_site.html', {'contacts': contacts})
+
+    return render(request, 'pages/contacts_site.html', {'contacts_list': contacts_list})
 
 def vip_site(request):
     vip = get_object_or_404(TemplatePage, id=5)
