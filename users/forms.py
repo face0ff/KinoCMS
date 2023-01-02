@@ -35,7 +35,7 @@ class ChangeForm(UserChangeForm):
     surname = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Last name",
                                                             'style': 'width:auto'}))
     birthday_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control','type': 'date',
-                                                                  'placeholder': "Введите дату", 'style': 'width:auto'}))
+                                                                  'placeholder': "Введите дату", 'style': 'width:auto'}, format='%Y-%m-%d'))
 
     address = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Address",
                                                             'style': 'width:auto'}))

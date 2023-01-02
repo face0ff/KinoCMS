@@ -37,7 +37,7 @@ class NewsForm(forms.ModelForm):
             "date_publication": DateInput(attrs={
                 'type': 'date',
                 'placeholder': "Введите дату"
-            }),
+            }, format='%Y-%m-%d'),
             "state": CheckboxInput(attrs={
                 'class': 'form-control'
             }),

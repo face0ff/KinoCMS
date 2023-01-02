@@ -14,7 +14,7 @@ def check(user):
 def stat_view(request):
     obj_users = User.objects.all()
     today = datetime.date.today()
-    last_month = today.replace(month=today.month - 1)
+    last_month = today.replace(month=today.month)
     # print(last_month)
 
     sessions = Session.objects.annotate(dcount=Count('dateTime')).order_by('date').filter(date__gte=last_month)

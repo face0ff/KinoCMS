@@ -69,7 +69,7 @@ class FilmsForm(forms.ModelForm):
             "release_date": DateInput(attrs={
                 'type': 'date',
                 'placeholder': "Введите дату"
-            }),
+            }, format='%Y-%m-%d'),
             "main_image": FileInput(attrs={
                 'class': 'form-control',
                 'style': 'display: none',
@@ -125,7 +125,7 @@ class HallForm1(forms.ModelForm):
             "create_date": DateInput(attrs={
                 'type': 'date',
                 'placeholder': "Введите дату"
-            }),
+            }, format='%Y-%m-%d'),
             "banner_up_image": FileInput(attrs={
                 'class': 'form-control',
                 'style': 'display: none',
@@ -163,7 +163,7 @@ class HallForm(forms.ModelForm):
             "create_date": DateInput(attrs={
                 'type': 'date',
                 'placeholder': "Введите дату"
-            }),
+            }, format='%Y-%m-%d'),
             "banner_up_image": FileInput(attrs={
                 'class': 'form-control',
                 'style': 'display: none',
