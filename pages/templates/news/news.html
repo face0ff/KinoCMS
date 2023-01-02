@@ -33,9 +33,9 @@
                         <td>{% if new.state %} {{ 'ВКЛ' }} {% else %} {{ 'ВЫКЛ' }} {% endif %}</td>
                         <td style="border: none" width="106">
                             <a href="{% url 'news_update' new.pk %}">
-                          <img src="{% static 'dist/img/edit.png' %}"></a>
+                          <img src="{% static 'img/edit.png' %}"></a>
                             <a href="{% url 'news_delete' new.pk %}">
-                          <img src="{% static 'dist/img/del.png' %}"></a>
+                          <img src="{% static 'img/del.png' %}"></a>
                         </td>
                     </tr>
                 {% endfor %}

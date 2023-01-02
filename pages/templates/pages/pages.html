@@ -33,7 +33,7 @@
                         <td>{% if main_page.state %} {{ 'ВКЛ' }} {% else %} {{ 'ВЫКЛ' }} {% endif %}</td>
                         <td style="border: none" width="106">
                             <a href="{% url 'main_update' main_page.id %}">
-                          <img src="{% static 'dist/img/edit.png' %}"></a>
+                          <img src="{% static 'img/edit.png' %}"></a>
                         </td>
                     </tr>
                     <tr>
@@ -42,7 +42,7 @@
                         <td>{% if contacts_page.state %} {{ 'ВКЛ' }} {% else %} {{ 'ВЫКЛ' }} {% endif %}</td>
                         <td style="border: none" width="106">
                             <a href="{% url 'contacts_update' %}">
-                          <img src="{% static 'dist/img/edit.png' %}"></a>
+                          <img src="{% static 'img/edit.png' %}"></a>
                         </td>
                     </tr>
 
@@ -53,7 +53,7 @@
                         <td>{% if page.state %} {{ 'ВКЛ' }} {% else %} {{ 'ВЫКЛ' }} {% endif %}</td>
                         <td style="border: none" width="106">
                             <a href="{% url 'pages_update' page.pk %}">
-                          <img src="{% static 'dist/img/edit.png' %}"></a>
+                          <img src="{% static 'img/edit.png' %}"></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -64,9 +64,9 @@
                         <td>{% if page.state %} {{ 'ВКЛ' }} {% else %} {{ 'ВЫКЛ' }} {% endif %}</td>
                         <td style="border: none" width="106">
                             <a href="{% url 'pages_update' page.pk %}">
-                          <img src="{% static 'dist/img/edit.png' %}"></a>
+                          <img src="{% static 'img/edit.png' %}"></a>
                             <a href="{% url 'pages_delete' page.pk %}">
-                          <img src="{% static 'dist/img/del.png' %}"></a>
+                          <img src="{% static 'img/del.png' %}"></a>
                         </td>
                     </tr>
                 {% endfor %}

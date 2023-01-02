@@ -10,7 +10,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <div class="row">
             <div class="col-md-12 border border-info">
-                <img style="max-width: 100%" src="{% static 'dist/img/films/banner-1814989_1280.jpg' %}">
+                <img style="max-width: 100%" src="{% static 'img/films/banner-1814989_1280.jpg' %}">
             </div>
         </div>
 <div class="row p-3">
@@ -24,7 +24,7 @@
                         <a href="{% url 'promotion_site' promo.pk %}">
                             <img src="{{ promo.main_image.url }}" height="180" width="100%">
                         {% else %}
-                            <img src="{% static 'dist/img/empty-photo.png' %}" width="100%">
+                            <img src="{% static 'img/empty-photo.png' %}" width="100%">
                         {% endif %}
                             </a>
                         <h3>{{ promo.name }}</h3>
@@ -35,7 +35,7 @@
     </div>
      <div class="col-md-2 pt-5">
 
-        <img width="100%" src="{% static 'dist/img/reklama1.png' %}">
+        <img width="100%" src="{% static 'img/reklama1.png' %}">
      </div>
 
 

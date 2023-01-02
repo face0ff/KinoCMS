@@ -20,9 +20,9 @@
                         <img src="{{ cinema.logo.url }}" height="250" width="250"
                              class="d-block ml-auto mr-auto d-inline">
 {#                            <a class="btn btn-danger" href="{% url 'cinema_delete' cinema.id %}">Удалить кинотеатр</a>#}
-{#                         <img class="cancel-button-small-checkbox" style=" width: 40px; position: absolute" onclick="{% url 'cinema_delete' pk=cinema.pk %}" src="{% static 'dist/img/cancel-button.png' %}">#}
+{#                         <img class="cancel-button-small-checkbox" style=" width: 40px; position: absolute" onclick="{% url 'cinema_delete' pk=cinema.pk %}" src="{% static 'img/cancel-button.png' %}">#}
                         {% else %}
-                            <img src="{% static 'dist/img/empty-photo.png' %}" height="250" width="250"
+                            <img src="{% static 'img/empty-photo.png' %}" height="250" width="250"
                                  class="d-block ml-auto mr-auto d-inline">
                         {% endif %}
                  <a class="btn btn-danger" href="{% url 'cinema_delete' cinema.id %}">{% trans 'Удалить кинотеатр' %}</a>

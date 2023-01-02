@@ -12,7 +12,7 @@
 
         <a href="#" id="list_now" class="list-group-item active"><span>{% trans 'Афиша' %}</span></a>
         <a href="#" id="list_soon" class="list-group-item"> <span>{% trans 'Скоро' %}</span></a>
-        <img class="d-none .d-lg-block .d-xl-none" src="{% static 'dist/img/reklama1.png' %}">
+        <img class="d-none .d-lg-block .d-xl-none" src="{% static 'img/reklama1.png' %}">
      </div>
     <div class="col-md-10">
         <div class="row" id="now">
@@ -23,7 +23,7 @@
                             {% if film.main_image %}
                             <img  class="img-fluid" src="{{ film.main_image.url }}">
                             {% else %}
-                                <img  class="img-fluid" src="{% static 'dist/img/empty-photo.png' %}">
+                                <img  class="img-fluid" src="{% static 'img/empty-photo.png' %}">
                             {% endif %}
                         </a>
                      <h5>{{ film.title }}</h5>
@@ -41,7 +41,7 @@
                             {% if film.main_image %}
                             <img class="img-fluid" src="{{ film.main_image.url }}">
                             {% else %}
-                                <img class="img-fluid"  src="{% static 'dist/img/empty-photo.png' %}">
+                                <img class="img-fluid"  src="{% static 'img/empty-photo.png' %}">
                             {% endif %}
                         </a>
                     <h5>{{ film.title }}</h5>

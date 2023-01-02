@@ -33,10 +33,10 @@
                             {% else %}
                                 <img class="img-logo" id = "id_{{ form.prefix }}-logo" style=" height: 150px; width: 150px"
                                  class="d-block ml-auto mr-auto d-inline"
-                                 src="{% static 'dist/img/empty-photo.png' %}">
+                                 src="{% static 'img/empty-photo.png' %}">
                             {% endif %}
                         <img class="cancel-button-checkbox" style=" width: 40px; position: absolute" onclick="hidePhoto(event, this)"
-                             src="{% static 'dist/img/cancel-button.png' %}">
+                             src="{% static 'img/cancel-button.png' %}">
                             <label class="btn btn-primary btn-lg" >{% trans 'Выбрать' %}
                                 {{ form.logo }}
                             </label>
@@ -67,9 +67,9 @@
                 <div id="empty-form-img" class="hidden" style="padding-right: 2%">
                         {{ contact_formset.empty_form.state}}
                         <img class="img-logo" style=" height: 150px; width: 150px" id="id_{{ contact_formset.empty_form.prefix }}-logo"
-                             src="{% static 'dist/img/empty-photo.png' %}">
+                             src="{% static 'img/empty-photo.png' %}">
                         <img class="cancel-button-checkbox" style=" width: 40px; position: absolute" onclick="hidePhoto(event, this)"
-                             src="{% static 'dist/img/cancel-button.png' %}">
+                             src="{% static 'img/cancel-button.png' %}">
                          <label class="btn btn-primary btn-lg" >{% trans 'Выбрать' %}
                             {{ contact_formset.empty_form.logo }}
                         </label>

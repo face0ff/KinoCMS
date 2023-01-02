@@ -106,7 +106,7 @@ function hidePhoto(event, element) {
 
 function hideBack(event, element) {
     console.log(element)
-    $('.img-page').attr('src', '/static/dist/img/empty-photo.png')
+    $('.img-page').attr('src', '/static/img/empty-photo.png')
     $('.page').attr('value', 'delete')
 
 }
@@ -119,13 +119,13 @@ function hideEmptyForm(event, element) {
 function hideCinemaLogo(prefix, element) {
     console.log(element)
     console.log(event)
-    $('#id_'+prefix+'-logo').attr('src', '/static/dist/img/empty-photo.png')
+    $('#id_'+prefix+'-logo').attr('src', '/static/img/empty-photo.png')
     $('.delete_logo').attr('value', prefix)
 }
 
 function hideCinemaBanner(event, element) {
     console.log(element)
-    $('.img-banner_up').attr('src', '/static/dist/img/empty-photo.png')
+    $('.img-banner_up').attr('src', '/static/img/empty-photo.png')
     $('.delete_banner').attr('value', 'delete')
 }
 

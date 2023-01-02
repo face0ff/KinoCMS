@@ -19,7 +19,7 @@
                 <div class="image-page col-auto" id="image-page">
                      <img class="img-page" id="id_main_image" style=" height: 150px; width: 150px"
                          class="d-block ml-auto mr-auto d-inline"
-                         src="{% static 'dist/img/empty-photo.png' %}">
+                         src="{% static 'img/empty-photo.png' %}">
                     <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
 
                         {% block media1 %}
@@ -35,9 +35,9 @@
                 <div id="empty-form-img" class="hidden col-auto">
 
                         <img class="img-page" style=" height: 150px; width: 150px" id="id_{{ image_formset.empty_form.prefix }}-image"
-                             src="{% static 'dist/img/empty-photo.png' %}">
+                             src="{% static 'img/empty-photo.png' %}">
                         <img class="cancel-button-checkbox" style=" width: 40px; position: absolute" onclick="hideEmptyForm(event, this)"
-                             src="{% static 'dist/img/cancel-button.png' %}">
+                             src="{% static 'img/cancel-button.png' %}">
 
                         <label class="photo-add btn-test btn-primary row"  >{% trans 'Выбрать картинку' %}
                             {{ image_formset.empty_form.image}}

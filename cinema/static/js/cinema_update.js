@@ -45,7 +45,7 @@ function hidePhoto(event, element) {
 
 function hideBack(event, element) {
     console.log(element)
-    $('.img-main_film').attr('src', '/static/dist/img/empty-photo.png')
+    $('.img-main_film').attr('src', '/static/img/empty-photo.png')
     $('.films').attr('value', 'delete')
 
 
@@ -60,12 +60,12 @@ function hideBack(event, element) {
 
 function hideCinemaLogo(event, element) {
     console.log(element)
-    $('.img-main_cinema').attr('src', '/static/dist/img/empty-photo.png')
+    $('.img-main_cinema').attr('src', '/static/img/empty-photo.png')
     $('.cinema').attr('value', 'delete')
 }
 
 function hideCinemaBanner(event, element) {
     console.log(element)
-    $('.img-main_cinema').attr('src', '/static/dist/img/empty-photo.png')
+    $('.img-main_cinema').attr('src', '/static/img/empty-photo.png')
     $('.cinema').attr('value', 'delete')
 }
