@@ -277,10 +277,10 @@ def pages_create(request):
             pages.seo = seo
             gallery = GalleryForm().save(commit=False)
             gallery.save()
-            main_name = ['Главная страничка', 'О кинотеатре', 'Головна сторінка', 'Про кінотеатр']
-            print(pages_form.cleaned_data['name'])
-            if pages_form.cleaned_data['name'] in main_name:
-                pages.main = True
+            # main_name = ['Главная страничка', 'О кинотеатре', 'Головна сторінка', 'Про кінотеатр']
+            # print(pages_form.cleaned_data['name'])
+            # if pages_form.cleaned_data['name'] in main_name:
+            #     pages.main = True
             for item in images:
                 item.gallery = gallery
                 item.save()
@@ -323,10 +323,10 @@ def pages_update(request, pk):
                 del_image.delete()
             if request.POST.get('page') == 'delete':
                 page.main_image.delete()
-            main_name = ['О кинотеатре', 'Детская комната', 'Реклама', 'Vip-зал', 'Кафе-бар', 'Про кінотеатр', 'Дитяча кімната']
-            print(page_form.cleaned_data['name'])
-            if page_form.cleaned_data['name'] in main_name:
-                page.main = True
+            # main_name = ['О кинотеатре', 'Детская комната', 'Реклама', 'Vip-зал', 'Кафе-бар', 'Про кінотеатр', 'Дитяча кімната']
+            # print(page_form.cleaned_data['name'])
+            # if page_form.cleaned_data['name'] in main_name:
+            #     page.main = True
             for image in images:
                 if image.image:
                     image.gallery = page.gallery
