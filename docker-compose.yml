@@ -13,8 +13,13 @@ services:
   web:
     build: .
     restart: always
-    command: sh -c "
-                    
+    command: sh -c "python manage.py flush --no-input &&
+                    python manage.py migrate &&
+                    python manage.py adminit &&
+                    python manage.py collectstatic --no-input &&
+                    python manage.py pages_create &&
+                    python manage.py users_create &&
+                    python manage.py session_create &&    
                     python server.py"
     volumes:
       - static_volume:/kinoCMS/static
@@ -30,6 +35,19 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
+
+#  celery:
+#    build: .
+#    command: celery -A KinoCMS.celery worker -1 INFO
+#    volumes:
+#      - .:/kinoCMS/KinoCMS
+#    env_file:
+#      - ./.env
+#    depends_on:
+#      - web
+#      - redis
+#  redis:
+#    image: redis
 volumes:
   static_volume:
   media_volume:

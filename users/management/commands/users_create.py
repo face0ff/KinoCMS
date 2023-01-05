@@ -9,12 +9,10 @@ from users.models import User
 
 
 class Command(BaseCommand):
-    def add_arguments(self, parser):
-        parser.add_argument('number', type=int, help='how many sessions generate')
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **kwargs):
         fake = Faker('ru_RU')
-        for _ in range(options['number']):
+        for _ in range(1, 50):
             user = User.objects.create_user(
                 address=fake.street_address(),
                 city=fake.city(),

@@ -364,7 +364,7 @@
     <style>
         body{
         {% if banners_back.imageBackground != '/static/img/white.png' %}
-            background-image: url("http://127.0.0.1:8000/media/{{ banners_back.imageBackground }}");
+            background-image: url("{{ STATIC_URL }}{{ banners_back.imageBackground.url }}");
         {% else %}
             background-color: {{ banners_back.color }};
         {% endif %}

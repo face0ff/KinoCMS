@@ -69,7 +69,7 @@ ROOT_URLCONF = 'KinoCMS.urls'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'adminLte/static/media')
 
 TEMPLATES = [
     {
@@ -158,26 +158,9 @@ AUTH_USER_MODEL = 'users.User'
 
 TIME_FORMAT = 'H:i'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-# STATIC_URL = 'static/'
-# STATIC_DIR = os.path.join(BASE_DIR, 'adminLte/static')
-# STATICFILES_DIRS = [STATIC_DIR]
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = "konnad1986@gmail.com"
-# EMAIL_HOST_PASSWORD = "nhlgldjwbrcmxysu"
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False

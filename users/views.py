@@ -40,7 +40,7 @@ def users_delete(request, pk):
         print("нам этого не нужно")
     return redirect('users')
 
-@user_passes_test(check, 'login_page')
+
 def create_user(request):
     if request.user.is_authenticated:
         return redirect('')
