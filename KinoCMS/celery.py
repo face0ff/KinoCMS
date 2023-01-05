@@ -1,6 +1,4 @@
 import os
-
-import dotenv
 from celery import Celery
 
 
