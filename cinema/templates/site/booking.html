@@ -349,16 +349,27 @@ function booking() {
                 })
                 document.getElementById('int').innerText = sum_user
                 document.getElementById('sum').innerText = sum_user*100
-                data_all.forEach(function(item, i, data_all){
+                if (data_all != 0){
+                    data_all.forEach(function(item, i, data_all){
 
-                    console.log(i)
-                    console.log(item.pk)
-                    document.getElementById(item.pk).setAttribute("fill", "black")
-                    document.getElementById(item.pk).setAttribute("class", "booking")
-                })
+                        console.log(i)
+                        console.log(item.pk)
+                        document.getElementById(item.pk).setAttribute("fill", "black")
+                        document.getElementById(item.pk).setAttribute("class", "booking")
+                })}else{
+                    var all = document.getElementsByClassName("booking")
+
+                    var i;
+                    for (i = 0; i < all.length; i++) {
+                      all[i].setAttribute("fill", "white");
+                      all[i].setAttribute("class", "unclick");
+                    }
+
+
+                }
             },
         });
-    },10000);
+    },2000);
 })
 
 

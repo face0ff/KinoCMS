@@ -6,13 +6,12 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string, get_template
 import redis
+
+from KinoCMS.settings import env
 from users.forms import ChangeForm, MailForm, CreationForm
 from users.models import User, Mail
 from django.utils import translation
-from time import sleep
-from django.conf import settings
-from django.core.mail import send_mail
-from users import tasks
+
 
 from users.tasks import send_email_task
 def check(user):
@@ -118,7 +117,7 @@ def mail_delete(request, pk):
     return redirect('mail')
 
 
-client = redis.Redis(host='127.0.0.1')
+client = redis.Redis(host='redis')
 
 
 def show_percent(request):

@@ -11,7 +11,7 @@ from django.http import JsonResponse, HttpResponse
 
 @shared_task()
 def send_email_task(email_list, msg):
-    client = redis.Redis(host='127.0.0.1')
+    client = redis.Redis(host='redis')
     test = 1
     count = len(email_list)
     for i in email_list:
