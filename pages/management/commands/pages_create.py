@@ -23,7 +23,7 @@ class Command(BaseCommand):
             BannerNews.objects.create(id=1)
             print('BannerNews create successful')
         if BannerBackground.objects.count() == 0:
-            BannerBackground.objects.create(id=1, color=fake.hex_color(), imageBackground='img/back/bg.jpg',
+            BannerBackground.objects.create(id=1, color=fake.hex_color(), imageBackground='#',
                                             background=True)
             print('BannerBackground create successful')
         if BannerNewsPromo.objects.count() == 0:
@@ -31,7 +31,7 @@ class Command(BaseCommand):
                 b = BannerNewsPromo()
                 b.url = url
                 b.promo = True
-                b.image = 'img/banners/' + str(index + 1) + '.jpg'
+                b.image = '#'
                 b.banner_news = BannerNews.objects.get(pk=1)
                 b.save()
             print('BannerNewsPromo create successful')
@@ -40,7 +40,7 @@ class Command(BaseCommand):
                 b = BannerMainUp()
                 b.url = url
                 b.text = 'test'
-                b.image = 'img/banners/' + str(index + 1) + '.jpg'
+                b.image = '#'
                 b.banner_up = BannerUp.objects.get(pk=1)
                 b.save()
             print('BannerMainUp create successful')
@@ -48,7 +48,7 @@ class Command(BaseCommand):
             list = ['О кинотеатре', 'Реклама', 'Кафе-бар', 'Мобильное приложение', 'Vip-зал', 'Детская комната']
             for i in list:
                 TemplatePage.objects.create(id=(list.index(i) + 1), name=i, state='True', main='True', description=i,
-                                            main_image='img/templatePage/empty-photo.png',
+                                            main_image='#',
                                             gallery=Gallery.objects.create(),
                                             seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                                    seo_keywords='test', seo_url='http://test.ua'))
@@ -61,14 +61,14 @@ class Command(BaseCommand):
         if Contacts.objects.count() == 0:
             Contacts.objects.create(id=1, cinema_name='Звездный', state='True',
                                     coordinate='46.57317928816355, 30.78472948814475', address='Одесса',
-                                    logo='img/templatePage/empty-photo.png',
+                                    logo='#',
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                            seo_keywords='test', seo_url='http://test.ua'))
         if Cinema.objects.count() == 0:
             Cinema.objects.create(name='Звездный', description='Звездный',
                                   condition='Звездный',
-                                  logo='img/templatePage/empty-photo.png',
-                                  banner_up_image='img/templatePage/empty-photo.png',
+                                  logo='#',
+                                  banner_up_image='#',
                                   seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                          seo_keywords='test', seo_url='http://test.ua'),
                                   gallery=Gallery.objects.create())
@@ -77,8 +77,8 @@ class Command(BaseCommand):
             cinemas = Cinema.objects.all()
             for i in cinemas:
                 Hall.objects.create(number='1', description='test', create_date=datetime.date.today(),
-                                    scheme='img/templatePage/empty-photo.png',
-                                    banner_up_image='img/templatePage/empty-photo.png', cinema=i,
+                                    scheme='#',
+                                    banner_up_image='#', cinema=i,
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                            seo_keywords='test', seo_url='http://test.ua'),
                                     gallery=Gallery.objects.create())
@@ -96,7 +96,7 @@ class Command(BaseCommand):
                 Film.objects.create(title_ru=i[0], title_uk=i[1], description_ru=fake.text(max_nb_chars=500),
                                     description_uk=fake.text(max_nb_chars=500),
                                     release_date=fake.date_between_dates(date_start='-10days', date_end='+10days'),
-                                    main_image='img/films/'+str(films.index(i)+1)+'.jpg',
+                                    main_image='#',
                                     trailer_url=trailer_url[(films.index(i))],
                                     type2d=fake.boolean(), type3d=fake.boolean(), typeIMAX=fake.boolean(),
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',
@@ -116,7 +116,7 @@ class Command(BaseCommand):
                 news_promo.state = fake.boolean()
                 news_promo.date_publication = fake.date_between_dates(date_start='now', date_end='+10days')
                 news_promo.video_url = index
-                news_promo.main_image = 'img/news_promo/'+str(index + 1)+'.jpg'
+                news_promo.main_image = '#'
                 news_promo.is_promotions = fake.boolean()
                 news_promo.description_ru = fake.text(max_nb_chars=500)
                 news_promo.description_uk = fake.text(max_nb_chars=500)
