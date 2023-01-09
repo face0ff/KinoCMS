@@ -230,7 +230,7 @@ $('.datepicker').datepicker({
             show_hall(id_cinema)
             instance_next.forEach(function(item, i, instance_next ){
                 var value_date = `${ item.date }`
-                var date_better = moment(value_date).locale('ru').format('LL');
+                var date_better = moment(value_date).locale('ru').format('L');
                 var session_pk = `${ item.session_id }`
                 var int = parseInt(session_pk)
                 if (list_book2.includes(int)){
@@ -290,7 +290,7 @@ else if (string == 'http://127.0.0.1:8000/' && url_rez[3] != ''){
             show_hall(id_cinema)
             instance_next.forEach(function(item, i, instance_next ){
                 var value_date = `${ item.date }`
-                var date_better = moment(value_date).locale('ru').format('LL');
+                var date_better = moment(value_date).locale('ru').format('L');
                 var session_pk = `${ item.session_id }`
                 var int = parseInt(session_pk)
                 if (list_book2.includes(int)){
@@ -354,7 +354,7 @@ else if (string == 'http://127.0.0.1:8000/' && url_rez[3] != ''){
             instance_next.forEach(function(item, i, instance_next ){
                 var id_tr = $('#tbody').children().attr('id')
                 var value_date = `${ item.date }`
-                var date_better = moment(value_date).locale('ru').format('LL');
+                var date_better = moment(value_date).locale('ru').format('L');
                 var session_pk = `${ item.session_id }`
                 var url = "{% url 'booking' pk=0  %}".replace('0', session_pk);
                 var int = parseInt(session_pk)
@@ -415,7 +415,7 @@ else if (string == 'http://127.0.0.1:8000/' && url_rez[3] != ''){
             const spisok = []
             instance_next.forEach(function(item, i, instance_next ){
                 var value_date = `${ item.date }`
-                var date_better = moment(value_date).locale('ru').format('LL');
+                var date_better = moment(value_date).locale('ru').format('L');
                 var session_pk = `${ item.session_id }`
                 var url = "{% url 'booking' pk=0  %}".replace('0', session_pk);
                 console.log(typeof session_pk)

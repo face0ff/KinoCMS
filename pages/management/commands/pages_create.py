@@ -54,7 +54,8 @@ class Command(BaseCommand):
                                                                    seo_keywords='test', seo_url='http://test.ua'))
             print("Записано")
         if MainPage.objects.count() == 0:
-            MainPage.objects.create(id=1, phone=fake.phone_number(), state='True', aditional_phone='000000000', seo_text='test',
+            MainPage.objects.create(id=1, phone=fake.phone_number(), state='True', aditional_phone=fake.phone_number(),
+                                    seo_text='test',
                                     seo=Seo.objects.create(seo_title='test', seo_description='test', seo_keywords='test'
                                                            , seo_url='http://test.ua'))
 
@@ -93,8 +94,8 @@ class Command(BaseCommand):
                            "https://www.youtube.com/embed/12q2pDWPuyI"]
 
             for i in films:
-                Film.objects.create(title_ru=i[0], title_uk=i[1], description_ru=fake.text(max_nb_chars=500),
-                                    description_uk=fake.text(max_nb_chars=500),
+                Film.objects.create(title_ru=i[0], title_uk=i[1], description_ru=fake.text(max_nb_chars=100),
+                                    description_uk=fake.text(max_nb_chars=100),
                                     release_date=fake.date_between_dates(date_start='-10days', date_end='+10days'),
                                     main_image='#',
                                     trailer_url=trailer_url[(films.index(i))],
@@ -103,7 +104,7 @@ class Command(BaseCommand):
                                                            seo_keywords='test', seo_url='http://test.ua'),
                                     gallery=Gallery.objects.create())
         if Mail.objects.count() == 0:
-            Mail.objects.create(HtmlTemplate='Загрузите фаил')
+            Mail.objects.create(HtmlTemplate='file/mail/mail_test.html')
             print('все идет как надо')
         if NewsPromotions.objects.count() == 0:
             for index in range(6):
@@ -118,6 +119,6 @@ class Command(BaseCommand):
                 news_promo.video_url = index
                 news_promo.main_image = '#'
                 news_promo.is_promotions = fake.boolean()
-                news_promo.description_ru = fake.text(max_nb_chars=500)
-                news_promo.description_uk = fake.text(max_nb_chars=500)
+                news_promo.description_ru = fake.text(max_nb_chars=100)
+                news_promo.description_uk = fake.text(max_nb_chars=100)
                 news_promo.save()

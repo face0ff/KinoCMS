@@ -42,7 +42,7 @@ class BannerUp(models.Model):
 class BannerMainUp(models.Model):
     '''Это доп модель банера сверху странички'''
     url = models.URLField("Ссылка", null=True)
-    image = models.ImageField(verbose_name="Изображение", upload_to="img/banners", null=True)
+    image = models.ImageField(verbose_name="Изображение", upload_to="img/banners/", null=True)
     text = models.CharField(verbose_name="Описание баннера", max_length=100)
     banner_up = models.ForeignKey(BannerUp,
                                   on_delete=models.CASCADE, null=True)
