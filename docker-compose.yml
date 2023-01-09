@@ -39,12 +39,8 @@ services:
   celery:
     build: .
     command: celery -A KinoCMS worker -l info -E
-#    celery -A KinoCMS worker -l info --without-gossip --without-mingle --without-heartbeat -Ofair --pool=solo
-#    celery -A KinoCMS worker -l info -E
     volumes:
       - .:/kinoCMS/
-#    links:
-#      - redis
     env_file:
       - ./.env
     depends_on:
@@ -52,8 +48,6 @@ services:
       - redis
   redis:
     image: redis
-#    ports:
-#      - '127.0.0.1:6379:6379/tcp'
 volumes:
   static_volume:
   media_volume:
