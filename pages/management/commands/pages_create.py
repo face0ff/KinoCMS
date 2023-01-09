@@ -103,7 +103,7 @@ class Command(BaseCommand):
                                                            seo_keywords='test', seo_url='http://test.ua'),
                                     gallery=Gallery.objects.create())
         if Mail.objects.count() == 0:
-            Mail.objects.create(HtmlTemplate='img/email/mail_test.html')
+            Mail.objects.create(HtmlTemplate='Загрузите фаил')
             print('все идет как надо')
         if NewsPromotions.objects.count() == 0:
             for index in range(6):
