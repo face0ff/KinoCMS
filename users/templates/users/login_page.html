@@ -19,11 +19,11 @@
 
   <body>
     <div class="row pt-5">
-        <div class="col-sm-3 mx-auto border rounded-lg">
+        <div class="col-mx-3 mx-auto  border rounded-lg p-3" >
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                  <div class="text-center">
-                      <div style='text-align:center; width:100%'>
+                  <div class="card-body p-4 p-lg-5 text-black text-center">
+                      <div>
                             <a href="{% url 'kino_cms' %}"><img src="{% static 'img/logo.png' %}" alt="KinoCMS Logo"
                                                                 class="brand-image img-circle elevation-3" style=" width: 100px; padding: 5px"></a>
                         </div>

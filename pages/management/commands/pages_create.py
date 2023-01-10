@@ -47,7 +47,7 @@ class Command(BaseCommand):
         if TemplatePage.objects.count() == 0:
             list = ['О кинотеатре', 'Реклама', 'Кафе-бар', 'Мобильное приложение', 'Vip-зал', 'Детская комната']
             for i in list:
-                TemplatePage.objects.create(id=(list.index(i) + 1), name=i, state='True', main='True', description=i,
+                TemplatePage.objects.create(name=i, state='True', main='True', description=i,
                                             main_image='#',
                                             gallery=Gallery.objects.create(),
                                             seo=Seo.objects.create(seo_title='test', seo_description='test',

@@ -8,7 +8,7 @@ class Film(models.Model):
     title = models.CharField("Фильм", max_length=32)
     description = models.TextField("Описание")
     main_image = models.ImageField("Главное изображение", upload_to="img/films/")
-    trailer_url = models.URLField(unique=True)
+    trailer_url = models.URLField(unique=False)
     release_date = models.DateField("Примьера в мире", null=False, blank=False)
     type2d = models.BooleanField("2d")
     type3d = models.BooleanField("3d")

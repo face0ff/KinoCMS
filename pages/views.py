@@ -323,6 +323,9 @@ def pages_update(request, pk):
                 del_image.delete()
             if request.POST.get('page') == 'delete':
                 page.main_image.delete()
+
+            if pk in range(1, 7):
+                page.main = True
             # main_name = ['О кинотеатре', 'Детская комната', 'Реклама', 'Vip-зал', 'Кафе-бар', 'Про кінотеатр', 'Дитяча кімната']
             # print(page_form.cleaned_data['name'])
             # if page_form.cleaned_data['name'] in main_name:

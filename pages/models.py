@@ -42,7 +42,7 @@ class NewsPromotions(models.Model):
     description = models.TextField("Описание")
     date_publication = models.DateField("Примьера в мире", null=True, blank=True)
     main_image = models.ImageField("Главное изображение", upload_to="img/newsPromotions/")
-    video_url = models.URLField(unique=True)
+    video_url = models.URLField(unique=False)
     is_promotions = models.BooleanField("Состояние", default=False)
     seo = models.OneToOneField(Seo,
                                on_delete=models.PROTECT, null=True)
