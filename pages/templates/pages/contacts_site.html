@@ -10,7 +10,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <div class="row">
             <div class="col-12 border border-info">
-                <img style="max-width: 100%" src="{% static 'img/films/banner-1814989_1280.jpg' %}">
+                <img style="max-width: 100%" src="{% static 'img/banner.jpg' %}">
             </div>
         </div>
 <div class="row p-3">
@@ -24,7 +24,7 @@
                     <div class="col-md-6">
                         <h3>{{ contact.name }}</h3>
 
-                        <img style="max-height: 100%" src="{{ contact.logo.url}}">
+                        <img src="{{ contact.logo.url}}" class="img-fluid">
                     </div>
                     <div  class="col-md-6 pt-5">
                         {{ contact.address }}

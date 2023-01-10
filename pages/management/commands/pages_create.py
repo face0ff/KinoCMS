@@ -54,13 +54,13 @@ class Command(BaseCommand):
                                                                    seo_keywords='test', seo_url='http://test.ua'))
             print("Записано")
         if MainPage.objects.count() == 0:
-            MainPage.objects.create(id=1, phone=fake.phone_number(), state='True', aditional_phone=fake.phone_number(),
+            MainPage.objects.create(phone=fake.phone_number(), state='True', aditional_phone=fake.phone_number(),
                                     seo_text='test',
                                     seo=Seo.objects.create(seo_title='test', seo_description='test', seo_keywords='test'
                                                            , seo_url='http://test.ua'))
 
         if Contacts.objects.count() == 0:
-            Contacts.objects.create(id=1, cinema_name='Звездный', state='True',
+            Contacts.objects.create(cinema_name='Звездный', state='True',
                                     coordinate='46.57317928816355, 30.78472948814475', address='Одесса',
                                     logo='#',
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',

@@ -241,8 +241,8 @@ def promotions_update(request, pk):
 
 @user_passes_test(check, 'login_page')
 def pages_view(request):
-    main_page = MainPage.objects.get(pk=1)
-    contacts_page = Contacts.objects.get(pk=1)
+    main_page = MainPage.objects.all().first()
+    contacts_page = Contacts.objects.all().first()
     other_pages = TemplatePage.objects.all().filter(main=False)
     main_pages = TemplatePage.objects.all().filter(main=True)
 
@@ -496,9 +496,14 @@ def contacts_site(request):
     contacts = Contacts.objects.filter(state=True)
     contacts_list = []
     for i in contacts:
-        x = i.coordinate.split(',')[0]
-        y = i.coordinate.split(',')[1]
-        z = float(x)-10
+        try:
+            x = i.coordinate.split(',')[0]
+            y = i.coordinate.split(',')[1]
+            z = float(x)-10
+        except:
+            x = 50
+            y = 50
+            z = 50
         data = {
             'name': i.cinema_name,
             'logo': i.logo,
