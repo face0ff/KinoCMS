@@ -363,8 +363,10 @@
     </script>
     <style>
         body{
-        {% if banners_back.imageBackground != '/static/img/white.png' %}
-            background-image: url("{{ STATIC_URL }}{{ banners_back.imageBackground.url }}");
+        {% if banners_back.background %}
+            {% if banners_back.imageBackground != '/static/img/white.png' %}
+                background-image: url("{{ STATIC_URL }}{{ banners_back.imageBackground.url }}");
+            {% endif %}
         {% else %}
             background-color: {{ banners_back.color }};
         {% endif %}

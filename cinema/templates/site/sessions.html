@@ -35,12 +35,26 @@
                   <option id="date{{ date.pk }}"  value="{{ date.date|date:'Y-m-d'}}" >{{ date.date }}</option>
               {% endfor %}
           </select>
-     <form>
-        <div class="form-group ">
-           <input  type="text" class="datepicker form-control" value="Дата"/>
-        </div>
-         <button class="form-control" id="reset-date" style="z-index: 1; background-color: rgba(189,33,33,0.68); height: 5px;  position: relative; bottom: 1em; border-radius: 10px"></button>
-      </form>
+         {% get_current_language as LANGUAGE_CODE %}
+
+         {% if LANGUAGE_CODE == 'ru' %}
+            <form>
+                <div class="form-group ">
+                   <input  type="text" class="datepicker form-control" value="Дата"/>
+                </div>
+                 <button class="form-control" id="reset-date" style="z-index: 1; background-color: rgba(189,33,33,0.68); height: 5px;  position: relative; bottom: 1em; border-radius: 10px"></button>
+            </form>
+         {% else %}
+            <form>
+                <div class="form-group ">
+                   <input  type="text" class="datepicker_ua form-control" value="Дата"/>
+                </div>
+                 <button class="form-control" id="reset-date" style="z-index: 1; background-color: rgba(189,33,33,0.68); height: 5px;  position: relative; bottom: 1em; border-radius: 10px"></button>
+            </form>
+         {% endif %}
+
+
+
     </div>
     <div class="col-md-auto">
         <select class="form-control" aria-label="Default select example" id="select_film" onchange="changeEventHandler(this)" >
@@ -91,6 +105,7 @@ $("#reset-date").click(function(){
     document.getElementById('select_date').value = 'Дата'
     changeEventHandler(this)
 })
+
 $('.datepicker').datepicker({
     onSelect: function(date_picker) {
         var date_better = moment(date_picker).locale('ru').format('L');
@@ -107,7 +122,22 @@ $('.datepicker').datepicker({
     autoSize: true,
     dayNamesMin: ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"]
 });
+$('.datepicker_ua').datepicker({
+    onSelect: function(date_picker) {
+        var date_better = moment(date_picker).locale('ru').format('L');
+        $(".datepicker_ua").val(date_better);
+        console.log(date_better)
+        document.getElementById('select_date').value = date_picker
+        changeEventHandler(this)
+        },
 
+    minDate: '0D',
+    maxDate: '+6D',
+    dateFormat: 'yy-mm-dd',
+    monthNames: ["Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"],
+    autoSize: true,
+    dayNamesMin: ["Пн","Вт","Ср","Чт","Пт","Сб","Нд"]
+});
   function changeEventHandler(arg) {
 
 
@@ -271,7 +301,7 @@ $('.datepicker').datepicker({
 
 
         }
-else if (string == 'http://127.0.0.1:8000/' && url_rez[3] != ''){
+else if (rez[4] == '' && url_rez[3] != ''){
             document.querySelector("#select_film").value = `film_${url_rez[3]}`;
             $.ajax({
             url:"{% url 'filter_film' %}",

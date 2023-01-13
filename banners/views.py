@@ -80,11 +80,16 @@ def banners_view(request):
             return redirect('banners')
 
     if request.POST.get('type') == 'back_banner_form':
-        print(request.POST)
+        # print(request.POST)
         if banner_back_form.is_valid():
             print(banner_back_form.cleaned_data)
             background_banner = banner_back_form.save(commit=False)
-            print(request.POST.get('background_banner'))
+            if request.POST.get('background') == '1':
+                background_banner.background = True
+            else:
+                background_banner.background = False
+
+            # print(request.POST.get('background_banner'))
             if request.POST.get('background_banner') == 'delete':
                 # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
                 background_banner.imageBackground ='/static/dist/img/white.png'
