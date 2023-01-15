@@ -30,11 +30,12 @@
                 <div style=" padding-top: 10% "><a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание сеансов' %}</a></div>
 
             </div>
-            <div class="col-md-10 border border-info text-center">
+            <div class="col-md-10 border border-info text-center " style="overflow-wrap: break-word">
                 <h2>{{ cinemas.name }}</h2>
                 <img style="width: 80%" src="{{ cinemas.logo.url }}"><br>
                 {{ cinemas.description }}
                 <h3>{% trans 'Условия' %}</h3><br>
+                {{ cinemas.condition }}
                 {% for image in images %}
                     <img style="width: 80%" src="{{ image.image.url}}">
                 {% endfor %}

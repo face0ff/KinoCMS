@@ -156,12 +156,12 @@
 
                         {% for banner in banners_up %}
                             {% if banner == banners_up|first %}
-                                <div class="carousel-item active" data-bs-interval="{{ banners_sec.rotation_speed }}">
+                                <div class="carousel-item active" data-bs-interval="{{ banners_sec.rotate_speed }}">
                             <img src="{{ banners_up.first.image.url }}" class="d-block w-100" height="190">
 
                         </div>
                             {% else %}
-                            <div class="carousel-item" data-bs-interval="{{ banners_sec.rotation_speed }}">
+                            <div class="carousel-item" data-bs-interval="{{ banners_sec.rotate_speed }}">
                                 <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
                             </div>
                             {% endif %}
@@ -239,15 +239,16 @@
                      <div id="carouselNews" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             {% for banner in banners_new %}
+
                                 {% if banner == banners_new|first %}
 
-                            <div class="carousel-item active" data-bs-interval="{{ banners_new_sec.rotation_speed }}">
+                            <div class="carousel-item active" data-bs-interval="{{ banners_new_sec.rotate_speed }}">
                                 <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
                                 <div class="carousel-caption d-none d-md-block fs-2">
                                 </div>
                             </div>
                                     {% else %}
-                                <div class="carousel-item" data-bs-interval="{{ banners_new_sec.rotation_speed }}">
+                                <div class="carousel-item" data-bs-interval="{{ banners_new_sec.rotate_speed }}">
                                     <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
                                     <div class="carousel-caption d-none d-md-block fs-2">
                                     </div>

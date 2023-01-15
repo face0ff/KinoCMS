@@ -3,9 +3,9 @@ from django.db import models
 
 class BannerNews(models.Model):
     class Speed(models.IntegerChoices):
-        FIVE_SEC = 5, '5с'
-        TEN_SEC = 10, '10с'
-        FIFTEEN_SEC = 15, '15с'
+        FIVE_SEC = 5000, '5с'
+        TEN_SEC = 10000, '10с'
+        FIFTEEN_SEC = 15000, '15с'
     '''Это модель банера новости'''
     state = models.BooleanField("Состояние", default=True)
     rotate_speed = models.IntegerField(choices=Speed.choices, default=5)
@@ -27,9 +27,9 @@ class BannerNewsPromo(models.Model):
 
 class BannerUp(models.Model):
     class Speed(models.IntegerChoices):
-        FIVE_SEC = 5, '5с'
-        TEN_SEC = 10, '10с'
-        FIFTEEN_SEC = 15, '15с'
+        FIVE_SEC = 5000, '5с'
+        TEN_SEC = 10000, '10с'
+        FIFTEEN_SEC = 15000, '15с'
     '''Это модель банера новости'''
     state = models.BooleanField("Состояние", default=True)
     rotate_speed = models.IntegerField(choices=Speed.choices, default=5)

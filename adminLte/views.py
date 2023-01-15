@@ -27,6 +27,7 @@ def stat_view(request):
         int = sessions_days.count(s.date.day)
         sessions_count.append(int)
     users_gender_count = obj_users.values('gender').annotate(count=Count('gender'))
+    print(users_gender_count)
     print(sessions_days)
     print(sessions_count)
     context = {'obj_users': obj_users, 'sessions_count': sessions_count, 'sessions_days': sessions_days,

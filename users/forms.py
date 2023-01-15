@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
@@ -21,15 +23,17 @@ class CreationForm(UserCreationForm):
 
 class ChangeForm(UserChangeForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Username",
-                                                             'style': 'width:auto', }))
+                                                             'style': 'width:auto' }))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': "Email",
                                                             'style': 'width:auto'}))
     password1 = forms.CharField(required=False, widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                                   'placeholder': "Password",
-                                                                                  'style': 'width:auto'}))
+                                                                                  'style': 'width:auto', "type":"password",
+                                                                                  "pattern":"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}"}))
     password2 = forms.CharField(required=False, widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                                   'placeholder': "Retype password",
-                                                                                  'style': 'width:auto'}))
+                                                                                  'style': 'width:auto', "type":"password",
+                                                                                  "pattern":"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}"}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "First name",
                                                          'style': 'width:auto'}))
     surname = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Last name",
@@ -39,8 +43,8 @@ class ChangeForm(UserChangeForm):
 
     address = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Address",
                                                             'style': 'width:auto'}))
-    card_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Card Number",
-                                                                'style': 'width:auto'}))
+    card_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Введите 16 цифр",
+                                                                'style': 'width:auto', "required minlength":"16", "maxlength":"16", "pattern":"^\d+$"}))
     city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "City",
                                                          'style': 'width:auto'}))
     gender = forms.ChoiceField(choices=User.CHOISES_gender, widget=forms.RadioSelect())

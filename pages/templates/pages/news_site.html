@@ -19,7 +19,7 @@
         <h3 style="text-align: center">{% trans 'Новости' %}</h3>
         <div class="row" id="now">
             {% for new in news %}
-                <div class="col-md-4 p-4 text-center" >
+                <div class="col-md-4 p-4 text-center" style="overflow-wrap: break-word">
                     {% if new.main_image %}
                         <img src="{{ new.main_image.url }}" height="180" width="100%">
                         {% endif %}

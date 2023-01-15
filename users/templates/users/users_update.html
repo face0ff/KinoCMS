@@ -51,7 +51,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
     <script>
     // вешаем маску на телефон
-        $('#phone-field').inputmask("+8(999)999-9999");
+        $('#phone-field').inputmask("+9(999)999-9999");
 
         // добавляем правило для валидации телефона
         jQuery.validator.addMethod("checkMaskPhone", function(value, element) {
@@ -79,5 +79,8 @@
             }
             return;
         });
+
+        joi.string().regex(/^[0-9]{10}$/).messages({'string.pattern.base': `Phone number must have 10 digits.`}).required()
+
     </script>
 {% endblock %}
