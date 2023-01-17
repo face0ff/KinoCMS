@@ -423,9 +423,6 @@ def contacts_update(request):
     return render(request, 'pages/contacts_update.html', context)
 
 
-
-
-
 def user_editing(request, pk):
 
     user_obj = get_object_or_404(User, pk=pk)
@@ -459,38 +456,74 @@ def user_editing(request, pk):
     return render(request, 'pages/user_editing.html', context)
 
 
+# def about_site(request):
+#     about = get_object_or_404(TemplatePage, id=1)
+#     if about.state == True:
+#         images = Image.objects.filter(gallery_id=about.gallery_id)
+#         return render(request, 'pages/about_site.html', {'about': about, 'images': images})
+#     else:
+#         return redirect('kino_cms')
+#
+#
+# def bar_site(request):
+#     bar = get_object_or_404(TemplatePage, id=3)
+#     if bar.state == True:
+#         images = Image.objects.filter(gallery_id=bar.gallery_id)
+#         return render(request, 'pages/bar_site.html', {'bar': bar, 'images': images})
+#     else:
+#         return redirect('kino_cms')
+#
+#
+# def apk_site(request):
+#     apk = get_object_or_404(TemplatePage, id=4)
+#     if apk.state == True:
+#         images = Image.objects.filter(gallery_id=apk.gallery_id)
+#         return render(request, 'pages/apk_site.html', {'apk': apk, 'images': images})
+#     else:
+#         return redirect('kino_cms')
+#
+# def vip_site(request):
+#     vip = get_object_or_404(TemplatePage, id=5)
+#     if vip.state == True:
+#         images = Image.objects.filter(gallery_id=vip.gallery_id)
+#         return render(request, 'pages/vip_site.html', {'vip': vip, 'images': images})
+#     else:
+#         return redirect('kino_cms')
+#
+#
+# def advert_site(request):
+#     advert = get_object_or_404(TemplatePage, id=2)
+#     if advert.state == True:
+#         images = Image.objects.filter(gallery_id=advert.gallery_id)
+#         return render(request, 'pages/advert_site.html', {'advert': advert, 'images': images})
+#     else:
+#         return redirect('kino_cms')
+#
+#
+# def kids_site(request):
+#     kids = get_object_or_404(TemplatePage, id=6)
+#     if kids.state == True:
+#         images = Image.objects.filter(gallery_id=kids.gallery_id)
+#         return render(request, 'pages/kids_site.html', {'kids': kids, 'images': images})
+#     else:
+#         return redirect('kino_cms')
 
 
+def news_site(request):
 
-def about_site(request):
-    about = get_object_or_404(TemplatePage, id=1)
-    if about.state == True:
-        images = Image.objects.filter(gallery_id=about.gallery_id)
-        return render(request, 'pages/about_site.html', {'about': about, 'images': images})
-    else:
-        return redirect('kino_cms')
+    all_news = NewsPromotions.objects.filter(is_promotions=False, state=True)
+    paginator = Paginator(all_news, 3)  # 3 posts in each page
+    page = request.GET.get('page')
+    try:
+        news = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        news = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        news = paginator.page(paginator.num_pages)
 
-
-
-def bar_site(request):
-    bar = get_object_or_404(TemplatePage, id=3)
-    if bar.state == True:
-        images = Image.objects.filter(gallery_id=bar.gallery_id)
-        return render(request, 'pages/bar_site.html', {'bar': bar, 'images': images})
-    else:
-        return redirect('kino_cms')
-
-
-def apk_site(request):
-    apk = get_object_or_404(TemplatePage, id=4)
-    if apk.state == True:
-        images = Image.objects.filter(gallery_id=apk.gallery_id)
-        return render(request, 'pages/apk_site.html', {'apk': apk, 'images': images})
-    else:
-        return redirect('kino_cms')
-
-
-
+    return render(request, 'pages/news_site.html', {'page': page, 'news': news})
 
 def contacts_site(request):
     contacts = Contacts.objects.filter(state=True)
@@ -517,50 +550,17 @@ def contacts_site(request):
 
     return render(request, 'pages/contacts_site.html', {'contacts_list': contacts_list})
 
-def vip_site(request):
-    vip = get_object_or_404(TemplatePage, id=5)
-    if vip.state == True:
-        images = Image.objects.filter(gallery_id=vip.gallery_id)
-        return render(request, 'pages/vip_site.html', {'vip': vip, 'images': images})
+
+
+def info_pages(request, pk):
+    info = get_object_or_404(TemplatePage, id=pk)
+    print(info.state)
+
+    if info.state == True:
+        images = Image.objects.filter(gallery_id=info.gallery_id)
+        return render(request, 'pages/info_pages.html', {'info': info, 'images': images})
     else:
         return redirect('kino_cms')
-
-
-def advert_site(request):
-    advert = get_object_or_404(TemplatePage, id=2)
-    if advert.state == True:
-        images = Image.objects.filter(gallery_id=advert.gallery_id)
-        return render(request, 'pages/advert_site.html', {'advert': advert, 'images': images})
-    else:
-        return redirect('kino_cms')
-
-
-def kids_site(request):
-    kids = get_object_or_404(TemplatePage, id=6)
-    if kids.state == True:
-        images = Image.objects.filter(gallery_id=kids.gallery_id)
-        return render(request, 'pages/kids_site.html', {'kids': kids, 'images': images})
-    else:
-        return redirect('kino_cms')
-
-
-def news_site(request):
-
-    all_news = NewsPromotions.objects.filter(is_promotions=False, state=True)
-    paginator = Paginator(all_news, 3)  # 3 posts in each page
-    page = request.GET.get('page')
-    try:
-        news = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer deliver the first page
-        news = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range deliver last page of results
-        news = paginator.page(paginator.num_pages)
-
-    return render(request, 'pages/news_site.html', {'page': page, 'news': news})
-
-
 
 
 

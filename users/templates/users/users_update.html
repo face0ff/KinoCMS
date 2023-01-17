@@ -50,37 +50,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
     <script>
-    // вешаем маску на телефон
-        $('#phone-field').inputmask("+9(999)999-9999");
+    datePickerId.max = new Date().toLocaleDateString('en-ca')
 
-        // добавляем правило для валидации телефона
-        jQuery.validator.addMethod("checkMaskPhone", function(value, element) {
-            return /\+\d{1}\(\d{3}\)\d{3}-\d{4}/g.test(value);
-        });
-
-        // получаем нашу форму по class
-        var form = $('.form-request');
-
-        // включаем валидацию в форме
-        form.validate();
-
-        // вешаем валидацию на поле с телефоном по классу
-        $.validator.addClassRules({
-            'phone-field': {
-                checkMaskPhone: true,
-            }
-        });
-
-        // Проверка на валидность формы при отправке, если нужно
-        form.submit(function(e){
-            e.preventDefault();
-            if (form.valid()) {
-                alert('Форма отправлена');
-            }
-            return;
-        });
-
-        joi.string().regex(/^[0-9]{10}$/).messages({'string.pattern.base': `Phone number must have 10 digits.`}).required()
 
     </script>
 {% endblock %}

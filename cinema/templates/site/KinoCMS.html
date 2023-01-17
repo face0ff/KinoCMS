@@ -110,21 +110,35 @@
                             <a class="btn btn-info" href="{% url 'cinema_site' %}">{% trans 'Кинотеатры' %}</a>
                             <a class="btn btn-info" href="{% url 'promotions_site' %}">{% trans 'Акции' %}</a>
 
-                              <a class="btn btn-info dropdown-toggle" href="{% url 'about_site' %}" role="button"
+                              <a class="btn btn-info dropdown-toggle" href="" role="button"
                                  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {% trans 'О кинотеатре' %}
                               </a>
+{#                            <a class="btn btn-info dropdown-toggle" href="{% url 'about_site' %}" role="button"#}
+{#                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                                {% trans 'О кинотеатре' %}#}
+{#                              </a>#}
 
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{% url 'about_site' %}">{% trans 'О кинотеатре' %}</a>
+{#                                <a class="dropdown-item" href="{% url 'about_site' %}">{% trans 'О кинотеатре' %}</a>#}
                                 <a class="dropdown-item" href="{% url 'news_site'  %}">{% trans 'Новости' %}</a>
-                                <a class="dropdown-item" href="{% url 'advert_site' %}">{% trans 'Реклама' %}</a>
-                                <a class="dropdown-item" href="{% url 'bar_site' %}">{% trans 'Кафе' %}</a>
-                                <a class="dropdown-item" href="{% url 'apk_site' %}">{% trans 'Мобильное приложение' %}</a>
-                                <a class="dropdown-item" href="{% url 'contacts_site' %}">{% trans 'Контакты' %}</a>
-                                <a class="dropdown-item" href="{% url 'vip_site' %}">{% trans 'Vip-зал' %}</a>
-                                <a class="dropdown-item" href="{% url 'kids_site' %}">{% trans 'Детская комната' %}</a>
+{#                                <a class="dropdown-item" href="{% url 'advert_site' %}">{% trans 'Реклама' %}</a>#}
+{#                                <a class="dropdown-item" href="{% url 'bar_site' %}">{% trans 'Кафе' %}</a>#}
+{#                                <a class="dropdown-item" href="{% url 'apk_site' %}">{% trans 'Мобильное приложение' %}</a>#}
+
+{#                                <a class="dropdown-item" href="{% url 'vip_site' %}">{% trans 'Vip-зал' %}</a>#}
+{#                                <a class="dropdown-item" href="{% url 'kids_site' %}">{% trans 'Детская комната' %}</a>#}
+                                    {% if contacts|length > 0 %}
+                                       <a class="dropdown-item" href="{% url 'contacts_site' %}">{% trans 'Контакты' %}</a>
+                                    {% endif %}
+                                  {% for page in pages %}
+                                      <a class="dropdown-item" href="{% url 'info_pages' page.pk %}"> {{ page.name }}</a>
+
+                                {% endfor %}
                               </div>
+
+
+
 
                                 {% if request.user.is_authenticated %}
                                     {% if request.user.is_staff %}
@@ -189,7 +203,7 @@
         <div style="text-align: center; padding: 3%"><h3>{% trans 'Смотрите сегодня' %}</h3></div>
         <div class="row">
         {% for film in films_now %}
-            <div class="col-md-3 pb-3 text-center">
+            <div class="col-md-3 pb-3 text-center" style="overflow-wrap: break-word">
 
 {#                 <a href="{% url 'film_update' film.pk %}" data-toggle="lightbox"#}
 {#                       data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">#}
@@ -335,6 +349,7 @@
             </ul>
           </div>
         </div>
+        <p style="text-align: center"> @KinoCMS 2023, All rights reserved</p>
       </footer>
     </div>
 

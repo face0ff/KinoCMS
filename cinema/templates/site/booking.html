@@ -170,12 +170,21 @@
         <div class="row">
             <div class="col-2"></div>
             {% if request.user.is_authenticated %}
-                <div class="col-md-5 text-right pt-1">
-                    <button type="button" class="btn btn-light btn-sm btn-block border-dark" onclick="booking(this)">{% trans 'Бронировать' %}</button>
-                </div>
-                <div class="col-md-5 text-left pt-1">
-                    <button type="button" class="btn btn-success btn-sm btn-block border-dark">{% trans 'Купить' %}</button>
-                </div>
+                {% if session.dateTime > dateTimeNow and session.date >= dateNow  %}
+                    <div class="col-md-5 text-right pt-1">
+                        <button type="button" class="btn btn-light btn-sm btn-block border-dark" onclick="booking(this)">{% trans 'Бронировать' %}</button>
+                    </div>
+                    <div class="col-md-5 text-left pt-1">
+                        <button type="button" class="btn btn-success btn-sm btn-block border-dark">{% trans 'Купить' %}</button>
+                    </div>
+                {% elif session.date > dateNow %}
+                    <div class="col-md-5 text-right pt-1">
+                        <button type="button" class="btn btn-light btn-sm btn-block border-dark" onclick="booking(this)">{% trans 'Бронировать' %}</button>
+                    </div>
+                    <div class="col-md-5 text-left pt-1">
+                        <button type="button" class="btn btn-success btn-sm btn-block border-dark">{% trans 'Купить' %}</button>
+                    </div>
+                {% endif %}
             {% endif %}
         </div>
 

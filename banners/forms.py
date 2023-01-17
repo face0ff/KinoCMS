@@ -19,7 +19,8 @@ class BannersMainUpResumeForm(ModelForm):
 
             "url": URLInput(attrs={
                 'class': 'form-control',
-                'placeholder': "Введите ссылку"
+                'placeholder': "Введите ссылку",
+
             }),
             "text": TextInput(attrs={
                 'class': 'form-control',

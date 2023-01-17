@@ -5,34 +5,22 @@
 
 
 {% block content %}
-    <div class="container">
-        <div class="row">
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class="row">
             <div class="col-12 border border-info">
-                <img src="{{ hall.banner_up_image.url }}" style="max-width: 100%">
+                <img style="max-width: 100%" src="{{ info.main_image.url }}">
             </div>
         </div>
-        <div class="row pt-3 text-center">
-            <div class="col-md-2 border border-info">
-                <img style="max-width: 100%" src="{% static 'img/reklama1.png' %}">
-                    <a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание всех сеансов ' %}</a>
+<div class="row p-3">
 
+    <div class="col-md-10 ">
 
-                <div>{% trans 'Смотрите сегодня' %}</div>
-                {% for session in sessions %}
-                    <div class="col-auto border border-danger" style="color: black">
-                           <span class="clickable" >{{ session.film.title }} в {{ session.dateTime }}</span>
-                    </div>
-                {% endfor %}
-                <div style=" padding-top: 10% "><a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание сеансов' %}</a></div>
-
-            </div>
-            <div class="col-md-10 border border-info text-center" style="overflow-wrap: break-word">
-                <h2>{{ hall.number }}</h2>
-
-               {{ hall.description }}
-                <h3>{% trans 'Условия' %}</h3><br>
-
-                    <img style="width: 80%" src="{{ hall.scheme.url }}">
+        <div class="row" id="now">
+            <div class="col-12 text-center" style="overflow-wrap: break-word">
+                {{ info.name }}
+                {{ info.description }}<br>
                 {% if images %}
                     <div style="padding: 3%"><h3>{% trans 'ФОТОГАЛЕРЕЯ' %}</h3></div>
                         <div class="container p-0" id="news">
@@ -76,29 +64,26 @@
                 {% endif %}
             </div>
         </div>
-
-
     </div>
+     <div class="col-md-2 pt-5">
+
+        <img width="100%" src="{% static 'img/reklama1.png' %}">
+     </div>
+
+
+</div>
+
+
+
+
 
 
 {% endblock %}
-{% block Seo %}
-
-{% endblock %}
-
 {% block advert %}
-
 {% endblock %}
-    <style>
 
-.clickable {
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  position: relative;
-  z-index: 1;
-}
-</style>
+{% block Seo %}
+{% endblock %}
+
 
 

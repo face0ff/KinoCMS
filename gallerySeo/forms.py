@@ -6,8 +6,8 @@ from .models import *
 
 class SeoForm(forms.ModelForm):
     seo_url = forms.URLField(widget=forms.URLInput(attrs={'class': 'form-control'}))
-    seo_title = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    seo_keywords = forms.CharField(max_length=200, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    seo_title = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    seo_keywords = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control'}))
     seo_description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
 
     class Meta:

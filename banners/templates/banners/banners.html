@@ -17,6 +17,16 @@
                         <label class="custom-control-label" for="customSwitch1" ></label>
                         </div>
                 </div>
+                {% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="True">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
 
 
 
@@ -33,8 +43,8 @@
                                 </label>
                             <p>{{ form.url }}</p>
                             <p>{{ form.text }}</p>
-
                             {{ form.id }}
+
                             <div style="display: none">{{ form.DELETE }}</div>
 
 

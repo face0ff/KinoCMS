@@ -110,7 +110,11 @@ class HallForm1(forms.ModelForm):
         widgets = {
             "number": TextInput(attrs={
                 'class': 'custom-file',
-                'placeholder': "Введите Номер"
+                'placeholder': "Введите Номер",
+                "required minlength": "1",
+                "maxlength": "3",
+                "pattern": "^\d+$",
+                "title": "Введите число"
             }),
             "description": Textarea(attrs={
                 'class': 'custom-file',
@@ -148,7 +152,12 @@ class HallForm(forms.ModelForm):
         widgets = {
             "number": TextInput(attrs={
                 'class': 'custom-file',
-                'placeholder': "Введите Номер"
+                'placeholder': "Введите Номер",
+                "required minlength": "1",
+                "maxlength": "3",
+                "pattern": "^\d+$",
+                "title": "Введите число"
+
             }),
             "description": Textarea(attrs={
                 'class': 'custom-file',

@@ -19,14 +19,15 @@ urlpatterns = [
     path('promotions/promotions_create/', views.promotions_create, name='promotions_create'),
     path('promotions/promotions_update/<int:pk>/', views.promotions_update, name='promotions_update'),
     path('pages/user_editing/<int:pk>/', views.user_editing, name='user_editing'),
-    path('about_site/', views.about_site, name='about_site'),
-    path('bar_site/', views.bar_site, name='bar_site'),
-    path('apk_site/', views.apk_site, name='apk_site'),
+    # path('about_site/', views.about_site, name='about_site'),
+    # path('bar_site/', views.bar_site, name='bar_site'),
+    # path('apk_site/', views.apk_site, name='apk_site'),
     path('contacts_site/', views.contacts_site, name='contacts_site'),
-    path('vip_site/', views.vip_site, name='vip_site'),
-    path('advert_site/', views.advert_site, name='advert_site'),
-    path('kids_site/', views.kids_site, name='kids_site'),
-    path('news_site/', views.news_site, name='news_site')
+    # path('vip_site/', views.vip_site, name='vip_site'),
+    # path('advert_site/', views.advert_site, name='advert_site'),
+    # path('kids_site/', views.kids_site, name='kids_site'),
+    path('news_site/', views.news_site, name='news_site'),
+    path('info_pages/<int:pk>/', views.info_pages, name='info_pages'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

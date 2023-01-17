@@ -49,10 +49,10 @@ def create_user(request):
         if user_creation_form.is_valid():
             user = user_creation_form.save(commit=False)
             user.save()
-            messages.info(request, 'Account created successfully')
+            messages.info(request, 'Аккаун создан')
             return redirect('login_page')
         else:
-            messages.info(request, 'Passwords do not match')
+            messages.info(request, 'Пароли не совпадают')
     else:
         user_creation_form = CreationForm()
 

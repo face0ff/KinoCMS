@@ -5,7 +5,7 @@ from gallerySeo.models import Seo, Gallery
 
 
 class Film(models.Model):
-    title = models.CharField("Фильм", max_length=32)
+    title = models.CharField("Фильм", max_length=150)
     description = models.TextField("Описание")
     main_image = models.ImageField("Главное изображение", upload_to="img/films/")
     trailer_url = models.URLField(unique=False)

@@ -11,13 +11,13 @@
         <div class="col-auto"><a class="btn btn-danger" href="{% url 'film_create' %}">{% trans 'Создание кина' %}</a></div>
     </div>
 
-    <div class="row p-5">
+    <div class="row p-5" >
         {% for film in films_now %}
 
 
 
-            <div class="col-auto">
-                <h3>{{ film.title }}</h3>
+            <div class="col-md-2 text-center" style="overflow-wrap: break-word" >
+
                  <a href="{% url 'film_update' film.pk %}" data-toggle="lightbox"
                        data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">
                         {% if film.main_image %}
@@ -28,6 +28,7 @@
                                  class="d-block ml-auto mr-auto d-inline">
                         {% endif %}
                     </a>
+            <h3 >{{ film.title }}</h3>
             </div>
 
         {% endfor %}

@@ -139,7 +139,7 @@ msgstr "Увійти"
 
 #: .\templates\users\login_page.html:66
 msgid "Зарегистрироваться  "
-msgstr "Зарегистрироваться"
+msgstr "Зареєструватись"
 
 #: .\templates\users\register.html:42
 msgid "Введите имейл  "
@@ -147,7 +147,7 @@ msgstr "Введіть імейл"
 
 #: .\templates\users\register.html:76
 msgid "Зарегистрировать"
-msgstr "Зарегистрировать"
+msgstr "Зареєструватись"
 
 #: .\templates\users\users.html:13
 msgid "Список пользователи"

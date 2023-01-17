@@ -36,9 +36,48 @@
                 {{ cinemas.description }}
                 <h3>{% trans 'Условия' %}</h3><br>
                 {{ cinemas.condition }}
-                {% for image in images %}
-                    <img style="width: 80%" src="{{ image.image.url}}">
-                {% endfor %}
+
+                {% if images %}
+                    <div style="padding: 3%"><h3>{% trans 'ФОТОГАЛЕРЕЯ' %}</h3></div>
+                        <div class="container p-0" id="news">
+                            <div class="w-100">
+
+                                 <div id="carouselNews" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        {% for image in images %}
+                                            {% if image == images|first %}
+
+                                        <div class="carousel-item active" data-bs-interval="10000">
+                                            <img src="{{ image.image.url }}" class="d-block w-100" height="80%">
+                                            <div class="carousel-caption d-none d-md-block fs-2">
+                                            </div>
+                                        </div>
+                                                {% else %}
+                                            <div class="carousel-item" data-bs-interval="10000">
+                                                <img src="{{ image.image.url }}" class="d-block w-100" height="80%">
+                                                <div class="carousel-caption d-none d-md-block fs-2">
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselNews"
+                                            data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselNews"
+                                            data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                {% endif %}
             </div>
         </div>
 

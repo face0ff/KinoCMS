@@ -24,7 +24,8 @@
                         <img src="{{ new.main_image.url }}" height="180" width="100%">
                         {% endif %}
                     <h3>{{ new.name }}</h3>
-                {{ new.date_publication|date:"d-m-Y" }}
+                {{ new.date_publication|date:"d-m-Y" }}<br>
+                <a href="{{ new.video_url }}">{{ new.video_url }}</a><br>
                     {{ new.description| truncatewords:20 }}
 
                 </div>

@@ -12,12 +12,12 @@
 
         <a href="#" id="list_now" class="list-group-item active"><span>{% trans 'Афиша' %}</span></a>
         <a href="#" id="list_soon" class="list-group-item"> <span>{% trans 'Скоро' %}</span></a>
-        <img class="d-none .d-lg-block .d-xl-none" src="{% static 'img/reklama1.png' %}">
+        <img  src="{% static 'img/reklama1.png' %}">
      </div>
     <div class="col-md-10">
         <div class="row" id="now">
             {% for film in films_now %}
-                <div class="col-md-3 p-3 text-center" >
+                <div class="col-md-3 p-3 text-center" style="overflow-wrap: break-word">
                          <a href="{% url 'film_card' film.pk %}" data-toggle="lightbox"
                                data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">
                             {% if film.main_image %}
@@ -35,7 +35,7 @@
         </div>
         <div class="row" id="soon" style="display: none">
             {% for film in films_soon %}
-                <div class="col-md-3 p-3 text-center">
+                <div class="col-md-3 p-3 text-center" style="overflow-wrap: break-word">
                      <a href="{% url 'film_card' film.pk %}" data-toggle="lightbox"
                            data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">
                             {% if film.main_image %}

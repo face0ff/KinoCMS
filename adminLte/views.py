@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.shortcuts import render
 from users.models import User
 from users.models import Session
@@ -26,7 +26,11 @@ def stat_view(request):
     for s in sessions:
         int = sessions_days.count(s.date.day)
         sessions_count.append(int)
-    users_gender_count = obj_users.values('gender').annotate(count=Count('gender'))
+    users_gender_count_list = obj_users.values('gender').annotate(count=Count('gender'))
+
+    users_gender_count = users_gender_count_list.filter(~Q(gender=''))
+
+
     print(users_gender_count)
     print(sessions_days)
     print(sessions_count)

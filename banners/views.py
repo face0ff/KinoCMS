@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from banners.forms import BannersUpResumeForm, BannerBackgroundResumeForm, BannerNewsResumeForm, BannerMainUpFormSet, BannerNewsPromoFormSet
@@ -77,6 +78,7 @@ def banners_view(request):
             print(banner_main_up_formset.errors)
             print(banner_main_up_formset.non_form_errors())
             print("Чтото пошло под лед")
+            messages.info(request, 'Выберите фото, введите ссылку, напишите текст!')
             return redirect('banners')
 
     if request.POST.get('type') == 'back_banner_form':
@@ -120,6 +122,7 @@ def banners_view(request):
             print(banner_news_promo_formset.errors)
             print(banner_news_promo_formset.non_form_errors())
             print("Всему пздец")
+            messages.info(request, 'Выберите фото, введите ссылку!')
             return redirect('banners')
 
     else:

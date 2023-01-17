@@ -54,27 +54,31 @@
                 {{ user_form.password2 }}
 
               </div>
+        {{ user_form.username.errors }}
         {{ user_form.email.errors }}
+{#        {{ user_form.errors }}#}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+
 
 {#              <div class="checkbox mb-3">#}
 {#                <label>#}
 {#                  <input type="checkbox" value="remember-me"> Запомнить#}
 {#                </label>#}
 {#              </div>#}
-              <button class="btn btn-lg btn-primary btn-block " type="submit">{% trans 'Сохранить' %}</button>
+              <button class="btn btn-lg btn-primary btn-block"  type="submit">{% trans 'Сохранить' %}</button>
+        <div style="text-align: center"><a  href="{% url 'login_page' %}">{% trans 'Войти' %}</a></div>
 
         </form>
 
         </div>
     </div>
-  <p class="mt-5 mb-3 text-muted text-center">В очень плохой год</p>
+  <p class="mt-5 mb-3 text-muted text-center">2023</p>
   </body>
 </html>

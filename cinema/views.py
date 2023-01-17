@@ -17,7 +17,7 @@ from cinema.forms import FilmsForm, CinemaForm, HallForm, HallForm1
 from cinema.models import Film, Cinema, Hall
 from gallerySeo.forms import ImageFormSet, SeoForm, GalleryForm
 from gallerySeo.models import Image, Seo, Gallery
-from pages.models import MainPage, NewsPromotions
+from pages.models import MainPage, NewsPromotions, TemplatePage
 from users.models import Session, Tiket
 
 
@@ -545,7 +545,11 @@ def kino_cms(request):
     phone = get_object_or_404(MainPage, pk=1)
     seo_text = get_object_or_404(Seo, pk=phone.seo_id)
 
+
+
+
     context = {
+
         'seo_text': seo_text,
         'banners_new': banners_new,
         'banners_new_sec': banners_new_sec,
@@ -712,12 +716,18 @@ def booking(request, pk):
     print(pk)
     session = get_object_or_404(Session, pk=pk)
     film = get_object_or_404(Film, pk=session.film.pk)
-    date = datetime.date.today()
+    print(session.dateTime)
+
+    dateTimeNow = datetime.datetime.now().time()
+    dateNow = datetime.datetime.now().date()
+    print(dateNow)
+
     hall = get_object_or_404(Hall, pk=session.hall.pk)
 
 
     context = {
-
+        'dateNow': dateNow,
+        'dateTimeNow': dateTimeNow,
         'session': session,
         'film': film,
         'hall': hall
@@ -759,7 +769,7 @@ def list_booking(request):
 
 
 def promotions_site(request):
-    promotions = NewsPromotions.objects.filter(is_promotions=True)
+    promotions = NewsPromotions.objects.filter(is_promotions=True).filter(state=True)
     context = {
         'promotions': promotions
     }

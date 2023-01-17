@@ -23,7 +23,7 @@
           <select class="form-control" aria-label="Default select example" id="select_cinema" onchange="changeEventHandler(this)" >
                 <option selected >{% trans 'Кинотеатр' %}</option>
               {% for cinema in cinemas %}
-                  <option id="cinema{{ cinema.pk }}"  value="cinema_{{ cinema.pk }}" >{{ cinema.name }}</option>
+                  <option id="cinema{{ cinema.pk }}"  value="cinema_{{ cinema.pk }}" >{{ cinema.name|slice:":15" }}</option>
               {% endfor %}
           </select>
 
@@ -56,11 +56,11 @@
 
 
     </div>
-    <div class="col-md-auto">
+    <div class="col-md-auto" >
         <select class="form-control" aria-label="Default select example" id="select_film" onchange="changeEventHandler(this)" >
             <option selected >{% trans 'Фильм: Все' %} </option>
               {% for film in films %}
-                  <option id="film_id"  value="film_{{ film.pk }}" >{{ film.title }}</option>
+                  <option  id="film_id"  value="film_{{ film.pk }}" >{{ film.title|slice:":15"}}</option>
               {% endfor %}
           </select>
     </div>
@@ -511,7 +511,7 @@ else if (rez[4] == '' && url_rez[3] != ''){
                 console.log(value)
 
 
-                $("#select_hall").append(`<option class="hall_id" value="hall_${ item.pk }">${ item.fields.description }-${ item.fields.number }</option>`);
+                $("#select_hall").append(`<option class="hall_id" value="hall_${ item.pk }">${ item.fields.number }</option>`);
 
             });
             }
