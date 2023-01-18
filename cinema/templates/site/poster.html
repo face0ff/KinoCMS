@@ -8,11 +8,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <div class="row">
-     <div class="col-md-2 list-group" style="height: 15em; margin-left: 1em; margin: initial; padding-left: 2em">
+     <div class="col-md-2 list-group justify-content-center" >
 
         <a href="#" id="list_now" class="list-group-item active"><span>{% trans 'Афиша' %}</span></a>
         <a href="#" id="list_soon" class="list-group-item"> <span>{% trans 'Скоро' %}</span></a>
-        <img  src="{% static 'img/reklama1.png' %}">
+       <div><img class="img-fluid" src="{% static 'img/reklama1.png' %}"></div>
      </div>
     <div class="col-md-10">
         <div class="row" id="now">
@@ -55,7 +55,8 @@
 <style>
 
 .list-group {
-
+        text-align: center;
+    padding-left: 1%;
      margin:auto;
      float:left;
      padding-top:20px;

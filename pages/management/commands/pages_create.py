@@ -48,8 +48,9 @@ class Command(BaseCommand):
             print('BannerMainUp create successful')
         if TemplatePage.objects.count() == 0:
             list = ['О кинотеатре', 'Реклама', 'Кафе-бар', 'Мобильное приложение', 'Vip-зал', 'Детская комната']
-            for i in list:
-                TemplatePage.objects.create(name=i, state='True', main='True', description_ru=fake.text(max_nb_chars=100),
+            listUA = ['Про кінотетар', 'Реклама', 'Кафе-бар', 'Мобільний додаток', 'Vip-зал', 'Дитяча кімната']
+            for i in range(len(list)):
+                TemplatePage.objects.create(name_ru=list[i], name_uk=listUA[i], state='True', main='True', description_ru=fake.text(max_nb_chars=100),
                                             description_uk=fake.text(max_nb_chars=100),
                                             main_image="img/pages/kid.png",
                                             gallery=Gallery.objects.create(),

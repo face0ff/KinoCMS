@@ -51,23 +51,17 @@
                         </form>
                     </div>
                     <div class="col-md-auto align-self-center text-center">
-                  <!-- Facebook -->
-                        <i class="fa fa-facebook-f"></i>
-
-                        <!-- Twitter -->
-                        <i class="fa fa-twitter"></i>
-
+                          <a href="https://twitter.com/"><i class="fa fa-facebook-f"></i></a>
+                                <!-- Twitter -->
+                        <a href="https://facebook.com/"><i class="fa fa-twitter"></i></a>
                         <!-- Google -->
-                        <i class="fa fa-google"></i>
-
+                        <a href="https://google.com/"><i class="fa fa-google"></i></a>
                         <!-- Instagram -->
-                        <i class="fa fa-instagram"></i>
-
+                        <a href="https://instagram.com/"> <i class="fa fa-instagram"></i></a>
                         <!-- Linkedin -->
-                        <i class="fa fa-linkedin-in"></i>
-
+                        <a href="https://linkedin.com/"><i class="fa fa-linkedin-in"></i></a>
                         <!-- Whatsapp -->
-                        <i class="fa fa-whatsapp"></i>
+                        <a href="https://whatsapp.com/"><i class="fa fa-whatsapp"></i></a>
 
                     </div>
                     <div class="col-md-auto align-self-center text-center">
@@ -120,14 +114,9 @@
 {#                              </a>#}
 
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-{#                                <a class="dropdown-item" href="{% url 'about_site' %}">{% trans 'О кинотеатре' %}</a>#}
-                                <a class="dropdown-item" href="{% url 'news_site'  %}">{% trans 'Новости' %}</a>
-{#                                <a class="dropdown-item" href="{% url 'advert_site' %}">{% trans 'Реклама' %}</a>#}
-{#                                <a class="dropdown-item" href="{% url 'bar_site' %}">{% trans 'Кафе' %}</a>#}
-{#                                <a class="dropdown-item" href="{% url 'apk_site' %}">{% trans 'Мобильное приложение' %}</a>#}
-
-{#                                <a class="dropdown-item" href="{% url 'vip_site' %}">{% trans 'Vip-зал' %}</a>#}
-{#                                <a class="dropdown-item" href="{% url 'kids_site' %}">{% trans 'Детская комната' %}</a>#}
+                                    {% if news|length > 0 %}
+                                       <a class="dropdown-item" href="{% url 'news_site'  %}">{% trans 'Новости' %}</a>
+                                    {% endif %}
                                     {% if contacts|length > 0 %}
                                        <a class="dropdown-item" href="{% url 'contacts_site' %}">{% trans 'Контакты' %}</a>
                                     {% endif %}
@@ -304,48 +293,50 @@
         <div class="row align-self-center text-center">
           <div class="col-md-3">
               <small class="d-block mb-3 text-muted">{%  trans 'Мобильные приложения' %}</small>
-            <img class="mb-2" src="{% static 'img/play.png' %}" alt="" width="100" height="35">
-            <img class="mb-2" src="{% static 'img/ios.png' %}" alt="" width="100" height="35">
+              <a href="https://google.com/"><img class="mb-2" src="{% static 'img/play.png' %}" alt="" width="100" height="35"></a>
+              <a href="https://apple.com/"><img class="mb-2" src="{% static 'img/ios.png' %}" alt="" width="100" height="35"></a>
             <small class="d-block mb-3 text-muted">{%  trans 'Разработка сайтов:' %} AVADA-MEDIA</small>
           </div>
           <div class="col-md-3">
             <h5>{%  trans 'Афиша' %}</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">{%  trans 'Расписание' %}</a></li>
-              <li><a class="text-muted" href="#">{%  trans 'Скоро в прокате' %}</a></li>
-              <li><a class="text-muted" href="#">{%  trans 'Кинотеатры' %}</a></li>
-              <li><a class="text-muted" href="#">{%  trans 'Акции' %}</a></li>
+              <li><a class="text-muted" href="{% url 'poster' 1  %}">{%  trans 'Расписание' %}</a></li>
+              <li><a class="text-muted" href="{% url 'poster' 2  %}">{%  trans 'Скоро в прокате' %}</a></li>
+              <li><a class="text-muted" href="{% url 'cinema_site'  %}">{%  trans 'Кинотеатры' %}</a></li>
+              <li><a class="text-muted" href="{% url 'promotions_site'  %}">{%  trans 'Акции' %}</a></li>
 
             </ul>
           </div>
           <div class="col-md-3">
             <h5>{%  trans 'О кинотеатре' %}</h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">{%  trans 'Новости' %}</a></li>
-              <li><a class="text-muted" href="#">{%  trans 'Реклама' %}</a></li>
-              <li><a class="text-muted" href="#">{%  trans 'Кафе-бар' %}</a></li>
-              <li><a class="text-muted" href="#">{%  trans 'Контакты' %}</a></li>
+                {% if news|length > 0 %}
+                    <li><a class="text-muted" href="{% url 'news_site'  %}">{% trans 'Новости' %}</a></li>
+                {% endif %}
+                {% if contacts|length > 0 %}
+                    <li><a class="text-muted" href="{% url 'contacts_site' %}">{% trans 'Контакты' %}</a></li>
+                {% endif %}
+                {% for page in pages %}
+                    <li><a class="text-muted" href="{% url 'info_pages' page.pk %}"> {{ page.name }}</a></li>
+                {% endfor %}
             </ul>
           </div>
           <div class="col-md-3">
             <h5></h5>
             <ul class="list-unstyled text-small">
-              <i class="fa fa-facebook-f"></i>
 
+                <a href="https://twitter.com/"><i class="fa fa-facebook-f"></i></a>
                         <!-- Twitter -->
-                        <i class="fa fa-twitter"></i>
+                <a href="https://facebook.com/"><i class="fa fa-twitter"></i></a>
+                <!-- Google -->
+                <a href="https://google.com/"><i class="fa fa-google"></i></a>
+                <!-- Instagram -->
+                <a href="https://instagram.com/"> <i class="fa fa-instagram"></i></a>
+                <!-- Linkedin -->
+                <a href="https://linkedin.com/"><i class="fa fa-linkedin-in"></i></a>
+                <!-- Whatsapp -->
+                <a href="https://whatsapp.com/"><i class="fa fa-whatsapp"></i></a>
 
-                        <!-- Google -->
-                        <i class="fa fa-google"></i>
-
-                        <!-- Instagram -->
-                        <i class="fa fa-instagram"></i>
-
-                        <!-- Linkedin -->
-                        <i class="fa fa-linkedin-in"></i>
-
-                        <!-- Whatsapp -->
-                        <i class="fa fa-whatsapp"></i>
             </ul>
           </div>
         </div>
