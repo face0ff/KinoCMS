@@ -15,20 +15,38 @@ class CinemaForm(forms.ModelForm):
 
     class Meta:
         model = Cinema
-        fields = ['name', 'description', 'condition', 'logo',
+        fields = ['name_ru',  'description_ru','name_uk',  'description_uk', 'condition_ru','condition_uk', 'logo',
                   'banner_up_image']
         widgets = {
-            "name": TextInput(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Название"
+            "name_ru": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Название",
+                'required': True
             }),
-            "description": Textarea(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Описание"
+            "description_ru": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Описание",
+                'required': True
             }),
-            "condition": Textarea(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Описание"
+            "name_uk": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть назву",
+                'required': True
+            }),
+            "description_uk": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть Опис",
+                'required': True
+            }),
+            "condition_ru": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Описание",
+                'required': True
+            }),
+            "condition_uk": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть Опис",
+                'required': True
             }),
             "logo": FileInput(attrs={
                 'class': 'form-control',
@@ -50,24 +68,38 @@ class FilmsForm(forms.ModelForm):
 
     class Meta:
         model = Film
-        fields = ['title', 'description', 'release_date', 'main_image',
+        fields = ['title_ru','title_uk', 'description_ru', 'description_uk', 'release_date', 'main_image',
                   'trailer_url', 'type2d', 'type3d', 'typeIMAX']
         widgets = {
-            "title": TextInput(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Название"
+            "title_ru": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Название",
+                'required': True
             }),
-            "description": Textarea(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Описание"
+            "description_ru": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Описание",
+                'required': True
+            }),
+            "title_uk": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть назву",
+                'required': True
+            }),
+            "description_uk": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть Опис",
+                'required': True
             }),
 
-            "trailer_url": URLInput(attrs={
+            "trailer_url": TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': "Введите ссылку"
+
+                'placeholder': "Вставьте ссылку"
             }),
             "release_date": DateInput(attrs={
                 'type': 'date',
+                'class': 'form-control',
                 'placeholder': "Введите дату"
             }, format='%Y-%m-%d'),
             "main_image": FileInput(attrs={
@@ -105,20 +137,26 @@ class HallForm1(forms.ModelForm):
 
     class Meta:
         model = Hall
-        fields = ['number', 'description', 'create_date', 'banner_up_image',
+        fields = ['number', 'description_ru', 'description_uk', 'create_date', 'banner_up_image',
                   'scheme', 'pk']
         widgets = {
             "number": TextInput(attrs={
-                'class': 'custom-file',
+                'class': 'form-control',
                 'placeholder': "Введите Номер",
                 "required minlength": "1",
                 "maxlength": "3",
                 "pattern": "^\d+$",
                 "title": "Введите число"
             }),
-            "description": Textarea(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Описание"
+            "description_ru": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Описание",
+                'required': True
+            }),
+            "description_uk": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть Опис",
+                'required': True
             }),
 
             "scheme": FileInput(attrs={
@@ -128,6 +166,7 @@ class HallForm1(forms.ModelForm):
             }),
             "create_date": DateInput(attrs={
                 'type': 'date',
+                'class': 'form-control',
                 'placeholder': "Введите дату"
             }, format='%Y-%m-%d'),
             "banner_up_image": FileInput(attrs={
@@ -147,11 +186,11 @@ class HallForm(forms.ModelForm):
 
     class Meta:
         model = Hall
-        fields = ['number', 'description', 'create_date', 'banner_up_image',
+        fields = ['number', 'description_ru', 'description_uk',  'create_date', 'banner_up_image',
                   'scheme']
         widgets = {
             "number": TextInput(attrs={
-                'class': 'custom-file',
+                'class': 'form-control',
                 'placeholder': "Введите Номер",
                 "required minlength": "1",
                 "maxlength": "3",
@@ -159,9 +198,15 @@ class HallForm(forms.ModelForm):
                 "title": "Введите число"
 
             }),
-            "description": Textarea(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Описание"
+             "description_ru": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Описание",
+                'required': True
+            }),
+            "description_uk": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть Опис",
+                'required': True
             }),
 
             "scheme": FileInput(attrs={
@@ -171,6 +216,7 @@ class HallForm(forms.ModelForm):
             }),
             "create_date": DateInput(attrs={
                 'type': 'date',
+                'class': 'form-control',
                 'placeholder': "Введите дату"
             }, format='%Y-%m-%d'),
             "banner_up_image": FileInput(attrs={

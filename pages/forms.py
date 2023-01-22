@@ -14,16 +14,28 @@ class NewsForm(forms.ModelForm):
 
     class Meta:
         model = NewsPromotions
-        fields = ['name', 'description', 'main_image', 'video_url', 'date_publication', 'state', 'is_promotions']
+        fields = ['name_ru', 'description_ru', 'name_uk', 'description_uk', 'main_image', 'video_url', 'date_publication', 'state', 'is_promotions']
 
         widgets = {
-            "name": TextInput(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Название"
+            "name_ru": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Название",
+                'required': True
             }),
-            "description": Textarea(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Описание"
+            "description_ru": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Описание",
+                'required': True
+            }),
+            "name_uk": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть назву",
+                'required': True
+            }),
+            "description_uk": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть Опис",
+                'required': True
             }),
             "main_image": FileInput(attrs={
                 'class': 'form-control',
@@ -36,6 +48,7 @@ class NewsForm(forms.ModelForm):
             }),
             "date_publication": DateInput(attrs={
                 'type': 'date',
+                'class': 'form-control',
                 'placeholder': "Введите дату"
             }, format='%Y-%m-%d'),
             "state": CheckboxInput(attrs={
@@ -54,16 +67,28 @@ class PageForm(forms.ModelForm):
 
     class Meta:
         model = TemplatePage
-        fields = ['name', 'description', 'main_image', 'state', 'main']
+        fields = ['name_ru', 'description_ru', 'name_uk', 'description_uk', 'main_image', 'state', 'main']
 
         widgets = {
-            "name": TextInput(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Название"
+            "name_ru": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Название",
+                'required': True
             }),
-            "description": Textarea(attrs={
-                'class': 'custom-file',
-                'placeholder': "Введите Описание"
+            "description_ru": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введите Описание",
+                'required': True
+            }),
+            "name_uk": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть назву",
+                'required': True
+            }),
+            "description_uk": Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': "Введіть Опис",
+                'required': True
             }),
             "main_image": FileInput(attrs={
                 'class': 'form-control',

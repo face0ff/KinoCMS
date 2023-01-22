@@ -12,7 +12,7 @@ def check(user):
 
 @user_passes_test(check, 'login_page')
 def stat_view(request):
-    obj_users = User.objects.all()
+    obj_users = User.objects.filter(~Q(gender=''), is_superuser=False)
     today = datetime.date.today()
     last_month = today.replace(month=today.month)
     # print(last_month)

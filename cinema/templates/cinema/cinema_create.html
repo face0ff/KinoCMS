@@ -5,12 +5,27 @@
 {% block content %}
     <div class="flex-column container-fluid form-group">
     <form action="" method="post" enctype="multipart/form-data">
+        <div class="row ">
+            <div class="col offset-9">
+                <a href="#" id="list_ukr" class="list-group-item active"><span>Український</span></a>
+                <a href="#" id="list_rus" class="list-group-item"> <span>Русский</span></a>
+            </div>
+        </div>
         {% csrf_token %}
         <div class="row p-5">
             <div class="col-auto">
-                {% trans 'Название кинотеатра:' %} {{ cinema_form.name }}
-                {% trans 'Описание кинотеатра:' %} {{ cinema_form.description }}
-                {% trans 'Условия' %} {{ cinema_form.condition }}
+                <h5>Введите украинскую и русскую версию названия и описания и условии</h5>
+                <div id="uk">
+                    {% trans 'Название кинотеатра:' %} {{ cinema_form.name_uk }}
+                    {% trans 'Описание кинотеатра:' %} {{ cinema_form.description_uk }}
+                    {% trans 'Условия' %} {{ cinema_form.condition_uk }}
+                </div>
+                <div id="ru" style="display: none">
+                    {% trans 'Название кинотеатра:' %} {{ cinema_form.name_ru }}
+                    {% trans 'Описание кинотеатра:' %} {{ cinema_form.description_ru }}
+                    {% trans 'Условия' %} {{ cinema_form.condition_ru }}
+                </div>
+
 {#-----------------------------------------------ВыводимЛого----------------------------------------------#}
                 {% trans 'Лого:' %}
                 <div class="image-cinema col-auto" id="image-cinema">
@@ -60,7 +75,7 @@
 {#-----------------------------------------------ВыводимОстальное----------------------------------------------------#}
 
                 SeoForm:
-
+                    {{ seo_form.errors }}
                 <p>{% trans 'Ссылка:' %} {{ seo_form.seo_url }}</p>
                 <p>{% trans 'Описание:' %} {{ seo_form.seo_description }}</p>
                 <p>{% trans 'Слова:' %} {{ seo_form.seo_keywords }}</p>

@@ -46,9 +46,20 @@ function oneUsers(){
 function checkValue(value){
     console.log(value)
     test1 = document.getElementById('HtmlFile').value = value;
-    console.log(test1)
+    // parts = test1.split('.');
+    // if (parts.length > 1) ext = parts.pop();
+    // if (ext != 'html'){
+    //     alert("Поддерживает рыссылку только HTML файлов")
+    //
+    // }
+
+
     let name = $(`#template_name`);
     name.text(value);
+
+
+
+
 }
 
 const addMoreImg = document.getElementById('add-more-img')

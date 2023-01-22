@@ -15,6 +15,7 @@ class BannersMainUpResumeForm(ModelForm):
                 'class': 'custom-file',
                 'style': 'display: none;',
                 'onchange': 'download(this)'
+
             }),
 
             "url": URLInput(attrs={

@@ -12,10 +12,10 @@ from users.models import User, Mail
 class CreationForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Username"}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': "Email"}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': "Password", "required minlength":"8", "pattern":"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}",
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': "Password", "required minlength":"8", "pattern":"(?=^.{8,}$)[а-яА-ЯёЁa-zA-Z0-9]+$",
                                                                                   "title": "Минимум 8 символов 1 цифра 1 большая и 1 маленькая буквы"}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control',
-                                                                  'placeholder': "Retype password", "required minlength":"8", "pattern":"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}",
+                                                                  'placeholder': "Retype password", "required minlength":"8", "pattern":"(?=^.{8,}$)[а-яА-ЯёЁa-zA-Z0-9]+$",
                                                                                   "title": "Минимум 8 символов 1 цифра 1 большая и 1 маленькая буквы"}))
 
 
@@ -32,12 +32,12 @@ class ChangeForm(UserChangeForm):
     password1 = forms.CharField(required=False, widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                                   'placeholder': "Password",
                                                                                   'style': 'width:auto', "type":"password","required minlength":"8",
-                                                                                  "pattern":"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}",
+                                                                                  "pattern":"(?=^.{8,}$)[а-яА-ЯёЁa-zA-Z0-9]+$",
                                                                                   "title": "Минимум 8 символов 1 цифра 1 большая и 1 маленькая буквы"}))
     password2 = forms.CharField(required=False, widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                                   'placeholder': "Retype password",
                                                                                   'style': 'width:auto', "type":"password", "required minlength":"8",
-                                                                                  "pattern":"(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])\S{8,}",
+                                                                                  "pattern":"(?=^.{8,}$)[а-яА-ЯёЁa-zA-Z0-9]+$",
                                                                                   "title": "Минимум 8 символов 1 цифра 1 большая и 1 маленькая буквы"}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "First name",
                                                          'style': 'width:auto', "pattern":"^[А-Яа-я]+$", "title": "Ввод только кириллицей"}))

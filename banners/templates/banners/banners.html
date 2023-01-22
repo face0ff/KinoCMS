@@ -18,15 +18,15 @@
                         </div>
                 </div>
                 {% for message in messages %}
-<div class="container-fluid p-0">
-  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="True">&times;</span>
-    </button>
-    {{ message }}
-  </div>
-</div>
-{% endfor %}
+                    <div class="container-fluid p-0">
+                      <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="True">&times;</span>
+                        </button>
+                        {{ message }}
+                      </div>
+                    </div>
+                    {% endfor %}
 
 
 
@@ -66,6 +66,7 @@
                         </label>
                     <p>{{ banner_main_up_formset.empty_form.url}}</p>
                     <p>{{ banner_main_up_formset.empty_form.text}}</p>
+
                 </div>
                 <div class="row">
                     <div class="col">
@@ -225,5 +226,8 @@
 {% endblock %}
 {% block scripts %}
     <script src="{% static 'js/banners.js' %}"></script>
+
+
+
 
 {% endblock %}

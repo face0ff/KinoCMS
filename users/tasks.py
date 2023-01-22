@@ -23,7 +23,7 @@ def send_email_task(email_list, msg):
         if test in range(1, count+1):
             chislo = round((test/count)*100)
             client.set('chislo', chislo)
-            test= test+1
+            test = test+1
 
 
 

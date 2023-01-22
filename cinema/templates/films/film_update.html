@@ -5,11 +5,28 @@
 {% block content %}
 <div class="flex-column container-fluid form-group">
     <form action="" method="post" enctype="multipart/form-data">
+     <div class="row ">
+        <div class="col offset-10">
+
+
+            <a href="#" id="list_ukr" class="list-group-item active"><span>Український</span></a>
+            <a href="#" id="list_rus" class="list-group-item"> <span>Русский</span></a>
+
+        </div>
+
+    </div>
         {% csrf_token %}
         <div class="row p-5">
             <div class="col-auto">
-                <p>{% trans 'Название фильма:' %} {{ films_form.title }}</p>
-                <p>{% trans 'Описание фильма:' %} {{ films_form.description }}</p>
+                <div id="uk">
+                    <p>{% trans 'Название фильма:' %} {{ films_form.title_uk }}</p>
+                    <p>{% trans 'Описание фильма:' %} {{ films_form.description_uk }}</p>
+                </div>
+                <div id="ru" style="display: none">
+                    <p>{% trans 'Название фильма:' %} {{ films_form.title_ru }}</p>
+                    <p>{% trans 'Описание фильма:' %} {{ films_form.description_ru }}</p>
+                </div>
+
                 <p>{% trans 'Дата релиза:' %} {{ films_form.release_date }}</p>
 {#-----------------------------------------------ВыводимГлавнуюКартинку----------------------------------------------#}
                 {% trans 'Главная картинка:' %}
@@ -71,13 +88,20 @@
                     </div>
                 </div>
 {#-----------------------------------------------ВыводимОстальное----------------------------------------------------#}
-
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {{ films_form.errors }}
                 {% trans 'Трейлер:' %} {{ films_form.trailer_url }}
-                2d{{ films_form.type2d }}
-                3d{{ films_form.type3d }}
-                IMAX{{ films_form.typeIMAX }}<br>
+                2d {{ films_form.type2d }}
+                3d {{ films_form.type3d }}
+                IMAX {{ films_form.typeIMAX }}<br>
                 SeoForm:
-
+                {{ seo_form.errors }}
                <p>{% trans 'Ссылка:' %} {{ seo_form.seo_url }}</p>
                 <p>{% trans 'Описание:' %} {{ seo_form.seo_description }}</p>
                 <p>{% trans 'Слова:' %} {{ seo_form.seo_keywords }}</p>

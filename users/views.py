@@ -162,7 +162,6 @@ def mail_view(request):
                 email_list = []
                 for user in all_users:
                     email_list.append(user.email)
-
                 count = count + len(email_list)
                 if mail_form.cleaned_data['HtmlTemplate']:
                     mail_form.save()
@@ -191,3 +190,11 @@ def mail_view(request):
     }
 
     return render(request, 'mail/mail.html', context)
+
+# def test_html(test):
+#
+#     split = test.split('.')[-1]
+#     if split == 'html':
+#         return True
+#     else:
+#         return False

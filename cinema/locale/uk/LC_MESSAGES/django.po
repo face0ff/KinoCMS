@@ -291,7 +291,7 @@ msgstr "Новини та Акції"
 
 #: .\templates\site\KinoCMS.html:287
 msgid "Мобильные приложения"
-msgstr "Мобільні програми"
+msgstr "Мобільні додатки"
 
 #: .\templates\site\KinoCMS.html:290
 msgid "Разработка сайтов:"

@@ -64,8 +64,9 @@ def banners_view(request):
             print("Поехали дальше")
             banner_main = banner_main_form.save(commit=False)
             banner_up_main = banner_main_up_formset.save(commit=False)
+
             for del_item in banner_main_up_formset.deleted_objects:
-                print(del_item)
+                # print(del_item)
                 del_item.delete()
             for item in banner_up_main:
                 item.banner_up = banner_main
@@ -100,6 +101,8 @@ def banners_view(request):
             return redirect('banners')
         else:
             print("Опять засада")
+            messages.info(request, 'Выберите фото!')
+            return redirect('banners')
 
     if request.POST.get('type') == 'news_banner_form':
         print(request.POST)

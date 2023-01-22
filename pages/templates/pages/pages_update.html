@@ -3,17 +3,25 @@
 {% load static %}
 
 {% block disc %}
-    <div class="row">
-
-        <div class="col-2 offset-10"><label>{% trans 'Отобразить страничку' %}: {{ page_form.state }}</label></div>
+<div class="row">
+        <div class="col offset-9">
+            <a href="#" id="list_ukr" class="list-group-item active"><span>Український</span></a>
+            <a href="#" id="list_rus" class="list-group-item"> <span>Русский</span></a>
+            <label>{% trans 'Отобразить новость' %}: {{ page_form.state }}</label>
+        </div>
     </div>
+    <h5>Введите украинскую и русскую версию названия и описания</h5>
     <div class="row">
-        <div class="col-6" style="overflow-wrap: break-word">{% trans 'Название' %}:  <p>{{ page_form.name }}</p></div>
-{#        <div class="col-6">Дата публикации: <p>{{ page_form.date_publication }}</p></div>#}
+        <div id="uk">
+            <div class="col-auto">{% trans 'Название' %}:  <p>{{ page_form.name_uk }}</p></div>
+             <div class="col-auto"><p> {% trans 'Описание' %}: {{ page_form.description_uk }}</p></div>
+        </div>
+        <div id="ru" style="display: none">
+            <div class="col-auto">{% trans 'Название' %}:  <p>{{ page_form.name_ru }}</p></div>
+             <div class="col-auto"><p> {% trans 'Описание' %}: {{ page_form.description_ru }}</p></div>
+        </div>
+
     </div>
-
-    <p> {% trans 'Описание' %}: {{ page_form.description }}</p>
-
 {% endblock %}
 
 {% block media1 %}

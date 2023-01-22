@@ -51,9 +51,9 @@
                         </form>
                     </div>
                     <div class="col-md-auto align-self-center text-center">
-                          <a href="https://twitter.com/"><i class="fa fa-facebook-f"></i></a>
+                          <a href="https://facebook.com/"><i class="fa fa-facebook-f"></i></a>
                                 <!-- Twitter -->
-                        <a href="https://facebook.com/"><i class="fa fa-twitter"></i></a>
+                        <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
                         <!-- Google -->
                         <a href="https://google.com/"><i class="fa fa-google"></i></a>
                         <!-- Instagram -->
@@ -67,8 +67,9 @@
                     <div class="col-md-auto align-self-center text-center">
 
                         <div>
-                            <b class="text-info">{{ phone.phone }}</b><br>
-                            <b class="text-info" >{{ phone.aditional_phone }}</b>
+                            <a href="tel:{{ phone.phone }}">{{ phone.phone }}</a><br>
+                            <a href="tel:{{ phone.aditional_phone }}">{{ phone.aditional_phone }}</a>
+
                         </div>
 
 
@@ -160,12 +161,14 @@
                         {% for banner in banners_up %}
                             {% if banner == banners_up|first %}
                                 <div class="carousel-item active" data-bs-interval="{{ banners_sec.rotate_speed }}">
-                            <img src="{{ banners_up.first.image.url }}" class="d-block w-100" height="190">
+                                <a href="{{ banner.url }}"><img src="{{ banners_up.first.image.url }}" class="d-block w-100" height="190"></a>
+
 
                         </div>
                             {% else %}
                             <div class="carousel-item" data-bs-interval="{{ banners_sec.rotate_speed }}">
-                                <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
+                                <a href="{{ banner.url }}"><img src="{{ banner.image.url }}" class="d-block w-100" height="190"></a>
+
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -194,8 +197,8 @@
         {% for film in films_now %}
             <div class="col-md-3 pb-3 text-center" style="overflow-wrap: break-word">
 
-{#                 <a href="{% url 'film_update' film.pk %}" data-toggle="lightbox"#}
-{#                       data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">#}
+                 <a href="{% url 'film_card' film.pk %}" data-toggle="lightbox"
+                       data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">
                         {% if film.main_image %}
                         <img src="{{ film.main_image.url }}" class="img-fluid">
                         {% else %}
@@ -216,8 +219,8 @@
 
             <div class="col-md-3 pb-3 text-center" >
 
-{#                 <a href="{% url 'film_update' film.pk %}" data-toggle="lightbox"#}
-{#                       data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">#}
+                 <a href="{% url 'film_card' film.pk %}" data-toggle="lightbox"
+                       data-title="sample 1 - white" data-gallery="gallery" style="text-align: center" id="{{ film.name}}">
                         {% if film.main_image %}
                         <img src="{{ film.main_image.url }}" class="img-fluid" >
                         {% else %}
@@ -246,13 +249,13 @@
                                 {% if banner == banners_new|first %}
 
                             <div class="carousel-item active" data-bs-interval="{{ banners_new_sec.rotate_speed }}">
-                                <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
+                                <a href="{{ banner.url }}"><img src="{{ banner.image.url }}" class="d-block w-100" height="190"></a>
                                 <div class="carousel-caption d-none d-md-block fs-2">
                                 </div>
                             </div>
                                     {% else %}
                                 <div class="carousel-item" data-bs-interval="{{ banners_new_sec.rotate_speed }}">
-                                    <img src="{{ banner.image.url }}" class="d-block w-100" height="190">
+                                    <a href="{{ banner.url }}"><img src="{{ banner.image.url }}" class="d-block w-100" height="190"></a>
                                     <div class="carousel-caption d-none d-md-block fs-2">
                                     </div>
                                 </div>
@@ -292,7 +295,7 @@
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row align-self-center text-center">
           <div class="col-md-3">
-              <small class="d-block mb-3 text-muted">{%  trans 'Мобильные приложения' %}</small>
+              <small class="d-block mb-3 text-muted"><h5>{%  trans 'Мобильные приложения' %}</h5></small>
               <a href="https://google.com/"><img class="mb-2" src="{% static 'img/play.png' %}" alt="" width="100" height="35"></a>
               <a href="https://apple.com/"><img class="mb-2" src="{% static 'img/ios.png' %}" alt="" width="100" height="35"></a>
             <small class="d-block mb-3 text-muted">{%  trans 'Разработка сайтов:' %} AVADA-MEDIA</small>
@@ -325,9 +328,9 @@
             <h5></h5>
             <ul class="list-unstyled text-small">
 
-                <a href="https://twitter.com/"><i class="fa fa-facebook-f"></i></a>
+                <a href="https://facebook.com/"><i class="fa fa-facebook-f"></i></a>
                         <!-- Twitter -->
-                <a href="https://facebook.com/"><i class="fa fa-twitter"></i></a>
+                <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
                 <!-- Google -->
                 <a href="https://google.com/"><i class="fa fa-google"></i></a>
                 <!-- Instagram -->

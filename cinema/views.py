@@ -1,6 +1,7 @@
 import datetime
 import json
 
+from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q
 
@@ -58,6 +59,15 @@ def film_update(request, pk):
         if films_form.is_valid() and image_formset.is_valid() and seo_form.is_valid():
             print("Ну дальше")
             film = films_form.save(commit=False)
+            video_id = films_form.cleaned_data['trailer_url']
+            if video_id.split('/')[3] != 'embed':
+                try:
+                    split = video_id.split('v=')[1].split('&')[0]
+                    url = f'https://www.youtube.com/embed/{split}'
+                    film.trailer_url = url
+                except:
+                    messages.warning(request, 'Добавьте ссылку с youtube')
+                    return redirect('film_update', pk)
             images = image_formset.save(commit=False)
             seo = seo_form.save(commit=False)
             for del_item in image_formset.deleted_objects:
@@ -106,6 +116,15 @@ def film_create(request):
         if films_form.is_valid() and image_formset.is_valid() and seo_form.is_valid():
             print("Ну дальше")
             film = films_form.save(commit=False)
+            video_id = films_form.cleaned_data['trailer_url']
+            if video_id.split('/')[3] != 'embed':
+                try:
+                    split = video_id.split('v=')[1].split('&')[0]
+                    url = f'https://www.youtube.com/embed/{split}'
+                    film.trailer_url = url
+                except:
+                    messages.warning(request, 'Добавьте ссылку с youtube')
+                    return redirect('film_update')
             images = image_formset.save(commit=False)
             seo = seo_form.save(commit=False)
             seo.save()

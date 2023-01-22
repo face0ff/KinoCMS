@@ -35,7 +35,7 @@
                         </button></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="word-wrap: break-word">
                         <div class="row">
                             <div class="col-md-6">
                                 <p style="margin-bottom: 10%; margin-top: 3%;">{% trans 'Загрузить HTML-письмо' %} </p>
@@ -44,18 +44,25 @@
                                 <p>{% trans 'Количество писем ' %} {{ count }} </p>
                             </div>
                             <div class="col-md-6" >
+                                {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
                                 <p><label class="btn btn-primary btn-xs" >{% trans 'Загрузить ' %}{{ mail_form.HtmlTemplate }}</label></p>
 
                                     <input type="text" name="HtmlFile" style="display: none" id="HtmlFile">
-                                 <p><label id="file_name">{% trans 'Файл ' %}</label> </p>
-                                 <p><label id="template_name">{% trans 'Шаблон ' %}</label> </p>
+                                 <p><label style="display: block; overflow-wrap: break-word;" id="file_name">{% trans 'Файл ' %}</label> </p>
+                                 <p><label style="display: block; overflow-wrap: break-word;" id="template_name">{% trans 'Шаблон ' %}</label> </p>
                                     {% trans 'Рассылка выполнена  на ' %}
                                  <a id="percent"></a>%
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6 border rounded-lg">
+                    <div class="col-md-6 border rounded-lg" >
                         {% for mail in obj_mail %}
                             <p><label for="myCheckbox"></label><input id="myCheckbox" type="radio" name="mail_pk"
                                                                       onclick="checkValue('{{ mail.HtmlTemplate | cut:'file/mail/' }}')"
@@ -66,6 +73,7 @@
 
                     </div>
                 </div>
+
 
                 <button type="submit" name="mail" id="send_mail" class="page btn btn-primary btn-lg col-12" value="nodelete">{% trans 'Сохранить' %}</button>
 

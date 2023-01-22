@@ -83,11 +83,13 @@ function add_main_form(event){
 // }
 
 function download(input){
+
     let file = input.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
-    let image = $(`#${input.id}`);
+    let image = $(`#${input.id}`)
     console.log(image.attr('src'))
+    console.log(reader.result)
     reader.onload = function (){
         image.attr('src', reader.result);
     }
@@ -123,19 +125,3 @@ function hideEmptyForm(event, element) {
     $(element).parent().remove()
 }
 
-// function hideBack(id) {
-//     console.log(id)
-//     $('.img-back-banner').attr('src', '/static/dist/img/empty-photo.png')
-//
-//
-//     $.ajax({
-//         type: "POST",
-//         url: "delete/"+id+'/',
-//         data: {'id': id,
-//         csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()
-//         },
-//         success: function (response) {
-//             alert(response.success);
-//         }
-//     });
-// }

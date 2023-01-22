@@ -65,3 +65,26 @@ function hideCinemaBanner(event, element) {
     $('.img-banner_up').attr('src', '/static/img/empty-photo.png')
     $('.delete_banner').attr('value', 'delete')
 }
+
+// if(document.getElementById('option1').checked) {
+//     console.log('1')
+// }else if(document.getElementById('option2').checked) {
+//     console.log('2')
+// }
+
+$('.list-group-item').click(function(e) {
+    e.preventDefault();
+    $('.list-group-item').removeClass('active');
+    $(this).addClass('active');
+});
+
+$('#list_ukr').click(function(e) {
+    e.preventDefault();
+    $('#uk').show();
+    $('#ru').hide();
+});
+$('#list_rus').click(function(e) {
+    e.preventDefault();
+    $('#ru').show();
+    $('#uk').hide();
+});

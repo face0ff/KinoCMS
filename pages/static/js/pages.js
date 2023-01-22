@@ -102,3 +102,19 @@ function hideCinemaBanner(event, element) {
 }
 
 
+$('.list-group-item').click(function(e) {
+    e.preventDefault();
+    $('.list-group-item').removeClass('active');
+    $(this).addClass('active');
+});
+
+$('#list_ukr').click(function(e) {
+    e.preventDefault();
+    $('#uk').show();
+    $('#ru').hide();
+});
+$('#list_rus').click(function(e) {
+    e.preventDefault();
+    $('#ru').show();
+    $('#uk').hide();
+});
