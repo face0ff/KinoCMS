@@ -3,8 +3,8 @@
 {% load static %}
 
 {% block content %}
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">#}
+{#            <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">#}
 
 
 
@@ -16,7 +16,7 @@
     </div>
     <div class="card card-secondary">
         <div class="card-body">
-            <table  id="example" class="table table-bordered table-hover" style="table-layout: fixed; word-wrap: break-word;">
+            <table  id="example" class="table table-hover table-responsive" >
                 <thead>
                 <tr>
                     <th>{% trans 'Название' %}</th>
@@ -72,12 +72,12 @@
                 {% endfor %}
                 </tbody>
             </table>
-            </div>
         </div>
+    </div>
 {% endblock %}
 {% block scripts %}
     <script src="{% static 'js/pages.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+{#    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>#}
+{#    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>#}
 {% endblock %}

@@ -83,7 +83,7 @@ class Command(BaseCommand):
             for i in cinemas:
                 Hall.objects.create(number='1', description="Зал",
                                     create_date=datetime.date.today(),
-                                    scheme='img/hall/hall.jpg',
+                                    scheme='img/hall/hall.png',
                                     banner_up_image='img/hall/banner_hall.jpg', cinema=i,
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                            seo_keywords='test', seo_url='http://test.ua'),
