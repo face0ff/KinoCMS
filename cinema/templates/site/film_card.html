@@ -163,7 +163,7 @@
             instance.forEach(function(item, i, instance ){
                 var date = item.fields.date
                 console.log(typeof date)
-                var date_better = moment(date).locale('ru').format('LL');
+                var date_better = moment(date).locale('ru').format('L');
 
 
                 var hall = item.fields.hall

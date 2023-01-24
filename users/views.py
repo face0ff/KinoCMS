@@ -141,13 +141,14 @@ def mail_view(request):
                 email_list = request.POST.getlist('user')
                 print(email_list)
                 global count
-                count = count + len(email_list)
+
                 if mail_form.cleaned_data['HtmlTemplate']:
                     mail_form.save()
                     name = mail_form.cleaned_data['HtmlTemplate']
                     print(f'file/mail/{name}')
                     try:
                         msg = render_to_string(f'file/mail/{name}')
+                        count = count + len(email_list)
                     except:
                         messages.info(request, 'Не валидные данные')
                         return redirect('mail')
@@ -158,6 +159,7 @@ def mail_view(request):
                     print(url)
                     try:
                         msg = render_to_string(url)
+                        count = count + len(email_list)
                     except:
                         messages.info(request, 'Не валидные данные')
                         return redirect('mail')
@@ -171,12 +173,13 @@ def mail_view(request):
                 email_list = []
                 for user in all_users:
                     email_list.append(user.email)
-                count = count + len(email_list)
+
                 if mail_form.cleaned_data['HtmlTemplate']:
                     mail_form.save()
                     name = mail_form.cleaned_data['HtmlTemplate']
                     try:
                         msg = render_to_string(f'file/mail/{name}')
+                        count = count + len(email_list)
                     except:
                         messages.info(request, 'Не валидные данные')
                         return redirect('mail')
@@ -186,6 +189,7 @@ def mail_view(request):
                     url = name.HtmlTemplate.name
                     try:
                         msg = render_to_string(url)
+                        count = count + len(email_list)
                     except:
                         messages.info(request, 'Не валидные данные')
                         return redirect('mail')
