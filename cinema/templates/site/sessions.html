@@ -80,9 +80,11 @@
 
 
 <div class="row" id="now">
-        <div class="col-md-10 text-center p-2"  style="margin: auto; overflow-wrap: break-word" >
-            <table  id="ex1" class="table-sm table-hover" style="width: 100%">
-                <div id="table_date"></div>
+        <div class="col-md-10 text-center"  style="margin: auto; overflow-wrap: break-word">
+        Сессий добавленны для примера!
+            <table  id="ex1" class="table" style="table-layout: fixed; word-wrap: break-word;">
+
+
             </table>
         </div>
     <div class="col-md-2 text-center">
@@ -194,7 +196,7 @@ $('.datepicker_ua').datepicker({
             console.log(instance_now)
             instance_now.forEach(function(item, i, instance_now ){
                 var value_date = `${ item.date }`
-                var date_better = moment(value_date).locale('ru').format('LL');
+                var date_better = moment(value_date).locale('ru').format('L');
                 var session_pk = `${ item.session_id }`
                 var int = parseInt(session_pk)
                 if (list_book2.includes(int)){

@@ -28,25 +28,26 @@
 
 {#-----------------------------------------------ВыводимЛого----------------------------------------------#}
                 {% trans 'Лого:' %}
+
                 <div class="image-cinema col-auto" id="image-cinema">
-                     <img class="img-cinema-logo" id="id_logo" style=" height: 150px; width: 150px"
+                     <img class="img-logo" id="id_logo" style=" height: 150px; width: 150px"
                          class="d-block ml-auto mr-auto d-inline"
                          src="{% static 'img/empty-photo.png' %}">
                     <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
                         {{ cinema_form.logo }}
                     </label>
-                          <label class="btn btn-danger btn-lg" onclick="hideCinema(event, this)" >{% trans 'Удалить картинку' %}</label>
+                          <label class="btn btn-danger btn-lg" onclick="hideCinemaLogo(event, this)" >{% trans 'Удалить картинку' %}</label>
                 </div>
 {#-------------------------------------------------ВыводимБаннер-------------------------------------------#}
                 {% trans 'Баннер:' %}
                 <div class="image-cinema col-auto" id="image-cinema">
-                     <img class="img-cinema-banner" id="id_banner_up_image" style=" height: 150px; width: 150px"
+                     <img class="img-banner_up" id="id_banner_up_image" style=" height: 150px; width: 150px"
                          class="d-block ml-auto mr-auto d-inline"
                          src="{% static 'img/empty-photo.png' %}">
                     <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
                         {{ cinema_form.banner_up_image }}
                     </label>
-                          <label class="btn btn-danger btn-lg" onclick="hideCinema(event, this)" >{% trans 'Удалить картинку' %}</label>
+                          <label class="btn btn-danger btn-lg" onclick="hideCinemaBanner(event, this)" >{% trans 'Удалить картинку' %}</label>
                 </div>
 {#-----------------------------------------------ВыводимФормсет------------------------------------------------------#}
                                 {% trans 'Галерея картинок:' %}

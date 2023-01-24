@@ -146,17 +146,26 @@ def mail_view(request):
                     mail_form.save()
                     name = mail_form.cleaned_data['HtmlTemplate']
                     print(f'file/mail/{name}')
-                    msg = render_to_string(f'file/mail/{name}')
+                    try:
+                        msg = render_to_string(f'file/mail/{name}')
+                    except:
+                        messages.info(request, 'Не валидные данные')
+                        return redirect('mail')
                     send_email_task.delay(email_list, msg)
                 elif request.POST.get('mail_pk'):
                     name = get_object_or_404(Mail, pk=request.POST.get('mail_pk'))
                     url = name.HtmlTemplate.name
                     print(url)
-                    msg = render_to_string(url)
+                    try:
+                        msg = render_to_string(url)
+                    except:
+                        messages.info(request, 'Не валидные данные')
+                        return redirect('mail')
                     task = send_email_task.delay(email_list, msg)
 
                 else:
-                    pass
+                    messages.info(request, 'Не валидные данные')
+                    return redirect('mail')
             if request.POST.get('type') == 'all_user':
                 all_users = User.objects.all()
                 email_list = []
@@ -166,18 +175,29 @@ def mail_view(request):
                 if mail_form.cleaned_data['HtmlTemplate']:
                     mail_form.save()
                     name = mail_form.cleaned_data['HtmlTemplate']
-                    msg = render_to_string(f'file/mail/{name}')
+                    try:
+                        msg = render_to_string(f'file/mail/{name}')
+                    except:
+                        messages.info(request, 'Не валидные данные')
+                        return redirect('mail')
                     send_email_task.delay(email_list, msg)
                 elif request.POST.get('mail_pk'):
                     name = get_object_or_404(Mail, pk=request.POST.get('mail_pk'))
                     url = name.HtmlTemplate.name
-                    msg = render_to_string(url)
+                    try:
+                        msg = render_to_string(url)
+                    except:
+                        messages.info(request, 'Не валидные данные')
+                        return redirect('mail')
                     send_email_task.delay(email_list, msg)
                 else:
-                    pass
+                    messages.info(request, 'Не валидные данные')
+                    return redirect('mail')
 
         else:
             print('ne validno')
+            messages.info(request, 'Не валидные данные')
+            return redirect('mail')
 
     mail_form = MailForm()
     context = {

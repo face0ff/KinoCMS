@@ -52,15 +52,15 @@ class ChangeForm(UserChangeForm):
     card_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "Введите 16 цифр",
                                                                 'style': 'width:auto', "required minlength":"16", "maxlength":"16", "pattern":"^\d+$", "title": "Вводите только числа"}))
     city = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "City",
-                                                         'style': 'width:auto'}))
+                                                         'style': 'width:auto', "pattern":"^[А-Яа-я,./ ]+$", "title": "Ввод только кириллицей"}))
     gender = forms.ChoiceField(choices=User.CHOISES_gender, widget=forms.RadioSelect())
     language = forms.ChoiceField(choices=User.CHOISES_language, widget=forms.RadioSelect())
     phone = forms.CharField(widget=forms.TextInput(attrs={'type':"text", 'class':'form-control', 'id':"phone-field",
                                                           'name':"phone", 'placeholder':"Номер телефона",
                                                           'data-rule-required':"true", 'data-rule-minlength':"10",
                                                           'data-msg':"Введите номер телефона", 'style': 'width:auto',
-                                                          "required minlength":"11","pattern":"^\d+$", "maxlength":"11",
-                                                          "title": "Введить 11 цифр "}))
+                                                          "required minlength":"17","pattern":"\+\d{2}\(\d{3}\)\d{3}-\d{4}", "maxlength":"17",
+                                                          "title": "Введить 12 цифр "}))
 
     class Meta:
         model = User

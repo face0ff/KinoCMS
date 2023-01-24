@@ -16,7 +16,7 @@ class User(AbstractUser):
     card_number = models.CharField("Номер карты", max_length=19)
     gender = models.CharField(max_length=10, choices=CHOISES_gender)
     language = models.CharField(max_length=10, choices=CHOISES_language)
-    phone = models.CharField(max_length=15, blank=True)
+    phone = models.CharField(max_length=16, blank=True)
     birthday_date = models.DateField("Дата рождения", null=True)
     registration_date = models.DateTimeField(auto_now_add=True)
     # confirm_password = models.CharField("Пароль", max_length=32)

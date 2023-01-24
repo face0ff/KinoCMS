@@ -50,13 +50,16 @@ class CinemaForm(forms.ModelForm):
             }),
             "logo": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
-                'onchange': 'download(this)'
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
+                'onchange': 'download(this)',
+                "title": "Добавьте картинку"
+
             }),
             "banner_up_image": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
-                'onchange': 'download(this)'
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
+                'onchange': 'download(this)',
+                "title": "Добавьте картинку"
             }),
         }
 

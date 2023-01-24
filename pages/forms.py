@@ -122,7 +122,11 @@ class MainForm(forms.ModelForm):
                 'data-rule-required': "true",
                 'data-rule-minlength': "10",
                 'data-msg': "Введите номер телефона",
-                'style': 'width:auto'
+                'style': 'width:auto',
+                "required minlength": "17",
+                "pattern": "\+\d{2}\(\d{3}\)\d{3}-\d{4}",
+                "maxlength": "17",
+                "title": "Введить 12 цифр",
             }),
             "aditional_phone": TextInput(attrs={
                 'type':"text",
@@ -133,7 +137,11 @@ class MainForm(forms.ModelForm):
                 'data-rule-required':"true",
                 'data-rule-minlength':"10",
                 'data-msg':"Введите номер телефона",
-                'style': 'width:auto'
+                'style': 'width:auto',
+                "required minlength": "17",
+                "pattern": "\+\d{2}\(\d{3}\)\d{3}-\d{4}",
+                "maxlength": "17",
+                "title": "Введить 12 цифр",
             }),
             "seo_text": Textarea(attrs={
                 'class': 'custom-file',

@@ -168,14 +168,14 @@
 
                 var hall = item.fields.hall
                 console.log(hall)
-                $('#show_only').append(`<div class="col-auto p-2"><button class="btn btn-info" onclick="select_session('${date}', '${hall}', '${kino_type}')" >${date_better}</button></div>`);
+                $('#show_only').append(`<div class="col-auto p-2"><button class="btn btn-info" onclick="select_session('${date}', '${hall}', '${kino_type}', '${film}')" >${date_better}</button></div>`);
                 {#$('#show_only').children().children().prop('id', "1");#}
             });
         }
         })
   }
 
-  function select_session(date, hall, kino_type) {
+  function select_session(date, hall, kino_type, film) {
       console.log(typeof date)
 
       $('#show_time').children().remove();
@@ -185,6 +185,7 @@
         type:'post',
         data:{
             kino_type: kino_type,
+            film: film,
             date: date,
             hall: hall,
             csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val()

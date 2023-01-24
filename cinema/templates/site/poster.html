@@ -26,9 +26,9 @@
                                 <img  class="img-fluid" src="{% static 'img/empty-photo.png' %}">
                             {% endif %}
                         </a>
-                     <h5>{{ film.title }}</h5>
+                     <p>{{ film.title}}</p>
 
-                    <a type="button" href="{% url 'sessions' film.pk %}" class="btn btn-success">{% trans 'Купить билет' %}</a>
+                    <a type="button"  href="{% url 'sessions' film.pk %}" class="btn btn-success">{% trans 'Купить билет' %}</a>
                 </div>
 
             {% endfor %}
@@ -44,7 +44,7 @@
                                 <img class="img-fluid"  src="{% static 'img/empty-photo.png' %}">
                             {% endif %}
                         </a>
-                    <h5>{{ film.title }}</h5>
+                    <p>{{ film.title}}</p>
                 </div>
             {% endfor %}
         </div>

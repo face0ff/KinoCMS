@@ -93,6 +93,7 @@ def film_update(request, pk):
             print(films_form.errors)
             print(seo_form.errors)
             print("Не валидно")
+            return redirect('films')
     else:
         films_form = FilmsForm(instance=obj_films)
         seo_form = SeoForm(instance=obj_films.seo)
@@ -147,6 +148,7 @@ def film_create(request):
             print(films_form.errors)
             print(seo_form.errors)
             print("Не валидно")
+            return redirect('films')
     else:
         films_form = FilmsForm()
         seo_form = SeoForm()
@@ -209,6 +211,7 @@ def cinema_create(request):
             print(cinema_form.errors)
             print(seo_form.errors)
             print("Не валидно")
+            return redirect('cinemas')
     else:
         cinema_form = CinemaForm()
         seo_form = SeoForm()
@@ -273,6 +276,7 @@ def cinema_update(request, pk):
             print(cinema_form.errors)
             print(seo_form.errors)
             print("Не валидно")
+            return redirect('cinemas')
     else:
         cinema_form = CinemaForm(instance=obj_cinema)
         seo_form = SeoForm(instance=obj_cinema.seo)
@@ -333,6 +337,7 @@ def hall_create(request, pk):
             print(hall_form.errors)
             print(seo_form.errors)
             print("Не валидно")
+            return redirect('cinema_update', pk)
     else:
 
         hall_form = HallForm1(data={'pk': pk, 'number': '0'})
@@ -391,6 +396,7 @@ def hall_update(request, pk):
             print(hall_form.errors)
             print(seo_form.errors)
             print("Не валидно")
+            return redirect('cinema_update', cinema_pk.id)
     else:
         hall_form = HallForm(instance=obj_hall)
         seo_form = SeoForm(instance=obj_hall.seo)
@@ -496,6 +502,9 @@ def show_session(request):
     cinema = request.POST.get('cinema')
     film = request.POST.get('film')
     kino_type = request.POST.get('kino_type')
+    print(cinema)
+    print(film)
+    print(kino_type)
 
     date = datetime.date.today()
     next = []
@@ -503,7 +512,7 @@ def show_session(request):
         var = date + datetime.timedelta(days=i)
         next.append(str(var))
     session = Session.objects.filter(hall__cinema_id=cinema, date__in=next)
-    film_session = session.filter(film_id=film).order_by('date')
+    film_session = session.filter(film_id=film).order_by('date').distinct('date')
     if kino_type == '1':
         session = film_session.filter(tIMAX=True).order_by('date')
         serialized_data = serialize("json", session)
@@ -524,8 +533,12 @@ def show_session(request):
 def select_session(request):
     date = request.POST.get('date')
     hall = request.POST.get('hall')
+    film = request.POST.get('film')
     kino_type = request.POST.get('kino_type')
-    session = Session.objects.filter(hall__id=hall)
+    # print(date)
+    # print(hall)
+    # print(kino_type)
+    session = Session.objects.filter(hall__id=hall, film_id=film)
     hall_session = session.filter(date=date).order_by('date')
 
     if kino_type == '1':
