@@ -25,7 +25,7 @@ class Command(BaseCommand):
             BannerNews.objects.create(id=1)
             print('BannerNews create successful')
         if BannerBackground.objects.count() == 0:
-            BannerBackground.objects.create(id=1, color=fake.hex_color(), imageBackground="img/banners/bg.jpg",
+            BannerBackground.objects.create(id=1, color=fake.hex_color(), imageBackground="img/background/bg.jpg",
                                             background=True)
             print('BannerBackground create successful')
         if BannerNewsPromo.objects.count() == 0:
@@ -52,7 +52,7 @@ class Command(BaseCommand):
             for i in range(len(list)):
                 TemplatePage.objects.create(name_ru=list[i], name_uk=listUA[i], state='True', main='True', description_ru=fake.text(max_nb_chars=100),
                                             description_uk=fake.text(max_nb_chars=100),
-                                            main_image="img/pages/kid.jpg",
+                                            main_image="img/templatePage/kid.jpg",
                                             gallery=Gallery.objects.create(),
                                             seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                                    seo_keywords='test', seo_url='http://test.ua'))
@@ -66,14 +66,14 @@ class Command(BaseCommand):
         if Contacts.objects.count() == 0:
             Contacts.objects.create(cinema_name='Звездный', state='True',
                                     coordinate='46.57317928816355, 30.78472948814475', address='Одесса',
-                                    logo='img/pages/cinema.jpg',
+                                    logo='img/contacts/cinema.jpg',
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                            seo_keywords='test', seo_url='http://test.ua'))
         if Cinema.objects.count() == 0:
             Cinema.objects.create(name='Звездный', description_ru='Звездный', description_uk='Звездний',
                                   condition='Звездный',
-                                  logo='img/pages/cinema.jpg',
-                                  banner_up_image='img/pages/logo.jpg',
+                                  logo='img/cinema/cinema.jpg',
+                                  banner_up_image='img/cinema/logo.jpg',
                                   seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                          seo_keywords='test', seo_url='http://test.ua'),
                                   gallery=Gallery.objects.create())
@@ -83,8 +83,8 @@ class Command(BaseCommand):
             for i in cinemas:
                 Hall.objects.create(number='1', description="Зал",
                                     create_date=datetime.date.today(),
-                                    scheme='img/pages/hall.jpg',
-                                    banner_up_image='img/pages/banner_hall.jpg', cinema=i,
+                                    scheme='img/hall/hall.jpg',
+                                    banner_up_image='img/hall/banner_hall.jpg', cinema=i,
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                            seo_keywords='test', seo_url='http://test.ua'),
                                     gallery=Gallery.objects.create())
@@ -123,7 +123,7 @@ class Command(BaseCommand):
                 news_promo.state = fake.boolean()
                 news_promo.date_publication = fake.date_between_dates(date_start='now', date_end='+10days')
                 news_promo.video_url = 'http://test.ua'
-                news_promo.main_image = "img/pages/disc.jpg"
+                news_promo.main_image = "img/newsPromotions/disc.jpg"
                 news_promo.is_promotions = fake.boolean()
                 news_promo.description_ru = fake.text(max_nb_chars=100)
                 news_promo.description_uk = fake.text(max_nb_chars=100)
