@@ -104,7 +104,7 @@ function show_name(input){
         name.text(file)
         checkValue(file)
         } else{
-            alert("Invalid file format. Supported: only image!!!")
+            alert("Invalid file format. Supported: only html!!!")
         }
 
 }
