@@ -31,7 +31,7 @@ def films_view(request):
     films = Film.objects.all()
     curent_time = datetime.datetime.now()
     films_now = Film.objects.filter(release_date__lte=curent_time)
-    films_soon = Film.objects.filter(release_date__gte=curent_time)
+    films_soon = Film.objects.filter(release_date__gt=curent_time)
     print(films)
 
     context = {
@@ -93,7 +93,7 @@ def film_update(request, pk):
             print(films_form.errors)
             print(seo_form.errors)
             print("Не валидно")
-            messages.warning(request, 'Добавьте КАРТИНКУ')
+            messages.warning(request, 'Добавьте картинку')
             return redirect('film_update', pk)
     else:
         films_form = FilmsForm(instance=obj_films)
@@ -423,7 +423,7 @@ def hall_delete(request, pk):
 def poster(request, pk):
     curent_time = datetime.datetime.now()
     films_now = Film.objects.filter(release_date__lte=curent_time)
-    films_soon = Film.objects.filter(release_date__gte=curent_time)
+    films_soon = Film.objects.filter(release_date__gt=curent_time)
     context = {
         'films_now': films_now,
         'films_soon': films_soon
@@ -565,12 +565,12 @@ def kino_cms(request):
     if search_qr:
 
         films_now = Film.objects.filter(release_date__lte=current_time, title__icontains=search_qr)
-        films_soon = Film.objects.filter(release_date__gte=current_time, title__icontains=search_qr)
+        films_soon = Film.objects.filter(release_date__gt=current_time, title__icontains=search_qr)
 
     else:
 
         films_now = Film.objects.filter(release_date__lte=current_time)
-        films_soon = Film.objects.filter(release_date__gte=current_time)
+        films_soon = Film.objects.filter(release_date__gt=current_time)
     banners_up = BannerMainUp.objects.all()
     banners_sec = get_object_or_404(BannerUp, pk=1)
     banners_new = BannerNewsPromo.objects.all()

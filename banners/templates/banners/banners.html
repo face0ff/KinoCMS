@@ -96,7 +96,7 @@
 
             <div class="flex-column">
 {#                <div class="row float-right" style="margin: 1% 1% 0 0">{{ banner_back_form.background }}</div>#}
-                <table>
+                <table class="table-responsive">
                         <tr>
                             <td>
                                 <div class="flex-column form-check" style="display: inline-grid; margin: 20px 0 0 20px">
@@ -118,13 +118,11 @@
                                     {% if banner_back_form.instance.imageBackground %}
                                         <img class="img-back-banner" id="id_imageBackground"
                                              src="{{ banner_back_form.instance.imageBackground.url }}"
-                                             class="d-block ml-auto mr-auto d-inline"
                                              style=" height: 150px; width: 150px">
 
 
                                     {% else %}
                                         <img class="img-back-banner" id="id_imageBackground" style=" height: 150px; width: 150px"
-                                             class="d-block ml-auto mr-auto d-inline"
                                              src="{% static 'img/empty-photo.png' %}">
                                     {% endif %}
 
@@ -137,9 +135,10 @@
                                 </div>
                             </td>
 
+
                         </tr>
                 </table>
-                </div>
+            </div>
             <div class="row">
                 <div class="col">
 

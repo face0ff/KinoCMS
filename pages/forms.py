@@ -2,6 +2,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
+from cinema.models import Cinema
 from gallerySeo.forms import SeoForm, GalleryForm
 from django.forms import Textarea, TextInput, DateInput, URLInput, FileInput, CheckboxInput, modelformset_factory
 from .models import *
@@ -165,7 +166,7 @@ class ContactForm(forms.ModelForm):
         widgets = {
             "cinema_name": TextInput(attrs={
                 'class': 'custom-file',
-                'placeholder': "Введите название кинотеатра",
+                'placeholder': "Введите название кинотеатра"
             }),
             "coordinate": TextInput(attrs={
                 'class': 'custom-file',
