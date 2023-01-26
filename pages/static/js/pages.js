@@ -22,15 +22,15 @@
 //     } );
 // } );
 
-$(document).ready(function () {
-    $('#example').DataTable({
-        searching: false,
-        paging: false,
-        ordering: false,
-        info: false,
-        search: false
-    });
-});
+// $(document).ready(function () {
+//     $('#example').DataTable({
+//         searching: false,
+//         paging: false,
+//         ordering: false,
+//         info: false,
+//         search: false
+//     });
+// });
 
 const addMoreImg = document.getElementById('add-more-img')
 const totalImgForms = document.getElementById('id_img-TOTAL_FORMS')
@@ -63,7 +63,11 @@ function download(input){
     let image = $(`#${input.id}`);
     console.log(image.attr('src'))
     reader.onload = function (){
-        image.attr('src', reader.result);
+         if (reader.result.split('/')[0] == 'data:image'){
+            image.attr('src', reader.result);
+        } else{
+            alert("Invalid file format. Supported: only image!!!")
+        }
     }
 }
 

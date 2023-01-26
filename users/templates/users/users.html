@@ -14,8 +14,8 @@
         </div>
 
     </div>
-    <div class="card card-secondary">
-        <div class="card-body">
+    <div class="row">
+        <div class="col-md-12">
             <table  id="example" class="table table-hover table-responsive">
                 <thead>
                 <tr>
@@ -39,7 +39,7 @@
                         <td>{{ user.birthday_date|date:"d-m-Y" }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.phone }}</td>
-                        <td>{{ user.name }}{{ user.surname }}</td>
+                        <td>{{ user.name }} {{ user.surname }}</td>
                         <td>{{ user.username }}</td>
                         <td>{{ user.city }}</td>
 
@@ -59,7 +59,7 @@
 
 {% endblock %}
 {% block scripts %}
-    <script src="{% static 'js/users.js' %}"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 {#    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>#}
 {#    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>#}

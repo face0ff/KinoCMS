@@ -16,7 +16,15 @@
 
     </div>
         {% csrf_token %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
         <div class="row p-5">
+
             <div class="col-auto">
                 <div id="uk">
                     <p>{% trans 'Название фильма:' %} {{ films_form.title_uk }}</p>
@@ -44,6 +52,7 @@
 
                     <label class="btn btn-primary btn-lg" >{% trans 'Выбрать картинку' %}
                         {{ films_form.main_image }}
+
                     </label>
                           <label class="btn btn-danger btn-lg" onclick="hideBack(event, this)" >{% trans 'Удалить картинку' %}</label>
                 </div>
@@ -88,17 +97,11 @@
                     </div>
                 </div>
 {#-----------------------------------------------ВыводимОстальное----------------------------------------------------#}
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+
                 {{ films_form.errors }}
                 {% trans 'Трейлер:' %} {{ films_form.trailer_url }}
-                2d {{ films_form.type2d }}
-                3d {{ films_form.type3d }}
+                2d {{ films_form.type2d }}<br>
+                3d {{ films_form.type3d }}<br>
                 IMAX {{ films_form.typeIMAX }}<br>
                 SeoForm:
                 {{ seo_form.errors }}

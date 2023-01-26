@@ -30,7 +30,11 @@ function download(input){
     let image = $(`#${input.id}`);
     console.log(image.attr('src'))
     reader.onload = function (){
-        image.attr('src', reader.result);
+         if (reader.result.split('/')[0] == 'data:image'){
+            image.attr('src', reader.result);
+        } else{
+            alert("Invalid file format. Supported: only image!!!")
+        }
     }
 }
 

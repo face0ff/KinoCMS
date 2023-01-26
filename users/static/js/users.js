@@ -98,10 +98,15 @@ function download(input){
 }
 function show_name(input){
     console.log(input.value)
-    let file = (input.value).substr(12)
-    let name = $(`#file_name`);
-    name.text(file)
-    checkValue(file)
+     if (input.value.split('.')[1] == 'html'){
+        let file = (input.value).substr(12)
+        let name = $(`#file_name`);
+        name.text(file)
+        checkValue(file)
+        } else{
+            alert("Invalid file format. Supported: only image!!!")
+        }
+
 }
 
 

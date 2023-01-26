@@ -1,4 +1,5 @@
 import datetime
+import re
 from decimal import Decimal
 
 from django import forms
@@ -31,13 +32,11 @@ class ChangeForm(UserChangeForm):
                                                             'style': 'width:auto'}))
     password1 = forms.CharField(required=False, widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                                   'placeholder': "Password",
-                                                                                  'style': 'width:auto', "type":"password","required minlength":"8",
-                                                                                  "pattern":"(?=^.{8,}$)[а-яА-ЯёЁa-zA-Z0-9]+$",
+                                                                                  'style': 'width:auto', "type":"password",
                                                                                   "title": "Минимум 8 символов 1 цифра 1 большая и 1 маленькая буквы"}))
     password2 = forms.CharField(required=False, widget=forms.PasswordInput(attrs={'class': 'form-control',
                                                                                   'placeholder': "Retype password",
-                                                                                  'style': 'width:auto', "type":"password", "required minlength":"8",
-                                                                                  "pattern":"(?=^.{8,}$)[а-яА-ЯёЁa-zA-Z0-9]+$",
+                                                                                  'style': 'width:auto', "type":"password",
                                                                                   "title": "Минимум 8 символов 1 цифра 1 большая и 1 маленькая буквы"}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': "First name",
                                                          'style': 'width:auto', "pattern":"^[А-Яа-я]+$", "title": "Ввод только кириллицей"}))
@@ -70,9 +69,23 @@ class ChangeForm(UserChangeForm):
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Пароли не совпадают")
-        return password2
+        password_k = "^(?=.*?[А-Я])(?=.*?[а-я])(?=.*?[0-9]).{8,}$"
+        password_e = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
+        if not password1:
+            return password2
+        else:
+            if password1 and password2 and password1 != password2:
+                raise forms.ValidationError("Пароли не совпадают")
+
+            if  re.match(password_k, password1):
+                return password2
+            if re.match(password_e, password1):
+                return password2
+            else:
+                raise ValidationError(u'%s Неверный формат' % password1)
+
+
+
 
     def save(self, commit=True):
         user_form = super().save(commit=False)

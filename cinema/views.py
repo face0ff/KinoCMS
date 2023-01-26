@@ -93,7 +93,8 @@ def film_update(request, pk):
             print(films_form.errors)
             print(seo_form.errors)
             print("Не валидно")
-            return redirect('films')
+            messages.warning(request, 'Добавьте КАРТИНКУ')
+            return redirect('film_update', pk)
     else:
         films_form = FilmsForm(instance=obj_films)
         seo_form = SeoForm(instance=obj_films.seo)

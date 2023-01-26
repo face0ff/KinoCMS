@@ -89,9 +89,14 @@ function download(input){
     reader.readAsDataURL(file);
     let image = $(`#${input.id}`)
     console.log(image.attr('src'))
-    console.log(reader.result)
     reader.onload = function (){
-        image.attr('src', reader.result);
+
+        if (reader.result.split('/')[0] == 'data:image'){
+            image.attr('src', reader.result);
+        } else{
+            alert("Invalid file format. Supported: only image!!!")
+        }
+
     }
 }
 
@@ -102,8 +107,11 @@ function downloadBack(input){
     let image = $(`#${input.id}`);
     console.log(input.id)
     reader.onload = function (){
-        console.log(reader.result)
-        image.attr('src', reader.result);
+        if (reader.result.split('/')[0] == 'data:image'){
+            image.attr('src', reader.result);
+        } else{
+            alert("Invalid file format. Supported: only image!!!")
+        }
     }
 }
 

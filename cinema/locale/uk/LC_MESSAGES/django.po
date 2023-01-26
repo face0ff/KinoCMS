@@ -37,7 +37,7 @@ msgstr "Видалити кінотеатр"
 #: .\templates\cinema\cinema_create.html:11
 #: .\templates\cinema\cinema_update.html:11
 msgid "Название кинотеатра:"
-msgstr "Про кінотеатр:"
+msgstr "Назва кінотеатр:"
 
 #: .\templates\cinema\cinema_create.html:12
 #: .\templates\cinema\cinema_update.html:12

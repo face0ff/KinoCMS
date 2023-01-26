@@ -64,14 +64,14 @@ class Command(BaseCommand):
                                                            , seo_url='http://test.ua'))
 
         if Contacts.objects.count() == 0:
-            Contacts.objects.create(cinema_name='Звездный', state='True',
-                                    coordinate='46.57317928816355, 30.78472948814475', address='Одесса',
+            Contacts.objects.create(cinema_name_ru='Звездный', cinema_name_uk='Звездний', state='True',
+                                    coordinate='46.57317928816355, 30.78472948814475', address_ru='Одесса', address_uk='Одеса',
                                     logo='img/contacts/cinema.jpg',
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                            seo_keywords='test', seo_url='http://test.ua'))
         if Cinema.objects.count() == 0:
-            Cinema.objects.create(name='Звездный', description_ru='Звездный', description_uk='Звездний',
-                                  condition='Звездный',
+            Cinema.objects.create(name_ru='Звездный', name_uk='Звездний', description_ru='Звездный', description_uk='Звездний',
+                                  condition_ru='Звездный', condition_uk='Звездний',
                                   logo='img/cinema/cinema.jpg',
                                   banner_up_image='img/cinema/logo.jpg',
                                   seo=Seo.objects.create(seo_title='test', seo_description='test',

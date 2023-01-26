@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
+from django.utils.translation import gettext_lazy as _
 from django.shortcuts import render, redirect, get_object_or_404
 from banners.forms import BannersUpResumeForm, BannerBackgroundResumeForm, BannerNewsResumeForm, BannerMainUpFormSet, BannerNewsPromoFormSet
 from banners.models import BannerMainUp, BannerBackground, BannerNewsPromo, BannerNews, BannerUp
@@ -101,7 +102,7 @@ def banners_view(request):
             return redirect('banners')
         else:
             print("Опять засада")
-            messages.info(request, 'Выберите фото!')
+            messages.info(request, _('Выберите фото!'))
             return redirect('banners')
 
     if request.POST.get('type') == 'news_banner_form':
