@@ -7,12 +7,12 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-12 border border-info">
+            <div class="col-12 ">
                 <img src="{{ cinemas.banner_up_image.url }}" style="max-width: 100%">
             </div>
         </div>
         <div class="row pt-3 text-center">
-            <div class="col-md-2 border border-info">
+            <div class="col-md-2 ">
                 <img style="max-width: 100%" src="{% static 'img/reklama1.png' %}">
                 <div >{% trans 'Количество залов:' %} {{ hals|length }}</div>
                 {% for hall in hals %}
@@ -23,20 +23,31 @@
                {% endfor %}
                 <div>{% trans 'Смотрите сегодня' %}</div>
                 {% for session in sessions %}
-                    <div class="col-auto border border-danger" style="color: black">
+                    <div class="col-auto border border-danger" style="color: black; overflow-wrap: break-word">
                            <span class="clickable" >{{ session.film.title }} в {{ session.dateTime }}</span>
                     </div>
                 {% endfor %}
                 <div style=" padding-top: 10% "><a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание сеансов' %}</a></div>
 
             </div>
-            <div class="col-md-10 border border-info text-center " style="overflow-wrap: break-word">
-                <h2>{{ cinemas.name }}</h2>
-                <img style="width: 80%" src="{{ cinemas.logo.url }}"><br>
-                {{ cinemas.description }}
+            <div class="col-md-10 text-center " >
+                <div class="row p-5">
+                    <div class="col-sm-3">
+                        <h5>{{ cinemas.name }}</h5>
+                    </div>
+                    <div class="col-sm-3">
+                        <img style="width: 90%" src="{{ cinemas.logo.url }}"><br>
+                    </div>
+                    <div class="col-sm-3">
+                        <div style=" padding-top: 10% "><a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание сеансов' %}</a></div>
+                    </div>
+                </div>
+
+                <div style="overflow-wrap: break-word" >{{ cinemas.description }}
+
                 <h3>{% trans 'Условия' %}</h3><br>
                 {{ cinemas.condition }}
-
+                </div>
                 {% if images %}
                     <div style="padding: 3%"><h3>{% trans 'ФОТОГАЛЕРЕЯ' %}</h3></div>
                         <div class="container p-0" id="news">

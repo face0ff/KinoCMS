@@ -65,7 +65,7 @@ class Command(BaseCommand):
 
         if Contacts.objects.count() == 0:
             Contacts.objects.create(cinema_name_ru='Звездный', cinema_name_uk='Звездний', state='True',
-                                    coordinate='46.57317928816355, 30.78472948814475', address_ru='Одесса', address_uk='Одеса',
+                                    coordinate='46.57317928816355, 30.78472948814475', address_ru='ООО "Кинотеатр "Звездный". Одесса, ул. Героев Сталинграда, 60 (048)755-31-16', address_uk='ТОВ "Кінотеатр "Зоряний". Одеса, вул. Героїв Сталінграда, 60 (048)755-31-16',
                                     logo='img/contacts/cinema.jpg',
                                     seo=Seo.objects.create(seo_title='test', seo_description='test',
                                                            seo_keywords='test', seo_url='http://test.ua'))

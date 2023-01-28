@@ -7,26 +7,26 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-12 border border-info">
+            <div class="col-12 ">
                 <img src="{{ hall.banner_up_image.url }}" style="max-width: 100%">
             </div>
         </div>
         <div class="row pt-3 text-center">
-            <div class="col-md-2 border border-info">
+            <div class="col-md-2 ">
                 <img style="max-width: 100%" src="{% static 'img/reklama1.png' %}">
                     <a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание всех сеансов ' %}</a>
 
 
                 <div>{% trans 'Смотрите сегодня' %}</div>
                 {% for session in sessions %}
-                    <div class="col-auto border border-danger" style="color: black">
+                    <div class="col-auto border border-danger" style="color: black; overflow-wrap: break-word">
                            <span class="clickable" >{{ session.film.title }} в {{ session.dateTime }}</span>
                     </div>
                 {% endfor %}
                 <div style=" padding-top: 10% "><a type="button" href="{% url 'sessions' %}" class="btn btn-success">{% trans 'Расписание сеансов' %}</a></div>
 
             </div>
-            <div class="col-md-10 border border-info text-center" style="overflow-wrap: break-word">
+            <div class="col-md-10  text-center" style="overflow-wrap: break-word">
                 <h2>{{ hall.number }}</h2>
 
                {{ hall.description }}

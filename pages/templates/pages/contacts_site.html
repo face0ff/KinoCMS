@@ -21,23 +21,30 @@
 
 
                 {% for contact in contacts_list %}
-                    <div class="col-md-6" style="overflow-wrap: break-word">
-                        <h3>{{ contact.name }}</h3>
+                    <div class="col-md-12" style="overflow-wrap: break-word">
+                        <div class="row">
+                            <div class="col-3">
+                                <h3>{{ contact.name }}</h3>
+                            </div>
+                            <div class="col-3">
+                                <img class="img-fluid" src="{% static 'dist/img/logo_mini.png' %}">
+                            </div>
+                            <div class="col-6">
+                                <h5>{{ contact.address }}</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div  class="col-md-6 pt-3">
+                                <img src="{{ contact.logo.url}}" class="img-fluid">
+                            </div>
+                            <div  class="col-md-6 pt-3">
 
-                        <img src="{{ contact.logo.url}}" class="img-fluid">
-                    </div>
-                    <div  class="col-md-6 pt-3">
-                        {{ contact.address }}
-                        {{ contact.x }}
-                        {{ contact.y }}
-
-
-
-                       <div class="col-auto" style="overflow:hidden;width: 400px;position: relative;"><iframe width="400" height="300" src="https://maps.google.com/maps?width=400&amp;height=300&amp;hl=en&amp;q={{ contact.x }}{{ contact.y }})&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><br />
-                    </div>
+                               <div class="col-auto" style="overflow:hidden;width: 400px;position: relative;"><iframe width="400" height="300" src="https://maps.google.com/maps?width=400&amp;height=300&amp;hl=en&amp;q={{ contact.x }}{{ contact.y }})&amp;ie=UTF8&amp;t=&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><br />
+                            </div>
+                        </div>
                 {% endfor %}
 
-
+            </div>
         </div>
     </div>
      <div class="col-md-2 pt-5" >

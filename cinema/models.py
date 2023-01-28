@@ -18,7 +18,6 @@ class Film(models.Model):
     gallery = models.OneToOneField(Gallery,
                                    on_delete=models.CASCADE, null=True)
 
-
 class Cinema(models.Model):
     name = models.CharField("Кинотеатр", max_length=32)
     description = models.TextField("Описание")
