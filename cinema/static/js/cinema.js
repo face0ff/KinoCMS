@@ -1,4 +1,6 @@
 
+
+
 const addMoreImg = document.getElementById('add-more-img')
 const totalImgForms = document.getElementById('id_img-TOTAL_FORMS')
 
@@ -92,3 +94,5 @@ $('#list_rus').click(function(e) {
     $('#ru').show();
     $('#uk').hide();
 });
+
+

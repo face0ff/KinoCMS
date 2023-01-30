@@ -118,7 +118,7 @@
                 <input type="hidden" class="delete_logo" name="delete_logo" value="nodelete">
                 <input type="hidden" class="delete_banner" name="delete_banner" value="nodelete">
                 <input type="hidden" name="type" value="hall_update_form">
-                <button type="submit" name="films" class="cinema btn btn-primary btn-lg col-12" value="nodelete">{% trans 'Сохранить:' %}</button>
+                <button type="submit" id="button" name="films" class="cinema btn btn-primary btn-lg col-12" value="nodelete">{% trans 'Сохранить:' %}</button>
 
             </div>
         </div>
@@ -128,5 +128,21 @@
 {% endblock %}
 {% block scripts %}
     <script src="{% static 'js/cinema.js' %}"></script>
+        <script>
+    $('document').ready(function() {
+      $('#button').on('click', function() {
+        if ($('#id_scheme').attr('src').split('/')[1] == 'static' || $('#id_banner_up_image').attr('src').split('/')[1] == 'static') {
+            alert("Добавьте картинки")
+            return false;
+        }
+        if ($('#id_description_ru').val() == '' ) {
+            alert("Добавьте русский вариант ")
+        }
+        if ($('#id_description_uk').val() == '') {
+            alert("Добавьте украинский вариант ")
+        }
+      });
 
+    });
+</script>
 {% endblock %}

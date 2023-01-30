@@ -73,9 +73,9 @@ def film_update(request, pk):
             for del_item in image_formset.deleted_objects:
                 print(del_item)
                 del_item.delete()
-            if request.POST.get('films') == 'delete':
-                # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
-                film.main_image.delete()
+            # if request.POST.get('films') == 'delete':
+            #     # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
+            #     film.main_image.delete()
             seo.save()
             film.seo = seo
             for item in images:
@@ -245,17 +245,18 @@ def cinema_update(request, pk):
         if cinema_form.is_valid() and image_formset.is_valid() and seo_form.is_valid():
             print("Ну дальше")
             cinema = cinema_form.save(commit=False)
+            print(cinema_form.cleaned_data['logo'])
             images = image_formset.save(commit=False)
             seo = seo_form.save(commit=False)
             for del_item in image_formset.deleted_objects:
                 print(del_item)
                 del_item.delete()
-            if request.POST.get('delete_logo') == 'delete':
-                # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
-                cinema.logo.delete()
-            if request.POST.get('delete_banner') == 'delete':
-                # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
-                cinema.banner_up_image.delete()
+            # if request.POST.get('delete_logo') == 'delete':
+            #     # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
+            #     cinema.logo.delete()
+            # if request.POST.get('delete_banner') == 'delete':
+            #     # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
+            #     cinema.banner_up_image.delete()
             seo.save()
             cinema.seo = seo
             gallery = GalleryForm().save(commit=False)
@@ -371,12 +372,12 @@ def hall_update(request, pk):
             hall = hall_form.save(commit=False)
             images = image_formset.save(commit=False)
             seo = seo_form.save(commit=False)
-            if request.POST.get('delete_logo') == 'delete':
-                # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
-                hall.scheme.delete()
-            if request.POST.get('delete_banner') == 'delete':
-                # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
-                hall.banner_up_image.delete()
+            # if request.POST.get('delete_logo') == 'delete':
+            #     # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
+            #     hall.scheme.delete()
+            # if request.POST.get('delete_banner') == 'delete':
+            #     # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
+            #     hall.banner_up_image.delete()
             seo.save()
             hall.seo = seo
             gallery = GalleryForm().save(commit=False)
@@ -599,10 +600,17 @@ def kino_cms(request):
 def sessions(request, pk='0'):
     date = datetime.date.today()
     week = date + datetime.timedelta(days=6)
+
     cinemas = Cinema.objects.all()
-    films = Film.objects.all()
+
     sessions_all = Session.objects.all().order_by('date')
     date_all = sessions_all.filter(date__gte=date, date__lte=week).distinct("date")
+    films_session = Session.objects.filter(date__gte=date).values('film_id').distinct("film_id")
+
+    print(films_session)
+    films = Film.objects.filter(id__in=films_session)
+
+
     user = request.user.pk
     booking = Tiket.objects.filter(user_id=user)
     list_book = []

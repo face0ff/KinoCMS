@@ -21,26 +21,26 @@ class NewsForm(forms.ModelForm):
             "name_ru": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Название",
-                'required': True
+                'required': 'True'
             }),
             "description_ru": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Описание",
-                'required': True
+                'required': 'True'
             }),
             "name_uk": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть назву",
-                'required': True
+                'required': 'True'
             }),
             "description_uk": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть Опис",
-                'required': True
+                'required': 'True'
             }),
             "main_image": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
                 'onchange': 'download(this)'
             }),
             "video_url": URLInput(attrs={
@@ -74,26 +74,26 @@ class PageForm(forms.ModelForm):
             "name_ru": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Название",
-                'required': True
+                'required': 'True'
             }),
             "description_ru": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Описание",
-                'required': True
+                'required': 'True'
             }),
             "name_uk": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть назву",
-                'required': True
+                'required': 'True'
             }),
             "description_uk": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть Опис",
-                'required': True
+                'required': 'True'
             }),
             "main_image": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
                 'onchange': 'download(this)'
             }),
             "state": CheckboxInput(attrs={
@@ -128,6 +128,7 @@ class MainForm(forms.ModelForm):
                 "pattern": "\+\d{2}\(\d{3}\)\d{3}-\d{4}",
                 "maxlength": "17",
                 "title": "Введить 12 цифр",
+                'required': 'True'
             }),
             "aditional_phone": TextInput(attrs={
                 'type':"text",
@@ -143,6 +144,7 @@ class MainForm(forms.ModelForm):
                 "pattern": "\+\d{2}\(\d{3}\)\d{3}-\d{4}",
                 "maxlength": "17",
                 "title": "Введить 12 цифр",
+                'required': 'True'
             }),
             "seo_text": Textarea(attrs={
                 'class': 'custom-file',
@@ -183,7 +185,7 @@ class ContactForm(forms.ModelForm):
             }),
             "logo": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
                 'onchange': 'download(this)'
             })
         }

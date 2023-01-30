@@ -99,9 +99,9 @@ def news_update(request, pk):
             for del_item in image_formset.deleted_objects:
                 print(del_item)
                 del_item.delete()
-            if request.POST.get('page') == 'delete':
-                # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
-                news.main_image.delete()
+            # if request.POST.get('page') == 'delete':
+            #     # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
+            #     news.main_image.delete()
             seo.save()
             news.seo = seo
             gallery = GalleryForm().save(commit=False)
@@ -209,9 +209,9 @@ def promotions_update(request, pk):
             for del_item in image_formset.deleted_objects:
                 print(del_item)
                 del_item.delete()
-            if request.POST.get('page') == 'delete':
-                # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
-                promo.main_image.delete()
+            # if request.POST.get('page') == 'delete':
+            #     # background_banner.imageBackground = '/static/dist/img/empty-photo.png'
+            #     promo.main_image.delete()
             seo.save()
             promo.seo = seo
             gallery = GalleryForm().save(commit=False)
@@ -321,8 +321,8 @@ def pages_update(request, pk):
             for del_image in image_formset.deleted_objects:
                 print(del_image)
                 del_image.delete()
-            if request.POST.get('page') == 'delete':
-                page.main_image.delete()
+            # if request.POST.get('page') == 'delete':
+            #     page.main_image.delete()
 
             if pk in range(1, 7):
                 page.main = True

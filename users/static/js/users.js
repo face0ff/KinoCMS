@@ -1,38 +1,4 @@
-$(document).ready(function() {
 
-    let oTable = $('#example').DataTable({
-
-        "language": {
-            "lengthMenu": "Показывать _MENU_ записей на странице",
-            "zeroRecords": "Ничего не найдено",
-            "info": "Показанно _PAGE_ из _PAGES_",
-            "infoEmpty": "Нет записей",
-            "infoFiltered": "(Фильтр _MAX_ из всех)",
-            "sSearch": "Поиск",
-            "oPaginate": {
-                "sFirst": "Первая",
-                "sLast": "Последняя",
-                "sNext": "Следующая",
-                "sPrevious": "Предидущая"
-            },
-            "pageLength": {
-                "_": "Show 5 rows"
-            },
-            order: [[2, 'desc']],
-
-        }
-    })
-
-} );
-
-$(document).ready(function() {
-   oTable = $('#example').dataTable();
-
-   $('form').submit(function(){
-      $(oTable.fnGetHiddenNodes()).find('input:checked').appendTo(this);
-   });
-
-});
 
 function allUsers(){
     $(`#baton`).css('display', 'none');

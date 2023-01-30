@@ -185,6 +185,13 @@
                         <button type="button" class="btn btn-success btn-sm btn-block border-dark">{% trans 'Купить' %}</button>
                     </div>
                 {% endif %}
+
+
+            {% else %}
+                <div class="col-10 offset-1 text-center">
+                    Пожалуйста войдите в учетную запись или зарегистрируйтесь<br>
+                    <a class="btn btn-outline-info border-info" href="{% url 'login_page' %}">{% trans 'Войти' %}</a>
+                </div>
             {% endif %}
         </div>
 

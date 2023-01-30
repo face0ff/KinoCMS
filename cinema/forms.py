@@ -21,32 +21,32 @@ class CinemaForm(forms.ModelForm):
             "name_ru": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Название",
-                'required': True
+                'required': 'True',
             }),
             "description_ru": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Описание",
-                'required': True
+                'required': 'True'
             }),
             "name_uk": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть назву",
-                'required': True
+                'required': 'True'
             }),
             "description_uk": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть Опис",
-                'required': True
+                'required': 'True'
             }),
             "condition_ru": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Описание",
-                'required': True
+                'required': 'True'
             }),
             "condition_uk": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть Опис",
-                'required': True
+                'required': 'True'
             }),
             "logo": FileInput(attrs={
                 'class': 'form-control',
@@ -77,22 +77,22 @@ class FilmsForm(forms.ModelForm):
             "title_ru": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Название",
-                'required': True
+                'required': 'True'
             }),
             "description_ru": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Описание",
-                'required': True
+                'required': 'True'
             }),
             "title_uk": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть назву",
-                'required': True
+                'required': 'True'
             }),
             "description_uk": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть Опис",
-                'required': True
+                'required': 'True'
             }),
 
             "trailer_url": TextInput(attrs={
@@ -107,7 +107,7 @@ class FilmsForm(forms.ModelForm):
             }, format='%Y-%m-%d'),
             "main_image": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
                 'onchange': 'download(this)'
             }),
         }
@@ -154,17 +154,17 @@ class HallForm1(forms.ModelForm):
             "description_ru": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Описание",
-                'required': True
+                'required': 'True'
             }),
             "description_uk": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть Опис",
-                'required': True
+                'required': 'True'
             }),
 
             "scheme": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
                 'onchange': 'download(this)'
             }),
             "create_date": DateInput(attrs={
@@ -174,7 +174,7 @@ class HallForm1(forms.ModelForm):
             }, format='%Y-%m-%d'),
             "banner_up_image": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
                 'onchange': 'download(this)'
             })}
 
@@ -204,17 +204,17 @@ class HallForm(forms.ModelForm):
              "description_ru": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введите Описание",
-                'required': True
+                'required': 'True'
             }),
             "description_uk": Textarea(attrs={
                 'class': 'form-control',
                 'placeholder': "Введіть Опис",
-                'required': True
+                'required': 'True'
             }),
 
             "scheme": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
                 'onchange': 'download(this)'
             }),
             "create_date": DateInput(attrs={
@@ -224,6 +224,6 @@ class HallForm(forms.ModelForm):
             }, format='%Y-%m-%d'),
             "banner_up_image": FileInput(attrs={
                 'class': 'form-control',
-                'style': 'display: none',
+                'style': 'opacity: 0;z-index: -1; position: absolute;',
                 'onchange': 'download(this)'
             })}

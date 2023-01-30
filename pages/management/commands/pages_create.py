@@ -101,7 +101,7 @@ class Command(BaseCommand):
             for i in films:
                 Film.objects.create(title_ru=i[0], title_uk=i[1], description_ru=fake.text(max_nb_chars=100),
                                     description_uk=fake.text(max_nb_chars=100),
-                                    release_date=fake.date_between_dates(date_start='-10days', date_end='+10days'),
+                                    release_date=fake.date_between_dates(date_start='-10days', date_end='+1days'),
                                     # main_image="img/films/"+str(films.index(i)+1)+".jpg",
                                     main_image="img/films/"+str(films.index(i)+1)+".jpg",
                                     trailer_url=trailer_url[(films.index(i))],

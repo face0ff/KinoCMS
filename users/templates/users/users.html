@@ -5,8 +5,11 @@
 {% block content %}
 
 
-{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">#}
-{#    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">#}
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
 
     <div class="row pl-5">
         <div class="col-10">
@@ -15,8 +18,8 @@
 
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <table  id="example" class="table table-hover table-responsive">
+        <div class="col-sm-11 p-5 text-sm">
+            <table id="example" class="table-sm table-responsive table-bordered" >
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
@@ -27,6 +30,7 @@
                     <th scope="col">{% trans 'ФИО ' %}</th>
                     <th scope="col">{% trans 'Псевдоним' %}</th>
                     <th scope="col">{% trans 'Город' %}</th>
+                    <th></th>
 
                 </tr>
                 </thead>
@@ -60,7 +64,44 @@
 {% endblock %}
 {% block scripts %}
 
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-{#    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>#}
-{#    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>#}
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
+     <script>
+
+
+
+
+
+     $(document).ready(function() {
+
+    $('#example').DataTable({
+
+        "language": {
+            "lengthMenu": "Показывать _MENU_ записей на странице",
+            "zeroRecords": "Ничего не найдено",
+            "info": "Показанно _PAGE_ из _PAGES_",
+            "infoEmpty": "Нет записей",
+            "infoFiltered": "(Фильтр _MAX_ из всех)",
+            "sSearch": "Поиск",
+            "oPaginate": {
+                "sFirst": "Первая",
+                "sLast": "Последняя",
+                "sNext": "Следующая",
+                "sPrevious": "Предыдущая"
+            },
+            "pageLength": {
+                "_": "Show 5 rows"
+            },
+            order: [[2, 'desc']],
+
+        }
+    })
+
+} );
+
+     </script>
 {% endblock %}
